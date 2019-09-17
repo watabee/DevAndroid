@@ -4,6 +4,10 @@ import dependencies.Versions
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+ext {
+    ci = System.getenv("CI") == "true"
+}
+
 android {
     compileSdkVersion Versions.androidCompileSdkVersion
     buildToolsVersion Versions.buildToolsVersion
@@ -33,8 +37,25 @@ android {
         release {
             signingConfig signingConfigs.debug // TODO
 
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        // Don't pre-dex on CI
+        preDexLibraries !ci
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
         }
     }
 }

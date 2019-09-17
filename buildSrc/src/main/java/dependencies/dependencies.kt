@@ -20,6 +20,7 @@ object Versions {
 object Deps {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:3.5.0"
+    const val spotlessGradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:3.24.2"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 

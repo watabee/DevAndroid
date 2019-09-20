@@ -20,6 +20,7 @@ object Versions {
 object Deps {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:3.5.0"
+    const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val spotlessGradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:3.24.2"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
@@ -30,6 +31,7 @@ object Deps {
         private const val version = "1.3.50"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
     }
 
     object Google {
@@ -128,6 +130,12 @@ object Deps {
             "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
         const val processorDagger2 =
             "com.squareup.inject:assisted-inject-processor-dagger2:$version"
+    }
+
+    object Spek2 {
+        private const val version = "2.0.7"
+        const val dslJvm = "org.spekframework.spek2:spek-dsl-jvm:$version"
+        const val runner = "org.spekframework.spek2:spek-runner-junit5:$version"
     }
 }
 

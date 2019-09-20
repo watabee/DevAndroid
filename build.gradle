@@ -10,6 +10,7 @@ buildscript {
     dependencies {
         classpath Deps.androidGradlePlugin
         classpath Deps.Kotlin.gradlePlugin
+        classpath Deps.androidJunit5GradlePlugin
         classpath Deps.spotlessGradlePlugin
     }
 }

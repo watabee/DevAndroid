@@ -1,17 +1,14 @@
 package com.github.watabee.rakutenapp
 
-import org.junit.Test
+import org.junit.Assert
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 
-import org.junit.Assert.*
+object ExampleUnitTest : Spek({
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    describe("An example") {
+        it("should be same value") {
+            Assert.assertEquals(4, 2 + 2)
+        }
     }
-}
+})

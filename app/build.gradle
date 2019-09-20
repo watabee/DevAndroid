@@ -3,6 +3,7 @@ import dependencies.Versions
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: "de.mannodermaus.android-junit5"
 
 ext {
     ci = System.getenv("CI") == "true"
@@ -54,6 +55,16 @@ android {
     }
 
     testOptions {
+        junitPlatform {
+            filters {
+                engines {
+                    include 'spek2'
+                }
+            }
+        }
+        unitTests.all {
+            testLogging.events = ["passed", "skipped", "failed"]
+        }
         unitTests {
             includeAndroidResources = true
         }
@@ -67,6 +78,11 @@ dependencies {
     implementation Deps.AndroidX.constraintlayout
 
     testImplementation Deps.junit
+
+    testImplementation Deps.Spek2.dslJvm
+    testImplementation Deps.Spek2.runner
+    testImplementation Deps.Kotlin.reflect
+
     androidTestImplementation Deps.AndroidX.Test.runner
     androidTestImplementation Deps.AndroidX.Test.espressoCore
 }

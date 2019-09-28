@@ -1,2 +1,3 @@
 include ':app'
+include ':ui:common'
 rootProject.name='RakutenAndroid'

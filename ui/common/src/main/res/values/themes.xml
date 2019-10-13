@@ -8,9 +8,9 @@
         <item name="colorOnBackground">@color/gray1</item>
 
         <item name="android:colorBackground">@color/white</item>
+
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
     </style>
 
-    <style name="AppToolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/primary</item>
-    </style>
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary"/>
 </resources>

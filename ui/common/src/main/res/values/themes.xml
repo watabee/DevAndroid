@@ -9,6 +9,8 @@
 
         <item name="android:colorBackground">@color/white</item>
 
+        <item name="android:statusBarColor">@color/primary</item>
+
         <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
     </style>
 

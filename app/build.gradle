@@ -3,6 +3,7 @@ import dependencies.Versions
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: "de.mannodermaus.android-junit5"
 
 ext {
@@ -72,12 +73,19 @@ android {
 }
 
 dependencies {
+    implementation project(':base')
+    implementation project(':base-android')
     implementation project(':ui:common')
 
     implementation Deps.Kotlin.stdlib
     implementation Deps.AndroidX.appcompat
     implementation Deps.AndroidX.coreKtx
     implementation Deps.AndroidX.constraintlayout
+
+    implementation Deps.Dagger.dagger
+    kapt Deps.Dagger.compiler
+    implementation Deps.Dagger.androidSupport
+    kapt Deps.Dagger.androidProcessor
 
     testImplementation Deps.junit
 

@@ -1,0 +1,8 @@
+import dependencies.Deps
+
+apply plugin: 'kotlin'
+
+
+dependencies {
+    implementation Deps.Kotlin.stdlib
+}

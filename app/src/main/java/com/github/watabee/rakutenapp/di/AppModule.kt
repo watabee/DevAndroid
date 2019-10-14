@@ -4,7 +4,8 @@ import dagger.Module
 
 @Module(
     includes = [
-        BaseModule::class
+        BaseModule::class,
+        ActivityBindingModule::class
     ]
 )
 object AppModule

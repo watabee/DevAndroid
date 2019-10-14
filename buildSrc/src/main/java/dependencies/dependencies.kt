@@ -44,12 +44,12 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02"
 
         object Activity {
-            private const val version = "1.1.0-alpha03"
+            private const val version = "1.1.0-beta01"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0-alpha03"
+            private const val version = "1.2.0-beta02"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -66,17 +66,17 @@ object Deps {
 
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
 
-        const val coreKtx = "androidx.core:core-ktx:1.2.0-alpha04"
+        const val coreKtx = "androidx.core:core-ktx:1.2.0-beta01"
 
         object Lifecycle {
-            private const val version = "2.2.0-alpha04"
+            private const val version = "2.2.0-beta01"
             const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Room {
-            private const val version = "2.2.0-rc01"
+            private const val version = "2.2.0"
             const val common = "androidx.room:room-common:$version"
             const val runtime = "androidx.room:room-runtime:$version"
             const val compiler = "androidx.room:room-compiler:$version"
@@ -86,7 +86,7 @@ object Deps {
     }
 
     object RxJava {
-        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.11"
+        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.13"
         const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
         const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
     }
@@ -106,7 +106,7 @@ object Deps {
     }
 
     object OkHttp {
-        private const val version = "4.1.0"
+        private const val version = "4.2.1"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }

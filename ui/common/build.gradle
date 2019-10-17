@@ -3,6 +3,7 @@ import dependencies.Versions
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.androidCompileSdkVersion
@@ -20,7 +21,11 @@ android {
 dependencies {
     implementation Deps.Kotlin.stdlib
     implementation Deps.AndroidX.appcompat
+    implementation Deps.AndroidX.Activity.activityKtx
+    implementation Deps.AndroidX.Fragment.fragmentKtx
     implementation Deps.Google.material
 
+    implementation Deps.Dagger.dagger
+    kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport
 }

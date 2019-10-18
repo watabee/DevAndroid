@@ -23,9 +23,12 @@ dependencies {
     implementation Deps.AndroidX.appcompat
     implementation Deps.AndroidX.Activity.activityKtx
     implementation Deps.AndroidX.Fragment.fragmentKtx
+    implementation Deps.AndroidX.Lifecycle.viewmodel
     implementation Deps.Google.material
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport
+    compileOnly Deps.AssistedInject.annotationDagger2
+    kapt Deps.AssistedInject.processorDagger2
 }

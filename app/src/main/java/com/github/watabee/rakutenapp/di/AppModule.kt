@@ -5,8 +5,8 @@ import dagger.Module
 @Module(
     includes = [
         BaseModule::class,
-        ActivityBindingModule::class,
-        UiCommonModule::class
+        UiCommonModule::class,
+        UiTopModule::class
     ]
 )
 object AppModule

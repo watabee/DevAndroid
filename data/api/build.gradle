@@ -1,0 +1,42 @@
+import dependencies.Deps
+import dependencies.Versions
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.androidCompileSdkVersion
+    defaultConfig {
+        minSdkVersion Versions.androidMinSdkVersion
+        targetSdkVersion Versions.androidTargetSdkVersion
+
+        buildConfigField("String", "RAKUTEN_APP_ID", "\"${System.getenv("RAKUTEN_APP_ID")}\"")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':base')
+
+    implementation Deps.Kotlin.stdlib
+
+    implementation Deps.OkHttp.okhttp
+    implementation Deps.OkHttp.loggingInterceptor
+
+    implementation Deps.Retrofit.retrofit
+    implementation Deps.Retrofit.rxJavaAdapter
+    implementation Deps.Retrofit.moshiConverter
+
+    implementation Deps.Moshi.kotlin
+    kapt Deps.Moshi.codegen
+
+    implementation Deps.RxJava.rxJava
+
+    implementation Deps.Dagger.dagger
+    kapt Deps.Dagger.compiler
+}

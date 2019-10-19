@@ -6,5 +6,6 @@ apply plugin: 'kotlin'
 dependencies {
     implementation Deps.Kotlin.stdlib
 
-    implementation Deps.Dagger.dagger
+    api Deps.RxJava.rxJava
+    api Deps.Dagger.dagger
 }

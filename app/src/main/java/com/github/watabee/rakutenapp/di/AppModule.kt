@@ -5,6 +5,7 @@ import dagger.Module
 @Module(
     includes = [
         BaseModule::class,
+        ApiModule::class,
         UiCommonModule::class,
         UiTopModule::class
     ]

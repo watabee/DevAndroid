@@ -2,6 +2,8 @@
 <manifest package="com.github.watabee.rakutenapp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".RakutenApp"
         android:allowBackup="false"

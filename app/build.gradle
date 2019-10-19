@@ -75,6 +75,7 @@ android {
 dependencies {
     implementation project(':base')
     implementation project(':base-android')
+    implementation project(':data:api')
     implementation project(':ui:common')
     implementation project(':ui:top')
 
@@ -84,6 +85,9 @@ dependencies {
     implementation Deps.AndroidX.constraintlayout
     implementation Deps.AndroidX.Activity.activityKtx
     implementation Deps.AndroidX.Fragment.fragmentKtx
+
+    implementation Deps.Retrofit.retrofit
+    implementation Deps.Moshi.kotlin
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler

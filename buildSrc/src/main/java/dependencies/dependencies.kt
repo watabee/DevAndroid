@@ -19,7 +19,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:3.5.1"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-beta01"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val spotlessGradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:3.24.2"
 
@@ -64,7 +64,9 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
+        // https://issuetracker.google.com/issues/136103084
+        // Specify version 1.1.3 because of build error when using AGP 3.6.0-beta01
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 
         const val coreKtx = "androidx.core:core-ktx:1.2.0-beta01"
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="top_bottom_nav_item_ichiba">Ichiba</string>
+    <string name="top_bottom_nav_item_books">Books</string>
+    <string name="top_bottom_nav_item_foo">Foo</string>
+    <string name="top_bottom_nav_item_bar">Bar</string>
+</resources>

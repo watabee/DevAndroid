@@ -66,7 +66,7 @@ object Deps {
 
         // https://issuetracker.google.com/issues/136103084
         // Specify version 1.1.3 because of build error when using AGP 3.6.0-beta01
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
 
         const val coreKtx = "androidx.core:core-ktx:1.2.0-beta01"
 

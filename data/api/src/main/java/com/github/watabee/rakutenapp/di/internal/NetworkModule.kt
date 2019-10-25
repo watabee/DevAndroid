@@ -23,12 +23,10 @@ import javax.inject.Singleton
 @Module
 internal object NetworkModule {
 
-    @JvmStatic
     @Provides
     @Singleton
     fun provideMoshi(): Moshi = Moshi.Builder().build()
 
-    @JvmStatic
     @Provides
     fun provideCache(context: Context): Cache {
         val cacheSize = 30 * 1024 * 1024L
@@ -36,7 +34,6 @@ internal object NetworkModule {
         return Cache(file, cacheSize)
     }
 
-    @JvmStatic
     @Provides
     @Singleton
     fun provideOkHttpClient(cache: Cache, logger: Logger): OkHttpClient =
@@ -50,7 +47,6 @@ internal object NetworkModule {
             })
             .build()
 
-    @JvmStatic
     @Provides
     @Singleton
     fun provideRetrofit(

@@ -10,7 +10,6 @@ import javax.inject.Singleton
 @Module(includes = [NetworkModule::class])
 object ApiModule {
 
-    @JvmStatic
     @Provides
     @Singleton
     internal fun provideIchibaItemApi(retrofit: Retrofit): IchibaItemApi =

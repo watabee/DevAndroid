@@ -20,7 +20,6 @@ abstract class BaseModule {
 
     @Module
     internal object Provider {
-        @JvmStatic
         @Provides
         @Singleton
         fun provideSchedulerProvider(): SchedulerProvider = SchedulerProvider(

@@ -92,7 +92,7 @@ object Deps {
     }
 
     object Dagger {
-        private const val version = "2.24"
+        private const val version = "2.25.2"
         const val dagger = "com.google.dagger:dagger:$version"
         const val androidSupport = "com.google.dagger:dagger-android-support:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"

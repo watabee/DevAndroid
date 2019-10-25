@@ -40,16 +40,16 @@ object Deps {
 
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.1.0"
-        const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0-beta04"
-        const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02"
+        const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0-rc01"
+        const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.1.0-beta01"
+            private const val version = "1.1.0-rc01"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0-beta02"
+            private const val version = "1.2.0-rc01"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -64,21 +64,19 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        // https://issuetracker.google.com/issues/136103084
-        // Specify version 1.1.3 because of build error when using AGP 3.6.0-beta01
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
 
         const val coreKtx = "androidx.core:core-ktx:1.2.0-beta01"
 
         object Lifecycle {
-            private const val version = "2.2.0-beta01"
+            private const val version = "2.2.0-rc01"
             const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Room {
-            private const val version = "2.2.0"
+            private const val version = "2.2.1"
             const val common = "androidx.room:room-common:$version"
             const val runtime = "androidx.room:room-runtime:$version"
             const val compiler = "androidx.room:room-compiler:$version"

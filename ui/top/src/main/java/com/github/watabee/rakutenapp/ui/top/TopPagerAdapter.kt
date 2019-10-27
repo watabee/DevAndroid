@@ -1,21 +1,19 @@
 package com.github.watabee.rakutenapp.ui.top
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentFactory
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
-internal class TopPagerAdapter(
-    fragmentManager: FragmentManager,
-    private val classLoader: ClassLoader
-) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+internal class TopPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
-    private val fragmentFactory: FragmentFactory = fragmentManager.fragmentFactory
+    private val fragmentFactory: FragmentFactory = activity.supportFragmentManager.fragmentFactory
+    private val classLoader: ClassLoader = activity.classLoader
 
-    override fun getItem(position: Int): Fragment {
+    override fun createFragment(position: Int): Fragment {
         val topPageItem: TopPageItem = TopPageItem.values()[position]
         return fragmentFactory.instantiate(classLoader, topPageItem.className)
     }
 
-    override fun getCount(): Int = TopPageItem.values().size
+    override fun getItemCount(): Int = TopPageItem.values().size
 }

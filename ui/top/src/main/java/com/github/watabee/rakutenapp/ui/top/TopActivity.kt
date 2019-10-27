@@ -2,7 +2,7 @@ package com.github.watabee.rakutenapp.ui.top
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.github.watabee.rakutenapp.BaseActivity
 import com.github.watabee.rakutenapp.ui.top.databinding.ActivityTopBinding
 
@@ -13,8 +13,9 @@ class TopActivity : BaseActivity() {
         val binding: ActivityTopBinding = ActivityTopBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewPager: ViewPager = binding.viewPager
-        viewPager.adapter = TopPagerAdapter(supportFragmentManager, classLoader)
+        val viewPager: ViewPager2 = binding.viewPager
+        viewPager.adapter = TopPagerAdapter(this)
+        viewPager.isUserInputEnabled = false
 
         binding.bottomNavView.setOnNavigationItemSelectedListener { item: MenuItem ->
             when (item.itemId) {

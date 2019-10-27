@@ -31,6 +31,7 @@ dependencies {
     implementation Deps.AndroidX.Activity.activityKtx
     implementation Deps.AndroidX.Fragment.fragmentKtx
     implementation Deps.AndroidX.constraintlayout
+    implementation Deps.AndroidX.viewPager2
     implementation Deps.AndroidX.Lifecycle.viewmodel
     implementation Deps.Google.material
 

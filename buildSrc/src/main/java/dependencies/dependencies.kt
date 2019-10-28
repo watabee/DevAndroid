@@ -121,7 +121,7 @@ object Deps {
     }
 
     object Moshi {
-        private const val version = "1.8.0"
+        private const val version = "1.9.0-SNAPSHOT"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
     }

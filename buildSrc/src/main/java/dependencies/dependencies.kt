@@ -127,7 +127,7 @@ object Deps {
     }
 
     object AssistedInject {
-        private const val version = "0.5.0"
+        private const val version = "0.5.1"
         const val annotationDagger2 =
             "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
         const val processorDagger2 =

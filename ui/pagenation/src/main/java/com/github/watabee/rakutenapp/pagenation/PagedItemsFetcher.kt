@@ -23,7 +23,7 @@ class PagedItemsFetcher<P : Any, R : Any>(
     private val refreshEvent = PublishProcessor.create<P>()
 
     // Output
-    val result: Flowable<FetchItemsResult<R>> = _result
+    val result: Flowable<FetchItemsResult<R>> = _result.skip(1) // Skip default value
 
     init {
         refreshEvent.map { firstPage }.subscribe(page)
@@ -62,7 +62,7 @@ class PagedItemsFetcher<P : Any, R : Any>(
 
         state.ofType(State.Loading::class.java)
             .withLatestFrom(_result) { _, prevResult ->
-                prevResult.copy(isLoading = true)
+                FetchItemsResult(items = prevResult.items, e = null, isLoading = true)
             }
             .subscribe(_result)
     }

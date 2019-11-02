@@ -21,7 +21,7 @@ object Deps {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-beta02"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
-    const val spotlessGradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:3.24.2"
+    const val spotlessGradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:3.25.0"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 

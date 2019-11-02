@@ -1,8 +1,8 @@
 package com.github.watabee.rakutenapp.util
 
 import com.github.watabee.rakutenapp.base.BuildConfig
-import timber.log.Timber
 import javax.inject.Inject
+import timber.log.Timber
 
 internal class AppLogger @Inject constructor() : Logger {
     init {

@@ -25,8 +25,6 @@ object Deps {
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
-    const val junit = "junit:junit:4.12"
-
     object Kotlin {
         private const val version = "1.3.50"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
@@ -133,6 +131,8 @@ object Deps {
         const val processorDagger2 =
             "com.squareup.inject:assisted-inject-processor-dagger2:$version"
     }
+
+    const val junit = "junit:junit:4.12"
 
     object Spek2 {
         private const val version = "2.0.7"

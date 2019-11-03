@@ -86,7 +86,7 @@ object Deps {
     }
 
     object RxJava {
-        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.13"
+        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.14"
         const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
         const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
     }

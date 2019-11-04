@@ -7,7 +7,8 @@ import dagger.Module
         BaseModule::class,
         ApiModule::class,
         UiCommonModule::class,
-        UiTopModule::class
+        UiTopModule::class,
+        UiRankingModule::class
     ]
 )
 object AppModule

@@ -132,6 +132,12 @@ object Deps {
             "com.squareup.inject:assisted-inject-processor-dagger2:$version"
     }
 
+    object Groupie {
+        private const val version = "2.7.1"
+        const val groupie = "com.xwray:groupie:$version"
+        const val dataBinding = "com.xwray:groupie-databinding:$version"
+    }
+
     const val junit = "junit:junit:4.12"
 
     object Spek2 {

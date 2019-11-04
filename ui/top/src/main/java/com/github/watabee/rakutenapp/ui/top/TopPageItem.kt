@@ -1,7 +1,9 @@
 package com.github.watabee.rakutenapp.ui.top
 
+import com.github.watabee.rakutenapp.ui.ichiba.ranking.RankingFragment
+
 enum class TopPageItem(val className: String) {
-    ICHIBA(TopFragment::class.java.name),
+    ICHIBA(RankingFragment::class.java.name),
 
     BOOKS(TopFragment::class.java.name),
 

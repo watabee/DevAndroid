@@ -17,24 +17,31 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    viewBinding {
+    dataBinding {
         enabled = true
     }
 }
 
 dependencies {
     implementation project(':base')
+    implementation project(':data:api')
     implementation project(':ui:common')
-    implementation project(':ui:ichiba:ranking')
+    implementation project(':ui:pagenation')
 
     implementation Deps.Kotlin.stdlib
     implementation Deps.AndroidX.appcompat
     implementation Deps.AndroidX.Activity.activityKtx
     implementation Deps.AndroidX.Fragment.fragmentKtx
     implementation Deps.AndroidX.constraintlayout
-    implementation Deps.AndroidX.viewPager2
+    implementation Deps.AndroidX.swiperefresh
+    implementation Deps.AndroidX.recyclerview
     implementation Deps.AndroidX.Lifecycle.viewmodel
     implementation Deps.Google.material
+
+    implementation Deps.RxJava.rxKotlin
+
+    implementation Deps.Groupie.groupie
+    implementation Deps.Groupie.dataBinding
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler

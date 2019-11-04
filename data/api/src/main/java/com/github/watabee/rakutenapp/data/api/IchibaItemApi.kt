@@ -1,5 +1,6 @@
 package com.github.watabee.rakutenapp.data.api
 
+import com.github.watabee.rakutenapp.data.api.response.FindRankingItemsResponse
 import com.github.watabee.rakutenapp.data.api.response.SearchIchibaItemsResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -13,4 +14,7 @@ interface IchibaItemApi {
         @Query("hits") hits: Int,
         @Query("page") page: Int
     ): Single<SearchIchibaItemsResponse>
+
+    @GET("IchibaItem/Ranking/20170628")
+    fun findRankingItems(@Query("page") page: Int): Single<FindRankingItemsResponse>
 }

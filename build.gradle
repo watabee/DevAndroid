@@ -34,9 +34,13 @@ subprojects {
     spotless {
         kotlin {
             target "**/*.kt"
-
-            // https://github.com/diffplug/spotless/issues/419
             ktlint("0.35.0")
+        }
+    }
+
+    afterEvaluate {
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+            it.dependsOn spotlessKotlinApply
         }
     }
 }

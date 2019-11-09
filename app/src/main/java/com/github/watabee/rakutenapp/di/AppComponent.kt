@@ -15,7 +15,7 @@ import javax.inject.Singleton
         AppModule::class
     ]
 )
-interface AppComponent : AndroidInjector<RakutenApp> {
+interface AppComponent : AndroidInjector<RakutenApp>, ImageComponentFactoryProvider {
 
     @Component.Factory
     interface Factory {

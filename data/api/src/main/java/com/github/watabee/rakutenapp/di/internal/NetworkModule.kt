@@ -10,6 +10,7 @@ import dagger.Module
 import dagger.Provides
 import java.io.File
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 import okhttp3.Cache
 import okhttp3.Call
@@ -28,20 +29,30 @@ internal object NetworkModule {
     fun provideMoshi(): Moshi = Moshi.Builder().build()
 
     @Provides
-    fun provideCache(context: Context): Cache {
-        val cacheSize = 30 * 1024 * 1024L
-        val file = File(context.cacheDir, "RakutenApp")
-        return Cache(file, cacheSize)
-    }
-
-    @Provides
     @Singleton
-    fun provideOkHttpClient(cache: Cache, logger: Logger): OkHttpClient =
+    fun provideOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
-            .cache(cache)
             .connectTimeout(10L, TimeUnit.SECONDS)
             .readTimeout(10L, TimeUnit.SECONDS)
+            .build()
+
+    @Named("Api")
+    @Provides
+    @Singleton
+    fun provideOkHttpClientForApi(okHttpClient: OkHttpClient, appContext: Context, logger: Logger): OkHttpClient =
+        okHttpClient.newBuilder()
+            .cache(Cache(File(appContext.cacheDir, "api"), 30 * 1024 * 1024L))
             .addInterceptor(RakutenApiInterceptor())
+            .addInterceptor(HttpLoggingInterceptor(logger = createLogger(logger)).apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
+
+    @Named("Image")
+    @Provides
+    @Singleton
+    fun provideOkHttpClientForImage(okHttpClient: OkHttpClient, logger: Logger): OkHttpClient =
+        okHttpClient.newBuilder()
             .addInterceptor(HttpLoggingInterceptor(logger = createLogger(logger)).apply {
                 level = HttpLoggingInterceptor.Level.BASIC
             })
@@ -50,7 +61,7 @@ internal object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(
-        okHttpClient: Lazy<OkHttpClient>,
+        @Named("Api") okHttpClient: Lazy<OkHttpClient>,
         moshi: Moshi,
         schedulerProvider: SchedulerProvider
     ): Retrofit =

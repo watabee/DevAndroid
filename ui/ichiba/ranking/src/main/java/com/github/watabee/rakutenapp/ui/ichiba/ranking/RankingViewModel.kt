@@ -63,6 +63,6 @@ internal class RankingViewModel @AssistedInject constructor(
 
     private fun List<FindRankingItemsResponse.Item>.toUiModels(): List<RankingUiModel> =
         map {
-            RankingUiModel(itemCode = it.itemCode, itemName = it.itemName)
+            RankingUiModel(itemCode = it.itemCode, itemName = it.itemName, imageUrl = it.mediumImageUrls.firstOrNull())
         }
 }

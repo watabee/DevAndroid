@@ -2,6 +2,7 @@ package com.github.watabee.rakutenapp.di
 
 import android.os.Looper
 import com.github.watabee.rakutenapp.util.AppLogger
+import com.github.watabee.rakutenapp.util.CoroutineDispatchers
 import com.github.watabee.rakutenapp.util.Logger
 import com.github.watabee.rakutenapp.util.SchedulerProvider
 import dagger.Binds
@@ -10,6 +11,7 @@ import dagger.Provides
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Singleton
+import kotlinx.coroutines.Dispatchers
 
 @Module(includes = [BaseModule.Provider::class])
 abstract class BaseModule {
@@ -20,6 +22,15 @@ abstract class BaseModule {
 
     @Module
     internal object Provider {
+        @Provides
+        @Singleton
+        fun provideCoroutineDispatchers(): CoroutineDispatchers =
+            CoroutineDispatchers(
+                main = Dispatchers.Main,
+                io = Dispatchers.IO,
+                computation = Dispatchers.Default
+            )
+
         @Provides
         @Singleton
         fun provideSchedulerProvider(): SchedulerProvider = SchedulerProvider(

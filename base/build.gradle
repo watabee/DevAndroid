@@ -7,5 +7,6 @@ dependencies {
     implementation Deps.Kotlin.stdlib
 
     api Deps.RxJava.rxJava
+    api Deps.Kotlin.Coroutines.core
     api Deps.Dagger.dagger
 }

@@ -10,6 +10,8 @@ android {
     defaultConfig {
         minSdkVersion Versions.androidMinSdkVersion
         targetSdkVersion Versions.androidTargetSdkVersion
+
+        consumerProguardFiles 'proguard-rules-glide.pro'
     }
 
     compileOptions {

@@ -1,13 +1,15 @@
 package com.github.watabee.rakutenapp.util
 
+import android.os.Build
 import com.github.watabee.rakutenapp.base.BuildConfig
+import java.util.regex.Pattern
 import javax.inject.Inject
 import timber.log.Timber
 
 internal class AppLogger @Inject constructor() : Logger {
     init {
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+            Timber.plant(AppDebugTree())
         }
     }
 
@@ -47,4 +49,29 @@ internal class AppLogger @Inject constructor() : Logger {
         Timber.wtf(t, message, *args)
 
     override fun wtf(t: Throwable) = Timber.wtf(t)
+}
+
+private class AppDebugTree : Timber.DebugTree() {
+    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+        super.log(priority, createClassTag(), message, t)
+    }
+
+    private fun createClassTag(): String {
+        val stackTrace = Throwable().stackTrace
+        check(stackTrace.size > CALL_STACK_INDEX) { "Synthetic stacktrace didn't have enough elements: are you using proguard?" }
+        var tag = stackTrace[CALL_STACK_INDEX].className
+        val m = ANONYMOUS_CLASS.matcher(tag)
+        if (m.find()) {
+            tag = m.replaceAll("")
+        }
+        tag = tag.substring(tag.lastIndexOf('.') + 1)
+        // Tag length limit was removed in API 24.
+        return if (tag.length <= MAX_TAG_LENGTH || Build.VERSION.SDK_INT >= 24) tag else tag.substring(0, MAX_TAG_LENGTH)
+    }
+
+    companion object {
+        private const val MAX_TAG_LENGTH = 23
+        private const val CALL_STACK_INDEX = 7
+        private val ANONYMOUS_CLASS = Pattern.compile("(\\$\\d+)+$")
+    }
 }

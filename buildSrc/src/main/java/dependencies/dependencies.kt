@@ -33,7 +33,7 @@ object Deps {
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.1.0-beta01"
+        const val material = "com.google.android.material:material:1.1.0-beta02"
     }
 
     object AndroidX {
@@ -42,12 +42,12 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.1.0-rc01"
+            private const val version = "1.1.0-rc02"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0-rc01"
+            private const val version = "1.2.0-rc02"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -69,7 +69,7 @@ object Deps {
         const val coreKtx = "androidx.core:core-ktx:1.2.0-beta01"
 
         object Lifecycle {
-            private const val version = "2.2.0-rc01"
+            private const val version = "2.2.0-rc02"
             const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"

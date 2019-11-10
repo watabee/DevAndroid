@@ -27,14 +27,8 @@ dependencies {
     implementation project(':ui:common')
     implementation project(':ui:ichiba:ranking')
 
-    implementation Deps.Kotlin.stdlib
-    implementation Deps.AndroidX.appcompat
-    implementation Deps.AndroidX.Activity.activityKtx
-    implementation Deps.AndroidX.Fragment.fragmentKtx
     implementation Deps.AndroidX.constraintlayout
     implementation Deps.AndroidX.viewPager2
-    implementation Deps.AndroidX.Lifecycle.viewmodel
-    implementation Deps.Google.material
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler

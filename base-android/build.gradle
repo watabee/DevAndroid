@@ -21,8 +21,6 @@ android {
 dependencies {
     implementation project(':base')
 
-    implementation Deps.Kotlin.stdlib
-
     implementation Deps.Kotlin.Coroutines.android
 
     implementation Deps.Dagger.dagger

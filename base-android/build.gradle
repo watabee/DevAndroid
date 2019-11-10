@@ -24,7 +24,6 @@ dependencies {
     implementation Deps.Kotlin.stdlib
 
     implementation Deps.Kotlin.Coroutines.android
-    implementation Deps.RxJava.rxAndroid
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler

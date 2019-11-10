@@ -1,42 +1,39 @@
 package com.github.watabee.rakutenapp.ui.ichiba.ranking
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.github.watabee.rakutenapp.data.api.IchibaItemApi
 import com.github.watabee.rakutenapp.data.api.response.FindRankingItemsResponse
 import com.github.watabee.rakutenapp.pagenation.FetchItemsResult
 import com.github.watabee.rakutenapp.pagenation.PagedItem
 import com.github.watabee.rakutenapp.pagenation.PagedItemsFetcher
 import com.github.watabee.rakutenapp.util.AppViewModelFactory
-import com.github.watabee.rakutenapp.util.Logger
-import com.github.watabee.rakutenapp.util.SchedulerProvider
+import com.github.watabee.rakutenapp.util.CoroutineDispatchers
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
+import kotlinx.coroutines.withContext
 
 internal class RankingViewModel @AssistedInject constructor(
     @Assisted private val handle: SavedStateHandle,
     private val ichibaItemApi: IchibaItemApi,
-    private val schedulerProvider: SchedulerProvider,
-    private val logger: Logger
+    private val coroutineDispatchers: CoroutineDispatchers
 ) : ViewModel() {
 
-    private val fetcher = PagedItemsFetcher<Unit, RankingUiModel>(1) { _, page ->
-        ichibaItemApi.findRankingItems(page)
-            .toFlowable()
-            .map { response: FindRankingItemsResponse ->
-                PagedItem(response.items.toUiModels(), nextPage = if (page >= 34) PagedItem.NO_PAGE else page + 1)
-            }
+    private val fetcher = PagedItemsFetcher<Unit, RankingUiModel>(1, viewModelScope) { _, page ->
+        withContext(coroutineDispatchers.io) {
+            val response = ichibaItemApi.findRankingItems(page)
+            PagedItem(response.items.toUiModels(), nextPage = if (page >= 34) PagedItem.NO_PAGE else page + 1)
+        }
     }
 
-    private val disposable = CompositeDisposable()
-
-    private val _result = MutableLiveData<FetchItemsResult<RankingUiModel>>()
-    val result: LiveData<FetchItemsResult<RankingUiModel>> = _result
+    val result: LiveData<FetchItemsResult<RankingUiModel>> = liveData {
+        for (result in fetcher.result) {
+            emit(result)
+        }
+    }
 
     @AssistedInject.Factory
     interface Factory : AppViewModelFactory<RankingViewModel> {
@@ -44,17 +41,7 @@ internal class RankingViewModel @AssistedInject constructor(
     }
 
     init {
-        fetcher.result
-            .observeOn(schedulerProvider.main)
-            .subscribeBy(onNext = _result::setValue, onError = logger::e)
-            .addTo(disposable)
-
         request()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        disposable.clear()
     }
 
     fun request() = fetcher.request(Unit)

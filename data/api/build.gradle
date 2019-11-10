@@ -29,13 +29,10 @@ dependencies {
     implementation Deps.OkHttp.loggingInterceptor
 
     implementation Deps.Retrofit.retrofit
-    implementation Deps.Retrofit.rxJavaAdapter
     implementation Deps.Retrofit.moshiConverter
 
     implementation Deps.Moshi.kotlin
     kapt Deps.Moshi.codegen
-
-    implementation Deps.RxJava.rxJava
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler

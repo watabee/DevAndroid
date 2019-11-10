@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.watabee.rakutenapp.pagenation.FetchItemsResult
 import com.github.watabee.rakutenapp.ui.ichiba.ranking.databinding.FragmentRankingBinding
 import com.github.watabee.rakutenapp.util.ViewModelFactory
@@ -21,16 +22,7 @@ class RankingFragment @Inject constructor(
 ) : Fragment() {
 
     private val viewModel by viewModels<RankingViewModel> { factory.create(this, null) }
-    private val adapter = GroupAdapter<GroupieViewHolder>()
     private lateinit var binding: FragmentRankingBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel.result.observe(this) { result: FetchItemsResult<RankingUiModel> ->
-            adapter.update(result.items.map(::RankingBindableItem))
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentRankingBinding.inflate(inflater, container, false)
@@ -41,8 +33,19 @@ class RankingFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = GroupAdapter<GroupieViewHolder>()
+
         val recyclerView: RecyclerView = binding.recyclerView
         recyclerView.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
         recyclerView.adapter = adapter
+
+        val swipeRefreshLayout: SwipeRefreshLayout = binding.swipeRefreshLayout
+
+        viewModel.result.observe(viewLifecycleOwner) { result: FetchItemsResult<RankingUiModel> ->
+            adapter.update(result.items.map(::RankingBindableItem))
+            if (!result.isLoading) {
+                swipeRefreshLayout.isRefreshing = false
+            }
+        }
     }
 }

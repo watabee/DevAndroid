@@ -1,9 +1,11 @@
 package com.github.watabee.rakutenapp.pagenation
 
-import io.reactivex.Flowable
-import io.reactivex.processors.BehaviorProcessor
-import io.reactivex.processors.PublishProcessor
-import io.reactivex.rxkotlin.withLatestFrom
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.launch
 
 data class FetchItemsResult<T : Any>(
     val items: List<T> = emptyList(),
@@ -11,71 +13,60 @@ data class FetchItemsResult<T : Any>(
     val isLoading: Boolean = false
 )
 
+@UseExperimental(ExperimentalCoroutinesApi::class)
 class PagedItemsFetcher<P : Any, R : Any>(
     firstPage: Int = 1,
-    fetchItemsLogic: (param: P, page: Int) -> Flowable<PagedItem<R>>
+    coroutineScope: CoroutineScope,
+    fetchItemsLogic: suspend (param: P, page: Int) -> PagedItem<R>
 ) {
-    private val _result = BehaviorProcessor.createDefault(FetchItemsResult<R>())
-    private val page = BehaviorProcessor.createDefault(firstPage)
+    private val requestEvent = Channel<Pair<Boolean, P>>()
 
-    // Input
-    private val requestEvent = PublishProcessor.create<P>()
-    private val refreshEvent = PublishProcessor.create<P>()
+    private val _result = ConflatedBroadcastChannel<FetchItemsResult<R>>()
+    val result: ReceiveChannel<FetchItemsResult<R>> get() = _result.openSubscription()
 
-    // Output
-    val result: Flowable<FetchItemsResult<R>> = _result.skip(1) // Skip default value
+    private var page: Int = firstPage
 
     init {
-        refreshEvent.map { firstPage }.subscribe(page)
-        refreshEvent.map { FetchItemsResult<R>() }.subscribe(_result)
+        coroutineScope.launch {
+            var r = FetchItemsResult<R>()
+            fun sendResult(newResult: FetchItemsResult<R>) {
+                r = newResult
+                _result.offer(newResult)
+            }
 
-        refreshEvent.subscribe(requestEvent)
-
-        val state: Flowable<State> = requestEvent.withLatestFrom(page)
-            .switchMap { (param: P, page: Int) ->
-                if (page < 0) {
-                    Flowable.never()
-                } else {
-                    fetchItemsLogic(param, page)
-                        .map<State> { (items, nextPage) -> State.Success(items, nextPage) }
-                        .onErrorReturn(State::Failure)
-                        .startWith(State.Loading)
+            suspend fun fetch(param: P, items: List<R>) {
+                if (page == PagedItem.NO_PAGE) {
+                    return
+                }
+                sendResult(r.copy(e = null, isLoading = true))
+                try {
+                    val pagedItem = fetchItemsLogic(param, page)
+                    page = pagedItem.nextPage
+                    sendResult(FetchItemsResult(items + pagedItem.items))
+                } catch (e: Throwable) {
+                    sendResult(FetchItemsResult(items, e, false))
                 }
             }
-            .replay(1)
-            .refCount()
 
-        @Suppress("UNCHECKED_CAST") val success =
-            state.ofType(State.Success::class.java).share() as Flowable<State.Success<R>>
-        success.map { it.nextPage }.subscribe(page)
-
-        success.map { it.items }.withLatestFrom(_result) { items, prevResult ->
-            FetchItemsResult(prevResult.items + items)
-        }.subscribe(_result)
-
-        state.ofType(State.Failure::class.java)
-            .map { it.e }
-            .withLatestFrom(_result) { throwable, prevResult ->
-                FetchItemsResult(items = prevResult.items, e = throwable)
+            for ((isRefresh, param) in requestEvent) {
+                if (isRefresh) {
+                    page = firstPage
+                    fetch(param, emptyList())
+                } else {
+                    fetch(param, r.items)
+                }
             }
-            .subscribe(_result)
-
-        state.ofType(State.Loading::class.java)
-            .withLatestFrom(_result) { _, prevResult ->
-                FetchItemsResult(items = prevResult.items, e = null, isLoading = true)
-            }
-            .subscribe(_result)
+        }.invokeOnCompletion {
+            requestEvent.close()
+            _result.close()
+        }
     }
 
-    fun request(param: P): Unit = requestEvent.onNext(param)
+    fun request(param: P) {
+        requestEvent.offer(false to param)
+    }
 
-    fun refresh(param: P): Unit = refreshEvent.onNext(param)
-
-    private sealed class State {
-        object Loading : State()
-
-        data class Success<T : Any>(val items: List<T>, val nextPage: Int) : State()
-
-        data class Failure(val e: Throwable) : State()
+    fun refresh(param: P) {
+        requestEvent.offer(true to param)
     }
 }

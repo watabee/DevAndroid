@@ -76,7 +76,7 @@ object Deps {
 
         object Lifecycle {
             private const val version = "2.2.0-rc02"
-            const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
@@ -89,12 +89,6 @@ object Deps {
             const val ktx = "androidx.room:room-ktx:$version"
             const val testing = "androidx.room:room-testing:$version"
         }
-    }
-
-    object RxJava {
-        const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.14"
-        const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
-        const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
     }
 
     object Dagger {

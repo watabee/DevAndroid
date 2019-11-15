@@ -1,7 +1,10 @@
 package com.github.watabee.rakutenapp.pagenation
 
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -28,32 +31,39 @@ class PagedItemsFetcher<P : Any, R : Any>(
 
     init {
         coroutineScope.launch {
-            var r = FetchItemsResult<R>()
-            fun sendResult(newResult: FetchItemsResult<R>) {
-                r = newResult
-                _result.offer(newResult)
-            }
+            var prevResult = FetchItemsResult<R>()
+            var job: Job? = null
+            val supervisorJob = SupervisorJob()
 
-            suspend fun fetch(param: P, items: List<R>) {
-                if (page == PagedItem.NO_PAGE) {
-                    return
-                }
-                sendResult(r.copy(e = null, isLoading = true))
-                try {
-                    val pagedItem = fetchItemsLogic(param, page)
-                    page = pagedItem.nextPage
-                    sendResult(FetchItemsResult(items + pagedItem.items))
-                } catch (e: Throwable) {
-                    sendResult(FetchItemsResult(items, e, false))
-                }
+            fun sendResult(newResult: FetchItemsResult<R>) {
+                prevResult = newResult
+                _result.offer(newResult)
             }
 
             for ((isRefresh, param) in requestEvent) {
                 if (isRefresh) {
                     page = firstPage
-                    fetch(param, emptyList())
-                } else {
-                    fetch(param, r.items)
+                    if (job != null && job.isActive) {
+                        job.cancel()
+                    }
+                }
+                if (page == PagedItem.NO_PAGE) {
+                    continue
+                }
+                if (job != null && job.isActive) {
+                    continue
+                }
+                job = launch(supervisorJob) {
+                    try {
+                        sendResult(FetchItemsResult(if (isRefresh) emptyList() else prevResult.items, isLoading = true))
+                        val pagedItem = fetchItemsLogic(param, page)
+                        page = pagedItem.nextPage
+                        sendResult(FetchItemsResult(prevResult.items + pagedItem.items))
+                    } catch (e: Throwable) {
+                        if (e !is CancellationException) {
+                            sendResult(FetchItemsResult(prevResult.items, e))
+                        }
+                    }
                 }
             }
         }.invokeOnCompletion {

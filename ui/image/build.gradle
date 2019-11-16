@@ -25,6 +25,8 @@ android {
 }
 
 dependencies {
+    implementation project(':data:api')
+
     implementation Deps.Kotlin.stdlib
 
     api Deps.Glide.glide

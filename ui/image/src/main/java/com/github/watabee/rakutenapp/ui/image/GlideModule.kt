@@ -15,17 +15,17 @@ import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
+import com.github.watabee.rakutenapp.di.Image
 import com.github.watabee.rakutenapp.di.ImageComponentFactoryProvider
 import java.io.InputStream
 import javax.inject.Inject
-import javax.inject.Named
 import okhttp3.OkHttpClient
 
 @Excludes(OkHttpLibraryGlideModule::class)
 @GlideModule
 internal class GlideModule : AppGlideModule() {
 
-    @field:Named("Image") @Inject lateinit var okHttpClient: OkHttpClient
+    @field:Image @Inject lateinit var okHttpClient: OkHttpClient
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager

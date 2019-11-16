@@ -2,6 +2,8 @@ package com.github.watabee.rakutenapp.di.internal
 
 import android.content.Context
 import com.github.watabee.rakutenapp.data.api.interceptor.RakutenApiInterceptor
+import com.github.watabee.rakutenapp.di.Api
+import com.github.watabee.rakutenapp.di.Image
 import com.github.watabee.rakutenapp.util.Logger
 import com.squareup.moshi.Moshi
 import dagger.Lazy
@@ -9,7 +11,6 @@ import dagger.Module
 import dagger.Provides
 import java.io.File
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 import okhttp3.Cache
 import okhttp3.Call
@@ -34,7 +35,7 @@ internal object NetworkModule {
             .readTimeout(10L, TimeUnit.SECONDS)
             .build()
 
-    @Named("Api")
+    @Api
     @Provides
     @Singleton
     fun provideOkHttpClientForApi(okHttpClient: OkHttpClient, appContext: Context, logger: Logger): OkHttpClient =
@@ -46,7 +47,7 @@ internal object NetworkModule {
             })
             .build()
 
-    @Named("Image")
+    @Image
     @Provides
     @Singleton
     fun provideOkHttpClientForImage(okHttpClient: OkHttpClient, logger: Logger): OkHttpClient =
@@ -58,7 +59,7 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(@Named("Api") okHttpClient: Lazy<OkHttpClient>, moshi: Moshi): Retrofit =
+    fun provideRetrofit(@Api okHttpClient: Lazy<OkHttpClient>, moshi: Moshi): Retrofit =
         Retrofit.Builder()
             .callFactory(object : Call.Factory {
                 override fun newCall(request: Request): Call = okHttpClient.get().newCall(request)

@@ -148,5 +148,15 @@ object Deps {
         const val dslJvm = "org.spekframework.spek2:spek-dsl-jvm:$version"
         const val runner = "org.spekframework.spek2:spek-runner-junit5:$version"
     }
+
+    object Flipper {
+        private const val version = "0.28.0"
+        const val flipper = "com.facebook.flipper:flipper:$version"
+        const val networkPlugin = "com.facebook.flipper:flipper-network-plugin:$version"
+
+        const val flipperNoOp = "com.facebook.flipper:flipper-noop:$version"
+    }
+
+    const val soLoader = "com.facebook.soloader:soloader:0.5.1"
 }
 

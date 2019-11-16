@@ -13,6 +13,8 @@ ext {
 android {
     compileSdkVersion Versions.androidCompileSdkVersion
     buildToolsVersion Versions.buildToolsVersion
+    ndkVersion "21.0.5935234"
+
     defaultConfig {
         applicationId "com.github.watabee.rakutenapp"
         minSdkVersion Versions.androidMinSdkVersion
@@ -101,6 +103,10 @@ dependencies {
     kapt Deps.Dagger.androidProcessor
     compileOnly Deps.AssistedInject.annotationDagger2
     kapt Deps.AssistedInject.processorDagger2
+
+    debugImplementation Deps.Flipper.flipper
+    debugImplementation Deps.Flipper.networkPlugin
+    debugImplementation Deps.soLoader
 
     testImplementation Deps.junit
 

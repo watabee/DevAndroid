@@ -1,7 +1,9 @@
+import dependencies.Deps
 import dependencies.Versions
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.androidCompileSdkVersion
@@ -14,10 +16,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation project(':base')
+    implementation project(':ui:common')
+
+    api Deps.Groupie.groupie
 
     testImplementation(testFixtures(project(':base')))
 }

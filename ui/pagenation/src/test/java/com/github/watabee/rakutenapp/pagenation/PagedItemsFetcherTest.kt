@@ -1,5 +1,6 @@
 package com.github.watabee.rakutenapp.pagenation
 
+import com.github.watabee.rakutenapp.pagenation.FetchItemsResult.LoadState
 import com.github.watabee.rakutenapp.util.CoroutineTestRule
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,17 +28,17 @@ class PagedItemsFetcherTest {
         val result = fetcher.result
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1")))
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1"), isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1"), loadState = LoadState.LOAD_MORE))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1", "2")))
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1", "2"), isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1", "2"), loadState = LoadState.LOAD_MORE))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1", "2", "3")))
 
@@ -52,12 +53,12 @@ class PagedItemsFetcherTest {
         val result = fetcher.result
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1")))
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1"), isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1"), loadState = LoadState.LOAD_MORE))
         testRule.advanceTimeBy(1000L)
         result.poll().let {
             assertThat(it?.items).isEqualTo(listOf("1"))
@@ -65,34 +66,34 @@ class PagedItemsFetcherTest {
         }
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1"), isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1"), loadState = LoadState.LOAD_MORE))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1", "2")))
     }
 
     @Test
     fun test_whenRefresh_thenSuccessReload() {
-        val fetcher = createFetcher(emitError = true)
+        val fetcher = createFetcher()
         val result = fetcher.result
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1")))
 
         fetcher.refresh(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1")))
     }
 
     @Test
     fun test_whenRequestWhileLoading_thenEmitNothing() {
-        val fetcher = createFetcher(emitError = true)
+        val fetcher = createFetcher()
         val result = fetcher.result
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(500L)
 
         // Ignore request if loading...
@@ -105,15 +106,15 @@ class PagedItemsFetcherTest {
 
     @Test
     fun test_whenRefreshWhileLoading_thenSuccessReload() {
-        val fetcher = createFetcher(emitError = true)
+        val fetcher = createFetcher()
         val result = fetcher.result
 
         fetcher.request(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(500L)
 
         fetcher.refresh(Unit)
-        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(isLoading = true))
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1")))
     }

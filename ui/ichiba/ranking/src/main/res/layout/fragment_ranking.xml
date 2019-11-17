@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:colorSchemeColor="@{@color/color_primary}"
-        app:onRefreshListener="@{viewModel::refresh}">
+        app:onRefreshListener="@{viewModel::refresh}"
+        app:refreshing="@{viewModel.initialLoad}">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -23,6 +24,7 @@
             android:layout_height="match_parent"
             app:hasFixedSize="@{true}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:onLoadMore="@{viewModel::request}"
             tools:listitem="@layout/list_item_ranking" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

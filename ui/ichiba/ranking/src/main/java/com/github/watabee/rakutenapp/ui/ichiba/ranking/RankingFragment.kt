@@ -9,12 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.github.watabee.rakutenapp.pagenation.FetchItemsResult
+import com.github.watabee.rakutenapp.pagenation.LoadMoreAdapter
 import com.github.watabee.rakutenapp.ui.ichiba.ranking.databinding.FragmentRankingBinding
 import com.github.watabee.rakutenapp.util.ViewModelFactory
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
 import javax.inject.Inject
 
 class RankingFragment @Inject constructor(
@@ -27,25 +24,25 @@ class RankingFragment @Inject constructor(
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentRankingBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = GroupAdapter<GroupieViewHolder>()
+        val adapter = LoadMoreAdapter(retry = viewModel::request)
 
         val recyclerView: RecyclerView = binding.recyclerView
         recyclerView.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
         recyclerView.adapter = adapter
 
-        val swipeRefreshLayout: SwipeRefreshLayout = binding.swipeRefreshLayout
+        viewModel.uiModels.observe(viewLifecycleOwner) { uiModels: List<RankingUiModel> ->
+            adapter.update(uiModels.map(::RankingBindableItem))
+        }
 
-        viewModel.result.observe(viewLifecycleOwner) { result: FetchItemsResult<RankingUiModel> ->
-            adapter.update(result.items.map(::RankingBindableItem))
-            if (!result.isLoading) {
-                swipeRefreshLayout.isRefreshing = false
-            }
+        viewModel.loadMoreStatus.observe(viewLifecycleOwner) { status ->
+            adapter.status = status
         }
     }
 }

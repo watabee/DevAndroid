@@ -1,6 +1,7 @@
 package com.github.watabee.rakutenapp.ui.ichiba.ranking
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -8,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.github.watabee.rakutenapp.data.api.IchibaItemApi
 import com.github.watabee.rakutenapp.data.api.response.FindRankingItemsResponse
 import com.github.watabee.rakutenapp.pagenation.FetchItemsResult
+import com.github.watabee.rakutenapp.pagenation.FetchItemsResult.LoadState
+import com.github.watabee.rakutenapp.pagenation.LoadMoreStatus
 import com.github.watabee.rakutenapp.pagenation.PagedItem
 import com.github.watabee.rakutenapp.pagenation.PagedItemsFetcher
 import com.github.watabee.rakutenapp.util.AppViewModelFactory
@@ -29,9 +32,27 @@ internal class RankingViewModel @AssistedInject constructor(
         }
     }
 
-    val result: LiveData<FetchItemsResult<RankingUiModel>> = liveData {
+    private val result: LiveData<FetchItemsResult<RankingUiModel>> = liveData {
         for (result in fetcher.result) {
             emit(result)
+        }
+    }
+
+    val uiModels: LiveData<List<RankingUiModel>> = MediatorLiveData<List<RankingUiModel>>().apply {
+        addSource(result) { value = it.items }
+    }
+
+    val initialLoad: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
+        addSource(result) { value = it.loadState == LoadState.INITIAL_LOAD }
+    }
+
+    val loadMoreStatus: LiveData<LoadMoreStatus> = MediatorLiveData<LoadMoreStatus>().apply {
+        addSource(result) {
+            value = when {
+                it.loadState == LoadState.LOAD_MORE -> LoadMoreStatus.LOADING
+                it.e != null -> LoadMoreStatus.ERROR
+                else -> LoadMoreStatus.IDLE
+            }
         }
     }
 

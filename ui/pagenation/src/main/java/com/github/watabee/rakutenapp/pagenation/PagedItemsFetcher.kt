@@ -13,8 +13,12 @@ import kotlinx.coroutines.launch
 data class FetchItemsResult<T : Any>(
     val items: List<T> = emptyList(),
     val e: Throwable? = null,
-    val isLoading: Boolean = false
-)
+    val loadState: LoadState = LoadState.NONE
+) {
+    enum class LoadState {
+        NONE, INITIAL_LOAD, LOAD_MORE
+    }
+}
 
 @UseExperimental(ExperimentalCoroutinesApi::class)
 class PagedItemsFetcher<P : Any, R : Any>(
@@ -55,7 +59,11 @@ class PagedItemsFetcher<P : Any, R : Any>(
                 }
                 job = launch(supervisorJob) {
                     try {
-                        sendResult(FetchItemsResult(if (isRefresh) emptyList() else prevResult.items, isLoading = true))
+                        val loadState =
+                            if (page == firstPage) FetchItemsResult.LoadState.INITIAL_LOAD else FetchItemsResult.LoadState.LOAD_MORE
+                        sendResult(
+                            FetchItemsResult(if (isRefresh) emptyList() else prevResult.items, loadState = loadState)
+                        )
                         val pagedItem = fetchItemsLogic(param, page)
                         page = pagedItem.nextPage
                         sendResult(FetchItemsResult(prevResult.items + pagedItem.items))

@@ -4,7 +4,6 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -38,7 +37,6 @@ class PagedItemsFetcher<P : Any, R : Any>(
         coroutineScope.launch {
             var prevResult = FetchItemsResult<R>()
             var job: Job? = null
-            val supervisorJob = SupervisorJob()
 
             fun sendResult(newResult: FetchItemsResult<R>) {
                 prevResult = newResult
@@ -58,7 +56,7 @@ class PagedItemsFetcher<P : Any, R : Any>(
                 if (job != null && job.isActive) {
                     continue
                 }
-                job = launch(supervisorJob) {
+                job = launch {
                     try {
                         val loadState =
                             if (page == firstPage) FetchItemsResult.LoadState.INITIAL_LOAD else FetchItemsResult.LoadState.LOAD_MORE

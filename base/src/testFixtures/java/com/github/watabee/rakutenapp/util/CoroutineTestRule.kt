@@ -3,6 +3,7 @@ package com.github.watabee.rakutenapp.util
 import kotlin.coroutines.ContinuationInterceptor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.resetMain
@@ -12,7 +13,7 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 @UseExperimental(ExperimentalCoroutinesApi::class)
-class CoroutineTestRule : TestRule, TestCoroutineScope by TestCoroutineScope() {
+class CoroutineTestRule : TestRule, TestCoroutineScope by TestCoroutineScope(Job()) {
 
     val dispatcher = coroutineContext[ContinuationInterceptor] as TestCoroutineDispatcher
 

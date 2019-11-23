@@ -4,6 +4,7 @@ import com.github.watabee.rakutenapp.pagenation.FetchItemsResult.LoadState
 import com.github.watabee.rakutenapp.util.CoroutineTestRule
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import org.junit.Rule
 import org.junit.Test
@@ -117,6 +118,19 @@ class PagedItemsFetcherTest {
         assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
         testRule.advanceTimeBy(1000L)
         assertThat(result.poll()).isEqualTo(FetchItemsResult(items = listOf("1")))
+    }
+
+    @Test
+    fun test_whenCancelParentCoroutine_thenChannelIsClosed() {
+        val fetcher = createFetcher()
+        val result = fetcher.result
+
+        fetcher.request(Unit)
+        assertThat(result.poll()).isEqualTo(FetchItemsResult<String>(loadState = LoadState.INITIAL_LOAD))
+        testRule.advanceTimeBy(500L)
+
+        testRule.cancel()
+        assertThat(result.isClosedForReceive).isTrue()
     }
 
     private fun createFetcher(emitError: Boolean = false): PagedItemsFetcher<Unit, String> {

@@ -6,6 +6,7 @@ import java.util.regex.Pattern
 import javax.inject.Inject
 import timber.log.Timber
 
+@Suppress("SpreadOperator", "TooManyFunctions")
 internal class AppLogger @Inject constructor() : Logger {
     init {
         if (BuildConfig.DEBUG) {
@@ -56,6 +57,7 @@ private class AppDebugTree : Timber.DebugTree() {
         super.log(priority, createClassTag(), message, t)
     }
 
+    @Suppress("MagicNumber")
     private fun createClassTag(): String {
         val stackTrace = Throwable().stackTrace
         check(stackTrace.size > CALL_STACK_INDEX) { "Synthetic stacktrace didn't have enough elements: are you using proguard?" }

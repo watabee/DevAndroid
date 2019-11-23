@@ -19,6 +19,8 @@ import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.withContext
 
+private const val MAX_PAGE = 34
+
 internal class RankingViewModel @AssistedInject constructor(
     @Assisted private val handle: SavedStateHandle,
     private val ichibaItemApi: IchibaItemApi,
@@ -28,7 +30,7 @@ internal class RankingViewModel @AssistedInject constructor(
     private val fetcher = PagedItemsFetcher<Unit, RankingUiModel>(1, viewModelScope) { _, page ->
         withContext(coroutineDispatchers.io) {
             val response = ichibaItemApi.findRankingItems(page)
-            PagedItem(response.items.toUiModels(), nextPage = if (page >= 34) PagedItem.NO_PAGE else page + 1)
+            PagedItem(response.items.toUiModels(), nextPage = if (page >= MAX_PAGE) PagedItem.NO_PAGE else page + 1)
         }
     }
 

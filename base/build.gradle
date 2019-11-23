@@ -1,14 +1,9 @@
 import dependencies.Deps
 
 apply plugin: 'kotlin'
-apply plugin: 'java-test-fixtures'
 
 dependencies {
     api Deps.Kotlin.stdlib
     api Deps.Kotlin.Coroutines.core
     api Deps.Dagger.dagger
-
-    testFixturesApi Deps.junit
-    testFixturesApi Deps.truth
-    testFixturesApi Deps.Kotlin.Coroutines.test
 }

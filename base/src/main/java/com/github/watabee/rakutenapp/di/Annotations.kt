@@ -1,3 +1,4 @@
+// ktlint-disable filename
 package com.github.watabee.rakutenapp.di
 
 import javax.inject.Scope

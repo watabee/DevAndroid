@@ -52,6 +52,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    lintOptions {
+        xmlReport true
+        htmlReport false
+        abortOnError false
+        checkDependencies true
+        checkTestSources true
+        checkReleaseBuilds false
+
+        disable "UnusedResources"
+    }
+
     dexOptions {
         // Don't pre-dex on CI
         preDexLibraries !ci

@@ -3,6 +3,7 @@ package com.github.watabee.rakutenapp.di
 import com.github.watabee.rakutenapp.ui.image.GlideModule
 import dagger.Subcomponent
 
+@Suppress("UnnecessaryAbstractClass")
 @Subcomponent
 abstract class ImageComponent {
 

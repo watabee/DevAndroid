@@ -24,6 +24,10 @@ import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+private const val CONNECT_TIMEOUT_SECONDS = 10L
+private const val READ_TIMEOUT_SECONDS = 10L
+private const val CACHE_SIZE = 30 * 1024 * 1024L
+
 @Module
 internal object NetworkModule {
 
@@ -35,8 +39,8 @@ internal object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
-            .connectTimeout(10L, TimeUnit.SECONDS)
-            .readTimeout(10L, TimeUnit.SECONDS)
+            .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .readTimeout(READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .build()
 
     @Api
@@ -49,7 +53,7 @@ internal object NetworkModule {
         @NetworkInterceptor networkInterceptors: Set<@JvmSuppressWildcards Interceptor>
     ): OkHttpClient =
         okHttpClient.newBuilder()
-            .cache(Cache(File(appContext.cacheDir, "api"), 30 * 1024 * 1024L))
+            .cache(Cache(File(appContext.cacheDir, "api"), CACHE_SIZE))
             .apply {
                 interceptors.forEach { addInterceptor(it) }
                 networkInterceptors.forEach { addNetworkInterceptor(it) }

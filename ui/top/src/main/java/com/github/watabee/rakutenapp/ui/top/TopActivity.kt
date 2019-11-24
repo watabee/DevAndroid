@@ -20,16 +20,16 @@ class TopActivity : BaseActivity() {
         binding.bottomNavView.setOnNavigationItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.bottom_nav_ichiba -> {
-                    viewPager.setCurrentItem(0, true)
+                    viewPager.setCurrentItem(TopPageItem.ICHIBA.ordinal, true)
                 }
                 R.id.bottom_nav_books -> {
-                    viewPager.setCurrentItem(1, true)
+                    viewPager.setCurrentItem(TopPageItem.BOOKS.ordinal, true)
                 }
                 R.id.bottom_nav_foo -> {
-                    viewPager.setCurrentItem(2, true)
+                    viewPager.setCurrentItem(TopPageItem.FOO.ordinal, true)
                 }
                 R.id.bottom_nav_bar -> {
-                    viewPager.setCurrentItem(3, true)
+                    viewPager.setCurrentItem(TopPageItem.BAR.ordinal, true)
                 }
             }
             true

@@ -34,6 +34,7 @@ class PagedItemsFetcher<P : Any, R : Any>(
     private var page: Int = firstPage
 
     init {
+        @Suppress("LoopWithTooManyJumpStatements")
         coroutineScope.launch {
             var prevResult = FetchItemsResult<R>()
             var job: Job? = null

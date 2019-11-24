@@ -1,0 +1,25 @@
+# https://github.com/arturbosch/detekt/blob/master/detekt-cli/src/main/resources/default-detekt-config.yml
+# Override default settings (above link)
+exceptions:
+  active: true
+  TooGenericExceptionCaught:
+    active: false
+
+style:
+  active: true
+  MaxLineLength:
+    active: true
+    maxLineLength: 140
+    excludePackageStatements: true
+    excludeImportStatements: true
+    excludeCommentStatements: true
+  ForbiddenComment:
+    active: false
+  ReturnCount:
+    active: false
+
+naming:
+  active: true
+  MatchingDeclarationName:
+    active: true
+    excludes: "**/build-module-processor/**/annotationProcessing.kt"

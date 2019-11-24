@@ -1,5 +1,6 @@
 package com.github.watabee.rakutenapp.util
 
+@Suppress("TooManyFunctions")
 interface Logger {
     fun v(message: String, vararg args: Any?)
 

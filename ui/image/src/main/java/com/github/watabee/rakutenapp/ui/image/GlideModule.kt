@@ -21,6 +21,8 @@ import java.io.InputStream
 import javax.inject.Inject
 import okhttp3.OkHttpClient
 
+private const val DISK_CACHE_SIZE = 50 * 1024 * 1024L
+
 @Excludes(OkHttpLibraryGlideModule::class)
 @GlideModule
 internal class GlideModule : AppGlideModule() {
@@ -32,7 +34,7 @@ internal class GlideModule : AppGlideModule() {
         val options = RequestOptions().format(if (am.isLowRamDevice) DecodeFormat.PREFER_RGB_565 else DecodeFormat.PREFER_ARGB_8888)
 
         builder.setDefaultRequestOptions(options)
-            .setDiskCache(InternalCacheDiskCacheFactory(context, "image", 50 * 1024 * 1024L))
+            .setDiskCache(InternalCacheDiskCacheFactory(context, "image", DISK_CACHE_SIZE))
         if (BuildConfig.DEBUG) {
             builder.setLogLevel(Log.VERBOSE)
         }

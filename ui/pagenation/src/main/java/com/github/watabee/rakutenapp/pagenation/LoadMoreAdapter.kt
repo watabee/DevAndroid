@@ -59,7 +59,7 @@ private class LoadingItem : Item<GroupieViewHolder>(0L) {
         // do nothing
     }
 
-    override fun hasSameContentAs(other: Item<*>?): Boolean = other is LoadingItem
+    override fun hasSameContentAs(other: Item<*>): Boolean = other is LoadingItem
     override fun isClickable(): Boolean = false
 }
 
@@ -69,6 +69,6 @@ private class ErrorItem : Item<GroupieViewHolder>(0L) {
         // do nothing
     }
 
-    override fun hasSameContentAs(other: Item<*>?): Boolean = other is ErrorItem
+    override fun hasSameContentAs(other: Item<*>): Boolean = other is ErrorItem
     override fun isClickable(): Boolean = true
 }

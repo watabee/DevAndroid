@@ -14,7 +14,7 @@ internal class RankingBindableItem(
         viewBinding.uiModel = uiModel
     }
 
-    override fun hasSameContentAs(other: Item<*>?): Boolean {
+    override fun hasSameContentAs(other: Item<*>): Boolean {
         if (other !is RankingBindableItem) {
             return false
         }

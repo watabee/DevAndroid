@@ -9,9 +9,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run test
+    - name: Install bundler
+      run: gem install bundler
+    - name: Bundle install
+      run: bundle install
+    - name: Build
+      run: ./gradlew assembleRelease
+    - name: Test
       run: ./gradlew testRelease
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - name: ktlint
+      run: ./gradlew ktlintCheck
+    - name: detekt
+      run: ./gradlew detekt
+    - name: Android Lint
+      run: ./gradlew :app:lintRelease
+    - name: Danger
+      run: bundle exec danger

@@ -5,13 +5,12 @@ import androidx.lifecycle.ViewModel
 import com.github.watabee.rakutenapp.ui.top.TopActivity
 import com.github.watabee.rakutenapp.ui.top.TopFragment
 import com.github.watabee.rakutenapp.ui.top.TopViewModel
-import com.github.watabee.rakutenapp.util.AppViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
-@Module(includes = [UiTopAssistedModule::class])
+@Module
 abstract class UiTopModule {
 
     @ActivityScope
@@ -26,7 +25,5 @@ abstract class UiTopModule {
     @Binds
     @IntoMap
     @ViewModelKey(TopViewModel::class)
-    internal abstract fun bindViewModelFactory(
-        instance: TopViewModel.Factory
-    ): AppViewModelFactory<out ViewModel>
+    internal abstract fun bindTopViewModel(instance: TopViewModel): ViewModel
 }

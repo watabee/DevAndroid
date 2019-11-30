@@ -40,6 +40,4 @@ dependencies {
     kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport
     kapt Deps.Dagger.androidProcessor
-    compileOnly Deps.AssistedInject.annotationDagger2
-    kapt Deps.AssistedInject.processorDagger2
 }

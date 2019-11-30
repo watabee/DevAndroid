@@ -4,6 +4,8 @@ exceptions:
   active: true
   TooGenericExceptionCaught:
     active: false
+  TooGenericExceptionThrown:
+    active: false
 
 style:
   active: true

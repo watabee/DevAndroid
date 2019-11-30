@@ -12,7 +12,7 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: Build release
+    - name: Build debug
       run: ./gradlew assembleDebug
 
     - name: Run tests

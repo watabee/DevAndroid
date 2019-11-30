@@ -20,11 +20,7 @@ data class FetchItemsResult<T : Any>(
 }
 
 @UseExperimental(ExperimentalCoroutinesApi::class)
-class PagedItemsFetcher<P : Any, R : Any>(
-    firstPage: Int = 1,
-    coroutineScope: CoroutineScope,
-    fetchItemsLogic: suspend (param: P, page: Int) -> PagedItem<R>
-) {
+class PagedItemsFetcher<P : Any, R : Any>(firstPage: Int = 1, coroutineScope: CoroutineScope, fetchItemsLogic: suspend (param: P, page: Int) -> PagedItem<R>) {
     private val requestEvent = Channel<Pair<Boolean, P>>()
 
     private val _result = ConflatedBroadcastChannel<FetchItemsResult<R>>()

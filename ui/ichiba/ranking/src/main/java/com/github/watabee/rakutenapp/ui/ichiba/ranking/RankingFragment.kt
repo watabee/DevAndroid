@@ -6,19 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.github.watabee.rakutenapp.pagenation.LoadMoreAdapter
 import com.github.watabee.rakutenapp.ui.ichiba.ranking.databinding.FragmentRankingBinding
-import com.github.watabee.rakutenapp.util.ViewModelFactory
 import javax.inject.Inject
 
 class RankingFragment @Inject constructor(
-    private val factory: ViewModelFactory.Factory
+    private val factory: ViewModelProvider.Factory
 ) : Fragment() {
 
-    private val viewModel by viewModels<RankingViewModel> { factory.create(this, null) }
+    private val viewModel by viewModels<RankingViewModel> { factory }
     private lateinit var binding: FragmentRankingBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

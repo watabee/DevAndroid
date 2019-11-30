@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.github.watabee.rakutenapp.util.ViewModelFactory
+import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
 internal class TopFragment @Inject constructor(
-    private val factory: ViewModelFactory.Factory
+    private val factory: ViewModelProvider.Factory
 ) : Fragment() {
 
-    private val viewModel: TopViewModel by viewModels { factory.create(this, null) }
+    private val viewModel: TopViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

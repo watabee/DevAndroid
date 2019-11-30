@@ -8,7 +8,7 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-@Module(includes = [UiCommonAssistedModule::class])
+@Module
 abstract class UiCommonModule {
 
     @Binds
@@ -17,7 +17,5 @@ abstract class UiCommonModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindViewModelFactory(
-        instance: ViewModelFactory
-    ): ViewModelProvider.Factory
+    internal abstract fun bindViewModelFactory(instance: ViewModelFactory): ViewModelProvider.Factory
 }

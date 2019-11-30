@@ -2,7 +2,6 @@ package com.github.watabee.rakutenapp.ui.ichiba.ranking
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -13,16 +12,13 @@ import com.github.watabee.rakutenapp.pagenation.FetchItemsResult.LoadState
 import com.github.watabee.rakutenapp.pagenation.LoadMoreStatus
 import com.github.watabee.rakutenapp.pagenation.PagedItem
 import com.github.watabee.rakutenapp.pagenation.PagedItemsFetcher
-import com.github.watabee.rakutenapp.util.AppViewModelFactory
 import com.github.watabee.rakutenapp.util.CoroutineDispatchers
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 private const val MAX_PAGE = 34
 
-internal class RankingViewModel @AssistedInject constructor(
-    @Assisted private val handle: SavedStateHandle,
+internal class RankingViewModel @Inject constructor(
     private val ichibaItemApi: IchibaItemApi,
     private val coroutineDispatchers: CoroutineDispatchers
 ) : ViewModel() {
@@ -56,11 +52,6 @@ internal class RankingViewModel @AssistedInject constructor(
                 else -> LoadMoreStatus.IDLE
             }
         }
-    }
-
-    @AssistedInject.Factory
-    interface Factory : AppViewModelFactory<RankingViewModel> {
-        override fun create(handle: SavedStateHandle): RankingViewModel
     }
 
     init {

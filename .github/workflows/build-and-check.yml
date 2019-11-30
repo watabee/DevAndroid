@@ -9,23 +9,42 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Build release
+      run: ./gradlew assembleDebug
+
+    - name: Run tests
+      run: ./gradlew testDebug
+
+    - name: Run ktlint
+      run: ./gradlew ktlintCheck
+
+    - name: Run detekt
+      run: ./gradlew detekt
+
+    - name: Run Lint
+      run: ./gradlew :app:lintDebug
+
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.3
+
     - name: Install bundler
       run: gem install bundler
-    - name: Bundle install
-      run: bundle install
-    - name: Build
-      run: ./gradlew assembleRelease
-    - name: Test
-      run: ./gradlew testRelease
-    - name: ktlint
-      run: ./gradlew ktlintCheck
-    - name: detekt
-      run: ./gradlew detekt
-    - name: Android Lint
-      run: ./gradlew :app:lintRelease
+
     - name: Danger
-      run: bundle exec danger
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        bundle install
+        bundle exec danger
+
+      - name: Upload build outputs
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: build-outputs
+          path: app/build/outputs

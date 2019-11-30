@@ -58,8 +58,10 @@ subprojects {
     }
 
     afterEvaluate {
-        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
-            it.dependsOn ktlintFormat
+        if (System.getenv("CI") != "true") {
+            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+                it.dependsOn ktlintFormat
+            }
         }
 
         tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {

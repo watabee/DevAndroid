@@ -6,6 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+      env:
+        CI: 'true'
+        RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
 
     steps:
     - uses: actions/checkout@v1

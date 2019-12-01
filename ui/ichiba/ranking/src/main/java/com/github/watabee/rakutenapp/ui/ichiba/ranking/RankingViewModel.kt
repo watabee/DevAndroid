@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.github.watabee.rakutenapp.auth.AuthRepository
 import com.github.watabee.rakutenapp.data.api.IchibaItemApi
 import com.github.watabee.rakutenapp.data.api.response.FindRankingItemsResponse
 import com.github.watabee.rakutenapp.pagenation.FetchItemsResult
@@ -14,6 +15,7 @@ import com.github.watabee.rakutenapp.pagenation.LoadMoreStatus
 import com.github.watabee.rakutenapp.pagenation.PagedItem
 import com.github.watabee.rakutenapp.pagenation.PagedItemsFetcher
 import com.github.watabee.rakutenapp.util.CoroutineDispatchers
+import com.github.watabee.rakutenapp.util.SingleLiveEvent
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -21,7 +23,8 @@ private const val MAX_PAGE = 34
 
 internal class RankingViewModel @Inject constructor(
     private val ichibaItemApi: IchibaItemApi,
-    private val coroutineDispatchers: CoroutineDispatchers
+    private val coroutineDispatchers: CoroutineDispatchers,
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val fetcher = PagedItemsFetcher<Unit, RankingUiModel>(1, viewModelScope) { _, page ->
@@ -62,6 +65,9 @@ internal class RankingViewModel @Inject constructor(
         }
     }
 
+    private val _openSignInView = SingleLiveEvent<Unit>()
+    val openSignInView: LiveData<Unit> = _openSignInView
+
     init {
         request()
     }
@@ -71,7 +77,11 @@ internal class RankingViewModel @Inject constructor(
     fun refresh() = fetcher.refresh(Unit)
 
     fun onFavoriteButtonClicked(uiModel: RankingUiModel) {
-        favoriteButtonClickedEvent.value = uiModel
+        if (authRepository.isSignedIn()) {
+            favoriteButtonClickedEvent.value = uiModel
+        } else {
+            _openSignInView.value = Unit
+        }
     }
 
     private fun List<FindRankingItemsResponse.Item>.toUiModels(): List<RankingUiModel> =

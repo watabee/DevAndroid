@@ -25,7 +25,9 @@ android {
 dependencies {
     implementation project(':base')
     implementation project(':data:api')
+    implementation project(':feature:auth')
     implementation project(':ui:common')
+    implementation project(':ui:signin')
     implementation project(':ui:image')
     implementation project(':ui:pagenation')
 

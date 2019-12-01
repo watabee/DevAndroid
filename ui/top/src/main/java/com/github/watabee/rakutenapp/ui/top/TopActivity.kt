@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.viewpager2.widget.ViewPager2
 import com.github.watabee.rakutenapp.BaseActivity
+import com.github.watabee.rakutenapp.ui.signin.SignInFragment
 import com.github.watabee.rakutenapp.ui.top.databinding.ActivityTopBinding
 
 class TopActivity : BaseActivity() {
@@ -34,5 +35,7 @@ class TopActivity : BaseActivity() {
             }
             true
         }
+
+        SignInFragment.injectIfNeededIn(supportFragmentManager)
     }
 }

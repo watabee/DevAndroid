@@ -2,6 +2,7 @@ package com.github.watabee.rakutenapp.ui.ichiba.ranking
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -36,8 +37,15 @@ internal class RankingViewModel @Inject constructor(
         }
     }
 
+    private val favoriteButtonClickedEvent = MutableLiveData<RankingUiModel>()
+
     val uiModels: LiveData<List<RankingUiModel>> = MediatorLiveData<List<RankingUiModel>>().apply {
         addSource(result) { value = it.items }
+        addSource(favoriteButtonClickedEvent) { uiModel ->
+            value = value?.map {
+                if (it.itemCode == uiModel.itemCode) it.copy(isFavorite = !it.isFavorite) else it
+            }
+        }
     }
 
     val initialLoad: LiveData<Boolean> = MediatorLiveData<Boolean>().apply {
@@ -62,8 +70,12 @@ internal class RankingViewModel @Inject constructor(
 
     fun refresh() = fetcher.refresh(Unit)
 
+    fun onFavoriteButtonClicked(uiModel: RankingUiModel) {
+        favoriteButtonClickedEvent.value = uiModel
+    }
+
     private fun List<FindRankingItemsResponse.Item>.toUiModels(): List<RankingUiModel> =
         map {
-            RankingUiModel(itemCode = it.itemCode, itemName = it.itemName, imageUrl = it.mediumImageUrls.firstOrNull())
+            RankingUiModel(itemCode = it.itemCode, itemName = it.itemName, imageUrl = it.mediumImageUrls.firstOrNull(), isFavorite = false)
         }
 }

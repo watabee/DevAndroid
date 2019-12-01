@@ -38,7 +38,7 @@ class RankingFragment @Inject constructor(
         recyclerView.adapter = adapter
 
         viewModel.uiModels.observe(viewLifecycleOwner) { uiModels: List<RankingUiModel> ->
-            adapter.update(uiModels.map(::RankingBindableItem))
+            adapter.update(uiModels.map { RankingBindableItem(it, viewModel::onFavoriteButtonClicked) })
         }
 
         viewModel.loadMoreStatus.observe(viewLifecycleOwner) { status ->

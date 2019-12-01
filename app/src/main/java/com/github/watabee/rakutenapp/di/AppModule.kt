@@ -11,9 +11,11 @@ import dagger.multibindings.ElementsIntoSet
         AndroidInjectionModule::class,
         BaseModule::class,
         ApiModule::class,
+        AuthModule::class,
         UiCommonModule::class,
         UiTopModule::class,
-        UiRankingModule::class
+        UiRankingModule::class,
+        UiSignInModule::class
     ]
 )
 object AppModule {

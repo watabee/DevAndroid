@@ -93,9 +93,11 @@ dependencies {
     implementation project(':base')
     implementation project(':base-android')
     implementation project(':data:api')
+    implementation project(':feature:auth')
     implementation project(':ui:common')
     implementation project(':ui:image')
     implementation project(':ui:top')
+    implementation project(':ui:signin')
     implementation project(':ui:ichiba:ranking')
 
     implementation Deps.Kotlin.stdlib

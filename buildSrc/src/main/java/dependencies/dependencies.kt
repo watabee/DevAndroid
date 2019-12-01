@@ -143,6 +143,11 @@ object Deps {
         const val dataBinding = "com.xwray:groupie-databinding:$version"
     }
 
+    object Firebase {
+        const val auth = "com.google.firebase:firebase-auth:19.2.0"
+        const val uiAuth = "com.firebaseui:firebase-ui-auth:6.1.0"
+    }
+
     const val junit = "junit:junit:4.12"
     const val truth = "com.google.truth:truth:1.0"
 

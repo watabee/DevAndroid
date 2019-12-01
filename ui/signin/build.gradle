@@ -16,30 +16,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
     implementation project(':base')
-    implementation project(':data:api')
-    implementation project(':feature:auth')
     implementation project(':ui:common')
-    implementation project(':ui:signin')
-    implementation project(':ui:image')
-    implementation project(':ui:pagenation')
 
-    implementation Deps.AndroidX.constraintlayout
-    implementation Deps.AndroidX.swiperefresh
-    implementation Deps.AndroidX.recyclerview
-
-    implementation Deps.Groupie.groupie
-    implementation Deps.Groupie.dataBinding
+    implementation Deps.Firebase.uiAuth
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler
-    implementation Deps.Dagger.androidSupport
-    kapt Deps.Dagger.androidProcessor
 }

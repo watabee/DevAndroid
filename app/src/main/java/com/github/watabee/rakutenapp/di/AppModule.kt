@@ -14,7 +14,8 @@ import dagger.multibindings.ElementsIntoSet
         AuthModule::class,
         UiCommonModule::class,
         UiTopModule::class,
-        UiRankingModule::class
+        UiRankingModule::class,
+        UiSignInModule::class
     ]
 )
 object AppModule {

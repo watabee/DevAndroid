@@ -79,7 +79,7 @@ object Deps {
         const val coreKtx = "androidx.core:core-ktx:1.2.0-rc01"
 
         object Lifecycle {
-            private const val version = "2.2.0-rc02"
+            private const val version = "2.2.0-rc03"
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"

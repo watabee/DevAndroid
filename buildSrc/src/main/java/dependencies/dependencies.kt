@@ -6,7 +6,7 @@ object Versions {
     const val androidTargetSdkVersion = 29
 
     const val buildToolsVersion = "29.0.2"
-    const val ndkVersion = "20.0.5594570"
+    const val ndkVersion = "20.1.5948944"
 
     private const val versionMajor = 1
     private const val versionMinor = 0
@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-beta04"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-beta05"
     const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.1.1"
@@ -52,12 +52,12 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.1.0-rc02"
+            private const val version = "1.1.0-rc03"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0-rc02"
+            private const val version = "1.2.0-rc03"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -79,7 +79,7 @@ object Deps {
         const val coreKtx = "androidx.core:core-ktx:1.2.0-rc01"
 
         object Lifecycle {
-            private const val version = "2.2.0-rc02"
+            private const val version = "2.2.0-rc03"
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"

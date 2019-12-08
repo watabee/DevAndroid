@@ -13,7 +13,6 @@ ext {
 android {
     compileSdkVersion Versions.androidCompileSdkVersion
     buildToolsVersion Versions.buildToolsVersion
-    ndkVersion Versions.ndkVersion
 
     defaultConfig {
         applicationId "com.github.watabee.rakutenapp"

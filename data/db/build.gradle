@@ -10,35 +10,30 @@ android {
     defaultConfig {
         minSdkVersion Versions.androidMinSdkVersion
         targetSdkVersion Versions.androidTargetSdkVersion
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                    "room.schemaLocation": "$projectDir/schemas".toString(),
+                    "room.incremental": "true"
+                ]
+            }
+        }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
     implementation project(':base')
-    implementation project(':data:api')
-    implementation project(':data:db')
-    implementation project(':ui:common')
-    implementation project(':ui:image')
-    implementation project(':ui:pagenation')
 
-    implementation Deps.AndroidX.constraintlayout
-    implementation Deps.AndroidX.swiperefresh
-    implementation Deps.AndroidX.recyclerview
-
-    implementation Deps.Groupie.groupie
-    implementation Deps.Groupie.dataBinding
+    implementation Deps.AndroidX.Room.runtime
+    implementation Deps.AndroidX.Room.ktx
+    kapt Deps.AndroidX.Room.compiler
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler
-    implementation Deps.Dagger.androidSupport
-    kapt Deps.Dagger.androidProcessor
 }

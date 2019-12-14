@@ -22,6 +22,7 @@ internal class RankingBindableItem(
         val wasChangedFavoriteState = payloads.firstOrNull() as? Boolean ?: false
         if (wasChangedFavoriteState) {
             viewBinding.isFavorite = uiModel.isFavorite
+            viewBinding.favoriteButton.setOnClickListener { onFavoriteButtonClicked(uiModel) }
         } else {
             bind(viewBinding, position)
         }

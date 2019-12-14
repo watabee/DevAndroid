@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.github.watabee.rakutenapp.pagenation.LoadMoreAdapter
 import com.github.watabee.rakutenapp.ui.ichiba.ranking.databinding.FragmentRankingBinding
-import com.github.watabee.rakutenapp.ui.signin.SignInFragment
 import javax.inject.Inject
 
 class RankingFragment @Inject constructor(
@@ -44,10 +43,6 @@ class RankingFragment @Inject constructor(
 
         viewModel.loadMoreStatus.observe(viewLifecycleOwner) { status ->
             adapter.status = status
-        }
-
-        viewModel.openSignInView.observe(viewLifecycleOwner) {
-            SignInFragment.openSignInView(requireActivity().supportFragmentManager)
         }
     }
 }

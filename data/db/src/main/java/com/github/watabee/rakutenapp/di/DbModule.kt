@@ -12,9 +12,5 @@ object DbModule {
 
     @Provides
     @Singleton
-    internal fun provideAppDatabase(context: Context): AppDatabase = AppDatabase.getInstance(context)
-
-    @Provides
-    @Singleton
-    fun provideFavoriteIchibaItemDao(db: AppDatabase): FavoriteIchibaItemDao = db.favoriteIchibaItemDao()
+    fun provideFavoriteIchibaItemDao(context: Context): FavoriteIchibaItemDao = AppDatabase.getInstance(context).favoriteIchibaItemDao()
 }

@@ -93,6 +93,7 @@ dependencies {
     implementation project(':base')
     implementation project(':base-android')
     implementation project(':data:api')
+    implementation project(':data:db')
     implementation project(':feature:auth')
     implementation project(':ui:common')
     implementation project(':ui:image')

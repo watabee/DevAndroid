@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.github.watabee.rakutenapp.data.db.daos.FavoriteIchibaItemDao
 import com.github.watabee.rakutenapp.data.db.entities.FavoriteIchibaItem
 
 @Database(
@@ -12,6 +13,8 @@ import com.github.watabee.rakutenapp.data.db.entities.FavoriteIchibaItem
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
+
+    abstract fun favoriteIchibaItemDao(): FavoriteIchibaItemDao
 
     companion object {
 

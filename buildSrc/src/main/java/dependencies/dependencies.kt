@@ -35,7 +35,7 @@ object Deps {
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
 
         object Coroutines {
-            private const val version = "1.3.2"
+            private const val version = "1.3.3"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"

@@ -86,7 +86,7 @@ object Deps {
         }
 
         object Room {
-            private const val version = "2.2.2"
+            private const val version = "2.2.3"
             const val runtime = "androidx.room:room-runtime:$version"
             const val compiler = "androidx.room:room-compiler:$version"
             const val ktx = "androidx.room:room-ktx:$version"
@@ -167,7 +167,7 @@ object Deps {
     const val soLoader = "com.facebook.soloader:soloader:0.5.1"
 
     object Ktlint {
-        const val version = "0.35.0"
+        const val version = "0.36.0"
     }
 }
 

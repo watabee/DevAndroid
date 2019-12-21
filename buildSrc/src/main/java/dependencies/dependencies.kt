@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-beta05"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-rc01"
     const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.1.1"
@@ -35,7 +35,7 @@ object Deps {
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
 
         object Coroutines {
-            private const val version = "1.3.2"
+            private const val version = "1.3.3"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -43,7 +43,7 @@ object Deps {
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.1.0-beta02"
+        const val material = "com.google.android.material:material:1.1.0-rc01"
     }
 
     object AndroidX {
@@ -72,7 +72,7 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
 
         const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
 
@@ -86,7 +86,7 @@ object Deps {
         }
 
         object Room {
-            private const val version = "2.2.2"
+            private const val version = "2.2.3"
             const val runtime = "androidx.room:room-runtime:$version"
             const val compiler = "androidx.room:room-compiler:$version"
             const val ktx = "androidx.room:room-ktx:$version"
@@ -167,7 +167,7 @@ object Deps {
     const val soLoader = "com.facebook.soloader:soloader:0.5.1"
 
     object Ktlint {
-        const val version = "0.35.0"
+        const val version = "0.36.0"
     }
 }
 

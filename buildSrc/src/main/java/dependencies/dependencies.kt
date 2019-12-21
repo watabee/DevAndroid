@@ -43,7 +43,7 @@ object Deps {
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.1.0-beta02"
+        const val material = "com.google.android.material:material:1.1.0-rc01"
     }
 
     object AndroidX {

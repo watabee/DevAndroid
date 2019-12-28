@@ -8,7 +8,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import kotlin.LazyThreadSafetyMode.NONE
 
-class RakutenApp : DaggerApplication(), ImageComponentFactoryProvider {
+class DevToApp : DaggerApplication(), ImageComponentFactoryProvider {
 
     private val appComponent: AppComponent by lazy(NONE) { createAppComponent(this) }
 

@@ -17,7 +17,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_view"
-        android:name="com.github.watabee.rakutenapp.MainFragment"
+        android:name="com.github.watabee.devtoapp.MainFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:tag="MainFragment"

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="uiModel"
+            type="com.github.watabee.devtoapp.ui.articles.ArticleUiModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{uiModel.title}"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Top 5 Courses to learn React Native in 2020 - Best of lot"
+            tools:textAppearance="@style/TextAppearance.App.Subtitle1" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/user_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            app:imageUrl="@{uiModel.userImage}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.App.UserImage"
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/username_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{uiModel.username}"
+            android:textAppearance="?attr/textAppearanceCaption"
+            app:layout_constraintBottom_toBottomOf="@id/user_image"
+            app:layout_constraintLeft_toRightOf="@id/user_image"
+            app:layout_constraintRight_toLeftOf="@+id/published_date_text"
+            app:layout_constraintTop_toTopOf="@id/user_image"
+            tools:text="watabee"
+            tools:textAppearance="@style/TextAppearance.App.Caption" />
+
+        <TextView
+            android:id="@+id/published_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{uiModel.readablePublishDate}"
+            android:textAppearance="?attr/textAppearanceCaption"
+            app:layout_constraintBottom_toBottomOf="@id/user_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_image"
+            tools:text="Dec 29"
+            tools:textAppearance="@style/TextAppearance.App.Caption" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

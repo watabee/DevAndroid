@@ -26,6 +26,7 @@ dependencies {
     implementation project(':base')
     implementation project(':ui:common')
     implementation project(':ui:ichiba:ranking')
+    implementation project(':ui:articles')
     implementation project(':ui:signin')
 
     implementation Deps.AndroidX.constraintlayout

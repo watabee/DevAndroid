@@ -84,7 +84,7 @@ internal object NetworkModule {
             .callFactory(object : Call.Factory {
                 override fun newCall(request: Request): Call = okHttpClient.get().newCall(request)
             })
-            .baseUrl("https://app.rakuten.co.jp/services/api/")
+            .baseUrl("https://dev.to/api/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 

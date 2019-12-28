@@ -1,5 +1,6 @@
 package com.github.watabee.devtoapp.di
 
+import com.github.watabee.devtoapp.data.api.DevToApi
 import com.github.watabee.devtoapp.data.api.IchibaItemApi
 import com.github.watabee.devtoapp.di.internal.NetworkModule
 import dagger.Module
@@ -14,4 +15,8 @@ object ApiModule {
     @Singleton
     internal fun provideIchibaItemApi(retrofit: Retrofit): IchibaItemApi =
         retrofit.create(IchibaItemApi::class.java)
+
+    @Provides
+    @Singleton
+    internal fun provideDevToApi(retrofit: Retrofit): DevToApi = retrofit.create(DevToApi::class.java)
 }

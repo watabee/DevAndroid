@@ -126,6 +126,7 @@ object Deps {
         private const val version = "1.9.0"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
+        const val adapters = "com.squareup.moshi:moshi-adapters:$version"
     }
 
     object AssistedInject {

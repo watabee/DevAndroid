@@ -8,6 +8,7 @@ import com.github.watabee.devtoapp.di.InterceptorForApi
 import com.github.watabee.devtoapp.di.InterceptorForImage
 import com.github.watabee.devtoapp.di.NetworkInterceptor
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.Date
 
 private const val CONNECT_TIMEOUT_SECONDS = 10L
 private const val READ_TIMEOUT_SECONDS = 10L
@@ -33,7 +35,9 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder().build()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(Date::class.java, Rfc3339DateJsonAdapter())
+        .build()
 
     @Provides
     @Singleton

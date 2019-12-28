@@ -1,7 +1,6 @@
 package com.github.watabee.devtoapp.di.internal
 
 import android.content.Context
-import com.github.watabee.devtoapp.data.api.interceptor.RakutenApiInterceptor
 import com.github.watabee.devtoapp.di.Api
 import com.github.watabee.devtoapp.di.Image
 import com.github.watabee.devtoapp.di.InterceptorForApi
@@ -13,7 +12,6 @@ import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet
-import dagger.multibindings.IntoSet
 import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -92,8 +90,8 @@ internal object NetworkModule {
 
     @InterceptorForApi
     @Provides
-    @IntoSet
-    fun provideRakutenApiInterceptor(): Interceptor = RakutenApiInterceptor()
+    @ElementsIntoSet
+    fun provideEmptyInterceptorForApi(): Set<Interceptor> = emptySet()
 
     @InterceptorForImage
     @Provides

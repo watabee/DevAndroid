@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.github.watabee.rakutenapp.ui.ichiba.ranking.RankingViewModel" />
+            type="com.github.watabee.devtoapp.ui.ichiba.ranking.RankingViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

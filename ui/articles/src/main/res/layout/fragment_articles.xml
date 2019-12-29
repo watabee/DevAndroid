@@ -5,12 +5,17 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.github.watabee.devtoapp.ui.articles.ArticlesViewModel" />
     </data>
 
     <com.github.watabee.devtoapp.widget.AppSwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{viewModel::refresh}"
+        app:refreshing="@{viewModel.isLoading}">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -19,7 +24,9 @@
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical"
             app:hasFixedSize="@{true}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:onLoadMore="@{viewModel::loadMore}"
+            tools:listitem="@layout/list_item_article" />
 
     </com.github.watabee.devtoapp.widget.AppSwipeRefreshLayout>
 </layout>

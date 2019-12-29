@@ -3,25 +3,110 @@ package com.github.watabee.devtoapp.ui.articles
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.viewModelScope
 import com.github.watabee.devtoapp.data.api.DevToApi
+import com.github.watabee.devtoapp.data.api.response.Article
+import com.github.watabee.devtoapp.extensions.isActive
+import com.github.watabee.devtoapp.pagenation.LoadMoreStatus
 import com.github.watabee.devtoapp.util.CoroutineDispatchers
+import com.github.watabee.devtoapp.util.Logger
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.channels.actor
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+
+private const val REQUEST_PER_PAGE = 31
 
 internal class ArticlesViewModel @Inject constructor(
     private val devToApi: DevToApi,
-    private val dispatchers: CoroutineDispatchers
+    private val dispatchers: CoroutineDispatchers,
+    private val logger: Logger
 ) : ViewModel() {
 
-    val articles: LiveData<List<ArticleUiModel>> = MutableLiveData<List<ArticleUiModel>>(
-        (1..20).map {
-            ArticleUiModel(
-                id = it,
-                title = "title-$it",
-                readablePublishDate = "Dec 27",
-                userImage = "https://res.cloudinary.com/practicaldev/image/fetch/s--k2S4DpS_--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/292698/21fb81d5-2f25-423a-ba50-533e4fd5279c.png",
-                username = "hogehoge",
-                tagList = listOf("android", "ios", "hogehoge")
-            )
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = _isLoading.distinctUntilChanged()
+
+    private val _isError = MutableLiveData<Boolean>(false)
+    val isError: LiveData<Boolean> = _isError.distinctUntilChanged()
+
+    private val _loadMoreStatus = MutableLiveData<LoadMoreStatus>(LoadMoreStatus.IDLE)
+    val loadMoreStatus: LiveData<LoadMoreStatus> = _loadMoreStatus.distinctUntilChanged()
+
+    private val _articleUiModels = MutableLiveData<List<ArticleUiModel>>(emptyList())
+    val articleUiModels: LiveData<List<ArticleUiModel>> = _articleUiModels
+
+    @UseExperimental(ObsoleteCoroutinesApi::class)
+    private val requestEvent: SendChannel<RequestEvent> = viewModelScope.actor {
+        var page: Int? = 1
+        var job: Job? = null
+        val articleUiModels = mutableListOf<ArticleUiModel>()
+
+        for (event in channel) {
+            val currentJob = job
+            if (event == RequestEvent.Refresh) {
+                if (currentJob.isActive()) {
+                    currentJob.cancelAndJoin()
+                }
+                page = 1
+                articleUiModels.clear()
+                _articleUiModels.value = articleUiModels
+            }
+            val currentPage = page
+            if (currentPage == null || currentJob.isActive()) {
+                continue
+            }
+            job = launch {
+                _isError.value = false
+                if (page == 1) {
+                    _isLoading.value = true
+                } else {
+                    _loadMoreStatus.value = LoadMoreStatus.LOADING
+                }
+
+                try {
+                    val articles: List<Article> = devToApi.findArticles(page, REQUEST_PER_PAGE)
+                    val uiModels = withContext(dispatchers.computation) { articles.take(REQUEST_PER_PAGE - 1).map(::ArticleUiModel) }
+                    articleUiModels.addAll(uiModels)
+                    _articleUiModels.value = articleUiModels
+                    _loadMoreStatus.value = LoadMoreStatus.IDLE
+                    _isLoading.value = false
+                    page = if (articles.size < REQUEST_PER_PAGE) null else currentPage + 1
+                } catch (e: Throwable) {
+                    logger.e(e)
+                    if (e !is CancellationException) {
+                        if (currentPage == 1) {
+                            _isLoading.value = false
+                            _isError.value = true
+                        } else {
+                            _loadMoreStatus.value = LoadMoreStatus.ERROR
+                        }
+                    }
+                }
+            }
         }
-    )
+    }
+
+    fun refresh() {
+        requestEvent.offer(RequestEvent.Refresh)
+    }
+
+    fun loadMore() {
+        requestEvent.offer(RequestEvent.LoadMore)
+    }
+
+    fun retry() {
+        loadMore()
+    }
+
+    private sealed class RequestEvent {
+        object Refresh : RequestEvent()
+
+        object LoadMore : RequestEvent()
+    }
 }

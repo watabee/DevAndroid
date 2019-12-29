@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.watabee.devtoapp.pagenation.LoadMoreAdapter
 import com.github.watabee.devtoapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.snackbar.Snackbar
@@ -27,7 +26,6 @@ class ArticlesFragment @Inject constructor(
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
 
         viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->
             adapter.update(articleUiModels.map(::ArticleBindableItem))

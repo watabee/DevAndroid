@@ -69,5 +69,54 @@
             tools:text="Dec 29"
             tools:textAppearance="@style/TextAppearance.App.Caption" />
 
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:constraint_referenced_ids="tag1,tag2,tag3,tag4,tag5"
+            app:flow_horizontalBias="0"
+            app:flow_horizontalGap="4dp"
+            app:flow_horizontalStyle="packed"
+            app:flow_wrapMode="chain"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_image" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:textOrGoneIfEmpty="@{uiModel.tagList.get(0)}"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tag2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:textOrGoneIfEmpty="@{uiModel.tagList.get(1)}"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tag3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:textOrGoneIfEmpty="@{uiModel.tagList.get(2)}"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tag4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:textOrGoneIfEmpty="@{uiModel.tagList.get(3)}"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tag5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:textOrGoneIfEmpty="@{uiModel.tagList.get(4)}"
+            tools:ignore="MissingConstraints" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

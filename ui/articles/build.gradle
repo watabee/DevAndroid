@@ -17,20 +17,25 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    viewBinding {
+    dataBinding {
         enabled = true
     }
 }
 
 dependencies {
     implementation project(':base')
+    implementation project(':data:api')
+    implementation project(':data:db')
     implementation project(':ui:common')
-    implementation project(':ui:ichiba:ranking')
-    implementation project(':ui:articles')
-    implementation project(':ui:signin')
+    implementation project(':ui:image')
+    implementation project(':ui:pagenation')
 
     implementation Deps.AndroidX.constraintlayout
-    implementation Deps.AndroidX.viewPager2
+    implementation Deps.AndroidX.swiperefresh
+    implementation Deps.AndroidX.recyclerview
+
+    implementation Deps.Groupie.groupie
+    implementation Deps.Groupie.dataBinding
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler

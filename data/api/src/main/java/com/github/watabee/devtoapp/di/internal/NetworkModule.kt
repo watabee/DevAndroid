@@ -1,18 +1,17 @@
 package com.github.watabee.devtoapp.di.internal
 
 import android.content.Context
-import com.github.watabee.devtoapp.data.api.interceptor.RakutenApiInterceptor
 import com.github.watabee.devtoapp.di.Api
 import com.github.watabee.devtoapp.di.Image
 import com.github.watabee.devtoapp.di.InterceptorForApi
 import com.github.watabee.devtoapp.di.InterceptorForImage
 import com.github.watabee.devtoapp.di.NetworkInterceptor
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet
-import dagger.multibindings.IntoSet
 import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -23,6 +22,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.Date
 
 private const val CONNECT_TIMEOUT_SECONDS = 10L
 private const val READ_TIMEOUT_SECONDS = 10L
@@ -33,7 +33,9 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder().build()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(Date::class.java, Rfc3339DateJsonAdapter())
+        .build()
 
     @Provides
     @Singleton
@@ -82,14 +84,14 @@ internal object NetworkModule {
             .callFactory(object : Call.Factory {
                 override fun newCall(request: Request): Call = okHttpClient.get().newCall(request)
             })
-            .baseUrl("https://app.rakuten.co.jp/services/api/")
+            .baseUrl("https://dev.to/api/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
     @InterceptorForApi
     @Provides
-    @IntoSet
-    fun provideRakutenApiInterceptor(): Interceptor = RakutenApiInterceptor()
+    @ElementsIntoSet
+    fun provideEmptyInterceptorForApi(): Set<Interceptor> = emptySet()
 
     @InterceptorForImage
     @Provides

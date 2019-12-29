@@ -43,7 +43,7 @@ object Deps {
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.1.0-rc01"
+        const val material = "com.google.android.material:material:1.2.0-alpha03"
     }
 
     object AndroidX {
@@ -126,6 +126,7 @@ object Deps {
         private const val version = "1.9.0"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
+        const val adapters = "com.squareup.moshi:moshi-adapters:$version"
     }
 
     object AssistedInject {

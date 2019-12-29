@@ -20,10 +20,6 @@ android {
     dataBinding {
         enabled = true
     }
-
-    sourceSets {
-        test.java.srcDirs += ["$rootDir/base/src/testFixtures/java"]
-    }
 }
 
 dependencies {
@@ -31,8 +27,4 @@ dependencies {
     implementation project(':ui:common')
 
     api Deps.Groupie.groupie
-
-    testImplementation Deps.junit
-    testImplementation Deps.truth
-    testImplementation Deps.Kotlin.Coroutines.test
 }

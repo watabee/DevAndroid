@@ -10,7 +10,7 @@ class AppSwipeRefreshLayout @JvmOverloads constructor(context: Context, attrs: A
 
     init {
         val typedValue = TypedValue()
-        context.theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        context.theme.resolveAttribute(R.attr.colorSecondary, typedValue, true)
         setColorSchemeColors(typedValue.data)
     }
 }

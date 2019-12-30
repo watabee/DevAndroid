@@ -145,6 +145,11 @@ object Deps {
 
     const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
 
+    object Markwon {
+        private const val version = "4.2.0"
+        const val core = "io.noties.markwon:core:$version"
+    }
+
     object Firebase {
         const val auth = "com.google.firebase:firebase-auth:19.2.0"
         const val uiAuth = "com.firebaseui:firebase-ui-auth:6.1.0"

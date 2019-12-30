@@ -2,13 +2,21 @@ package com.github.watabee.devtoapp.ui.articles
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.github.watabee.devtoapp.pagenation.LoadMoreAdapter
+import com.github.watabee.devtoapp.ui.article.ArticleFragment
+import com.github.watabee.devtoapp.ui.article.findArticleFragment
 import com.github.watabee.devtoapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.snackbar.Snackbar
+import me.saket.inboxrecyclerview.InboxRecyclerView
+import me.saket.inboxrecyclerview.page.ExpandablePageLayout
+import me.saket.inboxrecyclerview.page.PageStateChangeCallbacks
 import javax.inject.Inject
 
 class ArticlesFragment @Inject constructor(
@@ -20,12 +28,47 @@ class ArticlesFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = LoadMoreAdapter { viewModel.retry() }
+        val adapter = LoadMoreAdapter(viewModel::retry).apply { setHasStableIds(true) }
 
         val binding = FragmentArticlesBinding.bind(view)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.recyclerView.adapter = adapter
+
+        val expandablePage: ExpandablePageLayout = binding.expandablePageLayout
+        val recyclerView: InboxRecyclerView = binding.recyclerView
+
+        expandablePage.pushParentToolbarOnExpand(binding.toolbar)
+        val onBackPressedCallback = object : OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() {
+                if (expandablePage.isExpandedOrExpanding) {
+                    recyclerView.collapse()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+
+        expandablePage.addStateChangeCallbacks(object : PageStateChangeCallbacks {
+            override fun onPageAboutToCollapse(collapseAnimDuration: Long) = Unit
+
+            override fun onPageAboutToExpand(expandAnimDuration: Long) = Unit
+
+            override fun onPageCollapsed() {
+                onBackPressedCallback.isEnabled = false
+            }
+
+            override fun onPageExpanded() {
+                onBackPressedCallback.isEnabled = true
+            }
+        })
+
+        setupArticleFragment(expandablePage.id)
+
+        recyclerView.adapter = adapter
+        recyclerView.expandablePage = expandablePage
+
+        adapter.setOnItemClickListener { item, _ ->
+            binding.recyclerView.expandItem(item.id)
+        }
 
         viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->
             adapter.update(articleUiModels.map(::ArticleBindableItem))
@@ -51,5 +94,13 @@ class ArticlesFragment @Inject constructor(
         }
 
         viewModel.refresh()
+    }
+
+    private fun setupArticleFragment(@IdRes layoutResId: Int) {
+        if (childFragmentManager.findArticleFragment() != null) {
+            return
+        }
+        val fragment = childFragmentManager.fragmentFactory.instantiate(requireActivity().classLoader, ArticleFragment::class.java.name)
+        childFragmentManager.commitNow(allowStateLoss = true) { replace(layoutResId, fragment) }
     }
 }

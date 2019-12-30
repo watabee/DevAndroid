@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="top_activity_title">DEV</string>
+    <string name="articles_toolbar_title">DEV</string>
 </resources>

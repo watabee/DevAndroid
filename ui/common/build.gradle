@@ -32,6 +32,8 @@ dependencies {
     api Deps.AndroidX.Lifecycle.livedata
     api Deps.AndroidX.Lifecycle.viewmodel
     api Deps.Google.material
+    api Deps.Markwon.core
+    api Deps.AndroidX.browser
 
     api Deps.Dagger.dagger
     kapt Deps.Dagger.compiler

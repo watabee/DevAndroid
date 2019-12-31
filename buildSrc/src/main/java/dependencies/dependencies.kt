@@ -78,6 +78,8 @@ object Deps {
 
         const val coreKtx = "androidx.core:core-ktx:1.2.0-rc01"
 
+        const val browser = "androidx.browser:browser:1.2.0"
+
         object Lifecycle {
             private const val version = "2.2.0-rc03"
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
@@ -141,6 +143,13 @@ object Deps {
         private const val version = "2.7.2"
         const val groupie = "com.xwray:groupie:$version"
         const val dataBinding = "com.xwray:groupie-databinding:$version"
+    }
+
+    const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
+
+    object Markwon {
+        private const val version = "4.2.0"
+        const val core = "io.noties.markwon:core:$version"
     }
 
     object Firebase {

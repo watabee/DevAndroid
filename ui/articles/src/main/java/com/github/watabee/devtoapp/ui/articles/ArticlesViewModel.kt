@@ -46,6 +46,7 @@ internal class ArticlesViewModel @Inject constructor(
     private val _selectedArticle = SingleLiveEvent<ArticleDetailUiModel>()
     val selectedArticle: LiveData<ArticleDetailUiModel> = _selectedArticle
 
+    @Suppress("LoopWithTooManyJumpStatements")
     @UseExperimental(ObsoleteCoroutinesApi::class)
     private val requestEvent: SendChannel<RequestEvent> = viewModelScope.actor {
         var page: Int? = 1

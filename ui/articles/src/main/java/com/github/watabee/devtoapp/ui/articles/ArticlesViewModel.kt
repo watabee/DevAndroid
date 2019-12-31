@@ -9,8 +9,10 @@ import com.github.watabee.devtoapp.data.api.DevToApi
 import com.github.watabee.devtoapp.data.api.response.Article
 import com.github.watabee.devtoapp.extensions.isActive
 import com.github.watabee.devtoapp.pagenation.LoadMoreStatus
+import com.github.watabee.devtoapp.ui.article.ArticleDetailUiModel
 import com.github.watabee.devtoapp.util.CoroutineDispatchers
 import com.github.watabee.devtoapp.util.Logger
+import com.github.watabee.devtoapp.util.SingleLiveEvent
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -41,19 +43,40 @@ internal class ArticlesViewModel @Inject constructor(
     private val _articleUiModels = MutableLiveData<List<ArticleUiModel>>(emptyList())
     val articleUiModels: LiveData<List<ArticleUiModel>> = _articleUiModels
 
+    private val _selectedArticle = SingleLiveEvent<ArticleDetailUiModel>()
+    val selectedArticle: LiveData<ArticleDetailUiModel> = _selectedArticle
+
     @UseExperimental(ObsoleteCoroutinesApi::class)
     private val requestEvent: SendChannel<RequestEvent> = viewModelScope.actor {
         var page: Int? = 1
         var job: Job? = null
+        var detailJob: Job? = null
+        val articles = mutableListOf<Article>()
         val articleUiModels = mutableListOf<ArticleUiModel>()
 
         for (event in channel) {
+            if (event is RequestEvent.SelectArticle) {
+                _selectedArticle.value = articles.find { it.id == event.articleId }?.let(::ArticleDetailUiModel)
+                if (detailJob.isActive()) {
+                    detailJob.cancelAndJoin()
+                }
+                detailJob = launch {
+                    try {
+                        _selectedArticle.value = ArticleDetailUiModel(devToApi.findArticle(event.articleId))
+                    } catch (e: Throwable) {
+                        logger.e(e)
+                    }
+                }
+                continue
+            }
+
             val currentJob = job
             if (event == RequestEvent.Refresh) {
                 if (currentJob.isActive()) {
                     currentJob.cancelAndJoin()
                 }
                 page = 1
+                articles.clear()
                 articleUiModels.clear()
                 _articleUiModels.value = articleUiModels
             }
@@ -70,13 +93,17 @@ internal class ArticlesViewModel @Inject constructor(
                 }
 
                 try {
-                    val articles: List<Article> = devToApi.findArticles(page, REQUEST_PER_PAGE)
-                    val uiModels = withContext(dispatchers.computation) { articles.take(REQUEST_PER_PAGE - 1).map(::ArticleUiModel) }
+                    val foundArticles: List<Article> = devToApi.findArticles(page, REQUEST_PER_PAGE)
+                    val foundArticlesCount = foundArticles.size
+                    val defaultSizeArticles = foundArticles.take(REQUEST_PER_PAGE - 1)
+
+                    val uiModels = withContext(dispatchers.computation) { defaultSizeArticles.map(::ArticleUiModel) }
+                    articles.addAll(defaultSizeArticles)
                     articleUiModels.addAll(uiModels)
                     _articleUiModels.value = articleUiModels
                     _loadMoreStatus.value = LoadMoreStatus.IDLE
                     _isLoading.value = false
-                    page = if (articles.size < REQUEST_PER_PAGE) null else currentPage + 1
+                    page = if (foundArticlesCount < REQUEST_PER_PAGE) null else currentPage + 1
                 } catch (e: Throwable) {
                     logger.e(e)
                     if (e !is CancellationException) {
@@ -104,9 +131,15 @@ internal class ArticlesViewModel @Inject constructor(
         loadMore()
     }
 
+    fun selectArticle(articleId: Int) {
+        requestEvent.offer(RequestEvent.SelectArticle(articleId))
+    }
+
     private sealed class RequestEvent {
         object Refresh : RequestEvent()
 
         object LoadMore : RequestEvent()
+
+        class SelectArticle(val articleId: Int) : RequestEvent()
     }
 }

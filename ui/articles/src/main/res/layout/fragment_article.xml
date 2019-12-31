@@ -1,16 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HOGEHOGE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="markwon"
+            type="io.noties.markwon.Markwon" />
+
+        <variable
+            name="uiModel"
+            type="com.github.watabee.devtoapp.ui.article.ArticleDetailUiModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/cover_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:goneIfNull="@{uiModel.coverImage}"
+                app:imageUrl="@{uiModel.coverImage}"
+                app:layout_constraintDimensionRatio="h,1000:420"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintLeft_toLeftOf="@id/cover_image"
+                app:layout_constraintRight_toRightOf="@id/cover_image"
+                app:layout_constraintTop_toBottomOf="@id/cover_image" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@{uiModel.title}"
+                android:textAppearance="?attr/textAppearanceHeadline4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cover_image"
+                tools:text="How Stream Processing Makes Your Event-Driven Architecture Even Better" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/user_image"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                app:imageUrl="@{uiModel.userImage}"
+                app:layout_constraintLeft_toLeftOf="@id/title_text"
+                app:layout_constraintTop_toBottomOf="@id/title_text"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.App.UserImage"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/username_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{uiModel.username}"
+                android:textAppearance="?attr/textAppearanceBody1"
+                app:layout_constraintBottom_toBottomOf="@id/user_image"
+                app:layout_constraintLeft_toRightOf="@id/user_image"
+                app:layout_constraintTop_toTopOf="@id/user_image"
+                tools:text="watabee" />
+
+            <TextView
+                android:id="@+id/positive_reactions_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/favorite"
+                android:gravity="center_vertical"
+                android:text="@{uiModel.positiveReactionsCountText}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                app:layout_constraintBottom_toBottomOf="@id/username_text"
+                app:layout_constraintLeft_toRightOf="@id/username_text"
+                app:layout_constraintTop_toTopOf="@id/username_text"
+                tools:text="7,777" />
+
+            <TextView
+                android:id="@+id/comments_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/comment"
+                android:gravity="center_vertical"
+                android:text="@{uiModel.commentsCountText}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                app:layout_constraintBottom_toBottomOf="@id/positive_reactions_count_text"
+                app:layout_constraintLeft_toRightOf="@id/positive_reactions_count_text"
+                app:layout_constraintTop_toTopOf="@id/positive_reactions_count_text"
+                tools:text="7,777" />
+
+            <TextView
+                android:id="@+id/published_date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{uiModel.readablePublishDate}"
+                android:textAppearance="?attr/textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="@id/username_text"
+                app:layout_constraintRight_toRightOf="@id/title_text"
+                app:layout_constraintTop_toTopOf="@id/username_text"
+                tools:text="Dec 29"
+                tools:textAppearance="@style/TextAppearance.App.Caption" />
+
+            <TextView
+                android:id="@+id/description_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="?attr/textAppearanceBody1"
+                app:layout_constraintLeft_toLeftOf="@id/title_text"
+                app:layout_constraintRight_toRightOf="@id/title_text"
+                app:layout_constraintTop_toBottomOf="@id/user_image"
+                app:textOrGoneIfEmpty="@{uiModel.description}"
+                tools:text="We will discuss why you might pick stream processing as your architecture, some of the pros and cons, and a quick-to-deploy reference architecture using Apache Kafka." />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toLeftOf="@id/title_text"
+                app:layout_constraintRight_toRightOf="@id/title_text"
+                app:layout_constraintTop_toBottomOf="@id/description_text">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tag1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textOrGoneIfEmpty="@{uiModel.tagList.get(0)}" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textOrGoneIfEmpty="@{uiModel.tagList.get(1)}" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tag3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textOrGoneIfEmpty="@{uiModel.tagList.get(2)}" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tag4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textOrGoneIfEmpty="@{uiModel.tagList.get(3)}" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tag5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textOrGoneIfEmpty="@{uiModel.tagList.get(4)}" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/body_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@{uiModel.bodyMarkdownText != null ? markwon.toMarkdown(uiModel.bodyMarkdownText) : null}"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/title_text"
+                app:layout_constraintRight_toRightOf="@id/title_text"
+                app:layout_constraintTop_toBottomOf="@id/chip_group"
+                tools:text="abcdefg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

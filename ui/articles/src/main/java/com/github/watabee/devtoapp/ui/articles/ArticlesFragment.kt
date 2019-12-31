@@ -67,7 +67,8 @@ class ArticlesFragment @Inject constructor(
         recyclerView.expandablePage = expandablePage
 
         adapter.setOnItemClickListener { item, _ ->
-            binding.recyclerView.expandItem(item.id)
+            recyclerView.expandItem(item.id)
+            viewModel.selectArticle(item.id.toInt())
         }
 
         viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->

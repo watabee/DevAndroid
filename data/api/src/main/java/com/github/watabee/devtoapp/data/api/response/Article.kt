@@ -23,4 +23,8 @@ data class Article(
     override val tags: String = tagList.joinToString(", ")
 
     override val bodyMarkdown: String = ""
+
+    companion object {
+        const val serialVersionUID = 1L
+    }
 }

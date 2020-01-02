@@ -21,4 +21,9 @@ data class ArticleDetail(
     @Json(name = "positive_reactions_count") override val positiveReactionsCount: Int,
     @Json(name = "published_at") override val publishedAt: Date,
     @Json(name = "user") override val user: ArticleUser
-) : Article
+) : Article {
+
+    companion object {
+        const val serialVersionUID = 1L
+    }
+}

@@ -10,4 +10,8 @@ data class ArticleUser(
     @Json(name = "username") override val username: String,
     @Json(name = "profile_image") override val profileImage: String,
     @Json(name = "profile_image_90") override val profileImage90: String
-) : ArticleUser
+) : ArticleUser {
+    companion object {
+        const val serialVersionUID = 1L
+    }
+}

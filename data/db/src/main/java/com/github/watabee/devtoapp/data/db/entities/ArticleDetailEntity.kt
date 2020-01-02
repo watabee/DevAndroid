@@ -34,4 +34,8 @@ data class ArticleDetailEntity(
         positiveReactionsCount = article.positiveReactionsCount, publishedAt = article.publishedAt,
         user = ArticleUserEntity(article.user)
     )
+
+    companion object {
+        const val serialVersionUID = 1L
+    }
 }

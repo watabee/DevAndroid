@@ -1,6 +1,8 @@
 package com.github.watabee.devtoapp.data
 
-interface ArticleUser {
+import java.io.Serializable
+
+interface ArticleUser : Serializable {
     val name: String
     val username: String
     val profileImage: String

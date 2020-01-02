@@ -9,7 +9,6 @@ import com.github.watabee.devtoapp.data.api.DevToApi
 import com.github.watabee.devtoapp.data.api.response.Article
 import com.github.watabee.devtoapp.extensions.isActive
 import com.github.watabee.devtoapp.pagenation.LoadMoreStatus
-import com.github.watabee.devtoapp.ui.article.ArticleDetailUiModel
 import com.github.watabee.devtoapp.util.CoroutineDispatchers
 import com.github.watabee.devtoapp.util.Logger
 import com.github.watabee.devtoapp.util.SingleLiveEvent
@@ -43,23 +42,33 @@ internal class ArticlesViewModel @Inject constructor(
     private val _articleUiModels = MutableLiveData<List<ArticleUiModel>>(emptyList())
     val articleUiModels: LiveData<List<ArticleUiModel>> = _articleUiModels
 
-    private val _selectedArticle = SingleLiveEvent<ArticleDetailUiModel>()
-    val selectedArticle: LiveData<ArticleDetailUiModel> = _selectedArticle
+    private val _openArticleDetail = SingleLiveEvent<com.github.watabee.devtoapp.data.Article>()
+    val openArticleDetail: LiveData<com.github.watabee.devtoapp.data.Article> = _openArticleDetail
 
     @Suppress("LoopWithTooManyJumpStatements")
     @UseExperimental(ObsoleteCoroutinesApi::class)
     private val requestEvent: SendChannel<RequestEvent> = viewModelScope.actor {
         var page: Int? = 1
         var job: Job? = null
+        val articles = mutableListOf<Article>()
         val articleUiModels = mutableListOf<ArticleUiModel>()
 
         for (event in channel) {
+            if (event is RequestEvent.SelectArticle) {
+                val article = articles.find { it.id == event.articleId }
+                if (article != null) {
+                    _openArticleDetail.value = article
+                }
+                continue
+            }
+
             val currentJob = job
             if (event == RequestEvent.Refresh) {
                 if (currentJob.isActive()) {
                     currentJob.cancelAndJoin()
                 }
                 page = 1
+                articles.clear()
                 articleUiModels.clear()
                 _articleUiModels.value = articleUiModels
             }
@@ -81,6 +90,7 @@ internal class ArticlesViewModel @Inject constructor(
                     val defaultSizeArticles = foundArticles.take(REQUEST_PER_PAGE - 1)
 
                     val uiModels = withContext(dispatchers.computation) { defaultSizeArticles.map(::ArticleUiModel) }
+                    articles.addAll(defaultSizeArticles)
                     articleUiModels.addAll(uiModels)
                     _articleUiModels.value = articleUiModels
                     _loadMoreStatus.value = LoadMoreStatus.IDLE
@@ -114,6 +124,10 @@ internal class ArticlesViewModel @Inject constructor(
         requestEvent.offer(RequestEvent.LoadMore)
     }
 
+    fun selectArticle(articleId: Int) {
+        requestEvent.offer(RequestEvent.SelectArticle(articleId))
+    }
+
     fun retry() {
         loadMore()
     }
@@ -122,5 +136,7 @@ internal class ArticlesViewModel @Inject constructor(
         object Refresh : RequestEvent()
 
         object LoadMore : RequestEvent()
+
+        class SelectArticle(val articleId: Int) : RequestEvent()
     }
 }

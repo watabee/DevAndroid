@@ -1,8 +1,9 @@
 package com.github.watabee.devtoapp.data
 
+import java.io.Serializable
 import java.util.Date
 
-interface Article {
+interface Article : Serializable {
     val typeOf: String
     val id: Int
     val title: String

@@ -13,4 +13,8 @@ data class ArticleUserEntity(
     constructor(user: ArticleUser) : this(
         name = user.name, username = user.username, profileImage = user.profileImage, profileImage90 = user.profileImage90
     )
+
+    companion object {
+        const val serialVersionUID = 1L
+    }
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.github.watabee.devtoapp.data.Article
 import com.github.watabee.devtoapp.ui.articles.R
 import com.github.watabee.devtoapp.ui.articles.databinding.FragmentArticleBinding
 import dagger.android.support.AndroidSupportInjection
@@ -16,17 +17,22 @@ import me.saket.inboxrecyclerview.globalVisibleRect
 import me.saket.inboxrecyclerview.page.ExpandablePageLayout
 import me.saket.inboxrecyclerview.page.InterceptResult
 import javax.inject.Inject
+import kotlin.LazyThreadSafetyMode.NONE
 
 internal class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     @Inject lateinit var viewModelFactory: ArticleViewModel.Factory
     @Inject lateinit var markwon: Markwon
 
+    private val article: Article by lazy(NONE) {
+        requireArguments().getSerializable(ARTICLE) as Article
+    }
+
     @Suppress("UNCHECKED_CAST")
     private val viewModel: ArticleViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return viewModelFactory.create(requireArguments().getInt(ARTICLE_ID)) as T
+                return viewModelFactory.create(article) as T
             }
         }
     }
@@ -65,9 +71,9 @@ internal class ArticleFragment : Fragment(R.layout.fragment_article) {
     }
 
     companion object {
-        private const val ARTICLE_ID = "article_id"
+        private const val ARTICLE = "article"
 
-        fun newInstance(articleId: Int): ArticleFragment =
-            ArticleFragment().apply { arguments = bundleOf(ARTICLE_ID to articleId) }
+        fun newInstance(article: Article): ArticleFragment =
+            ArticleFragment().apply { arguments = bundleOf(ARTICLE to article) }
     }
 }

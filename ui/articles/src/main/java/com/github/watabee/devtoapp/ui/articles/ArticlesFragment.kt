@@ -63,11 +63,15 @@ internal class ArticlesFragment @Inject constructor(
         recyclerView.expandablePage = expandablePage
 
         adapter.setOnItemClickListener { item, _ ->
+            viewModel.selectArticle(item.id.toInt())
+        }
+
+        viewModel.openArticleDetail.observe(viewLifecycleOwner) { article ->
             childFragmentManager.commitNow(allowStateLoss = true) {
-                replace(expandablePage.id, ArticleFragment.newInstance(item.id.toInt()))
+                replace(expandablePage.id, ArticleFragment.newInstance(article))
             }
 
-            recyclerView.expandItem(item.id)
+            recyclerView.expandItem(article.id.toLong())
         }
 
         viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->

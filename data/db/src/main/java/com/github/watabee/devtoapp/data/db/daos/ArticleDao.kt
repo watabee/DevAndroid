@@ -7,6 +7,8 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.github.watabee.devtoapp.data.db.entities.ArticleDetailEntity
 
+private const val MAX_CACHE_ARTICLE = 50
+
 @Dao
 abstract class ArticleDao {
 
@@ -14,13 +16,22 @@ abstract class ArticleDao {
     internal abstract suspend fun insert(articleDetailEntity: ArticleDetailEntity)
 
     @Transaction
-    suspend fun insertArticle(articleDetailEntity: ArticleDetailEntity) {
+    open suspend fun insertArticle(articleDetailEntity: ArticleDetailEntity) {
         val articleDetail = findArticleDetail(articleDetailEntity.id)
-        if (articleDetail == null || articleDetail.bodyMarkdown.isEmpty()) {
+        if (articleDetail == null) {
             insert(articleDetailEntity)
+            if (countArticles() > MAX_CACHE_ARTICLE) {
+                deleteOldArticle()
+            }
         }
     }
 
     @Query("SELECT * FROM article_details WHERE id = :id")
     abstract suspend fun findArticleDetail(id: Int): ArticleDetailEntity?
+
+    @Query("SELECT COUNT(*) FROM article_details")
+    internal abstract suspend fun countArticles(): Int
+
+    @Query("DELETE FROM article_details WHERE id IN (SELECT id FROM article_details ORDER BY id LIMIT 1)")
+    internal abstract suspend fun deleteOldArticle()
 }

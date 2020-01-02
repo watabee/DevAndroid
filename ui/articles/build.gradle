@@ -25,6 +25,7 @@ android {
 dependencies {
     implementation project(':base')
     implementation project(':data:api')
+    implementation project(':data:db')
     implementation project(':ui:common')
     implementation project(':ui:image')
     implementation project(':ui:pagenation')
@@ -41,4 +42,6 @@ dependencies {
     kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport
     kapt Deps.Dagger.androidProcessor
+    compileOnly Deps.AssistedInject.annotationDagger2
+    kapt Deps.AssistedInject.processorDagger2
 }

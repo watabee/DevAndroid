@@ -13,6 +13,7 @@ data class ArticleDetail(
     @Json(name = "cover_image") val coverImage: String?,
     @Json(name = "readable_publish_date") val readablePublishDate: String,
     @Json(name = "tags") val tagList: List<String>,
+    @Json(name = "tag_list") val tags: String,
     @Json(name = "url") val url: String,
     @Json(name = "body_markdown") val bodyMarkdown: String,
     @Json(name = "comments_count") val commentsCount: Int,

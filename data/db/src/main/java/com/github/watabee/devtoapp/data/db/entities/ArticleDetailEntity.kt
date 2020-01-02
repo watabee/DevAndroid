@@ -16,7 +16,7 @@ data class ArticleDetailEntity(
     val description: String,
     @ColumnInfo(name = "cover_image") val coverImage: String?,
     @ColumnInfo(name = "readable_publish_date") val readablePublishDate: String,
-    @ColumnInfo(name = "tags") val tags: List<String>,
+    @ColumnInfo(name = "tags") val tags: String,
     val url: String,
     @ColumnInfo(name = "body_markdown") val bodyMarkdown: String,
     @ColumnInfo(name = "comments_count") val commentsCount: Int,

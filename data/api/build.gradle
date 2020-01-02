@@ -22,6 +22,7 @@ android {
 
 dependencies {
     implementation project(':base')
+    api project(':data:common')
 
     implementation Deps.Kotlin.stdlib
 
@@ -32,6 +33,7 @@ dependencies {
     implementation Deps.Retrofit.moshiConverter
 
     implementation Deps.Moshi.kotlin
+    implementation Deps.Moshi.adapters
     kapt Deps.Moshi.codegen
 
     implementation Deps.Dagger.dagger

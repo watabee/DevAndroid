@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.github.watabee.devtoapp.ui.articles.ArticlesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/articles_toolbar_title" />
+
+        <com.github.watabee.devtoapp.widget.AppSwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:onRefreshListener="@{viewModel::refresh}"
+            app:refreshing="@{viewModel.isLoading}">
+
+            <me.saket.inboxrecyclerview.InboxRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                app:hasFixedSize="@{true}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:onLoadMore="@{viewModel::loadMore}"
+                tools:listitem="@layout/list_item_article" />
+
+        </com.github.watabee.devtoapp.widget.AppSwipeRefreshLayout>
+
+        <me.saket.inboxrecyclerview.page.ExpandablePageLayout
+            android:id="@+id/expandable_page_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?android:colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

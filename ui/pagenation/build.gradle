@@ -27,6 +27,4 @@ dependencies {
     implementation project(':ui:common')
 
     api Deps.Groupie.groupie
-
-    testImplementation(testFixtures(project(':base')))
 }

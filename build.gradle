@@ -10,8 +10,10 @@ buildscript {
     dependencies {
         classpath Deps.androidGradlePlugin
         classpath Deps.Kotlin.gradlePlugin
+        classpath Deps.googleServicesGradlePlugin
         classpath Deps.androidJunit5GradlePlugin
-        classpath Deps.spotlessGradlePlugin
+        classpath Deps.ktlintGradlePlugin
+        classpath Deps.detektGradlePlugin
     }
 }
 
@@ -30,18 +32,41 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: "com.diffplug.gradle.spotless"
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+    apply plugin: "io.gitlab.arturbosch.detekt"
 
-    spotless {
-        kotlin {
-            target "**/*.kt"
-            ktlint("0.35.0")
+    ktlint {
+        version = Deps.Ktlint.version
+        android = true
+        ignoreFailures = true
+        reporters {
+            reporter "checkstyle"
+        }
+        filter {
+            exclude("**/generated/**")
+        }
+    }
+
+    detekt {
+        config = files("$rootDir/config/detekt-config.yml")
+        buildUponDefaultConfig = true
+        ignoreFailures = true
+        reports {
+            xml.enabled = true
+            html.enabled = false
+            txt.enabled = false
         }
     }
 
     afterEvaluate {
-        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
-            it.dependsOn spotlessKotlinApply
+        if (System.getenv("CI") != "true") {
+            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+                it.dependsOn ktlintFormat
+            }
+        }
+
+        tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
+            exclude("**/generated/**")
         }
     }
 }

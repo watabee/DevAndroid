@@ -1,0 +1,56 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      CI: 'true'
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Unlock secrets
+      uses: sliteteam/github-action-git-crypt-unlock@1.0.1
+      env:
+        GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+    - name: Build debug
+      run: ./gradlew assembleDebug
+
+    - name: Run tests
+      run: ./gradlew testDebug
+
+    - name: Run ktlint
+      run: ./gradlew ktlintCheck
+
+    - name: Run detekt
+      run: ./gradlew detekt
+
+    - name: Run Lint
+      run: ./gradlew :app:lintDebug
+
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.3
+
+    - name: Install bundler
+      run: gem install bundler
+
+    - name: Danger
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        bundle install
+        bundle exec danger
+
+    - name: Upload build outputs
+      if: always()
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-outputs
+        path: app/build/outputs

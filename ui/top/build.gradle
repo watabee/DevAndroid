@@ -25,15 +25,13 @@ android {
 dependencies {
     implementation project(':base')
     implementation project(':ui:common')
-    implementation project(':ui:ichiba:ranking')
+    implementation project(':ui:articles')
+    implementation project(':ui:signin')
 
     implementation Deps.AndroidX.constraintlayout
-    implementation Deps.AndroidX.viewPager2
 
     implementation Deps.Dagger.dagger
     kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport
     kapt Deps.Dagger.androidProcessor
-    compileOnly Deps.AssistedInject.annotationDagger2
-    kapt Deps.AssistedInject.processorDagger2
 }

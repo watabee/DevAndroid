@@ -6,7 +6,7 @@ object Versions {
     const val androidTargetSdkVersion = 29
 
     const val buildToolsVersion = "29.0.2"
-    const val ndkVersion = "21.0.5935234"
+    const val ndkVersion = "20.1.5948944"
 
     private const val versionMajor = 1
     private const val versionMinor = 0
@@ -20,20 +20,22 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-beta04"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-rc01"
+    const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
-    const val spotlessGradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:3.25.0"
+    const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.1.1"
+    const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.2.0"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     object Kotlin {
-        private const val version = "1.3.50"
+        private const val version = "1.3.61"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
 
         object Coroutines {
-            private const val version = "1.3.2"
+            private const val version = "1.3.3"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -41,21 +43,21 @@ object Deps {
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.1.0-beta02"
+        const val material = "com.google.android.material:material:1.2.0-alpha03"
     }
 
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.1.0"
-        const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0-rc01"
+        const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.1.0-rc02"
+            private const val version = "1.1.0-rc03"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0-rc02"
+            private const val version = "1.2.0-rc03"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -70,22 +72,23 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
 
-        const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0-rc01"
+        const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
 
-        const val coreKtx = "androidx.core:core-ktx:1.2.0-beta01"
+        const val coreKtx = "androidx.core:core-ktx:1.2.0-rc01"
+
+        const val browser = "androidx.browser:browser:1.2.0"
 
         object Lifecycle {
-            private const val version = "2.2.0-rc02"
+            private const val version = "2.2.0-rc03"
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Room {
-            private const val version = "2.2.1"
-            const val common = "androidx.room:room-common:$version"
+            private const val version = "2.2.3"
             const val runtime = "androidx.room:room-runtime:$version"
             const val compiler = "androidx.room:room-compiler:$version"
             const val ktx = "androidx.room:room-ktx:$version"
@@ -125,10 +128,11 @@ object Deps {
         private const val version = "1.9.0"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
+        const val adapters = "com.squareup.moshi:moshi-adapters:$version"
     }
 
     object AssistedInject {
-        private const val version = "0.5.1"
+        private const val version = "0.5.2"
         const val annotationDagger2 =
             "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
         const val processorDagger2 =
@@ -136,9 +140,21 @@ object Deps {
     }
 
     object Groupie {
-        private const val version = "2.7.1"
+        private const val version = "2.7.2"
         const val groupie = "com.xwray:groupie:$version"
         const val dataBinding = "com.xwray:groupie-databinding:$version"
+    }
+
+    const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
+
+    object Markwon {
+        private const val version = "4.2.0"
+        const val core = "io.noties.markwon:core:$version"
+    }
+
+    object Firebase {
+        const val auth = "com.google.firebase:firebase-auth:19.2.0"
+        const val uiAuth = "com.firebaseui:firebase-ui-auth:6.1.0"
     }
 
     const val junit = "junit:junit:4.12"
@@ -151,7 +167,7 @@ object Deps {
     }
 
     object Flipper {
-        private const val version = "0.28.0"
+        private const val version = "0.29.3"
         const val flipper = "com.facebook.flipper:flipper:$version"
         const val networkPlugin = "com.facebook.flipper:flipper-network-plugin:$version"
 
@@ -159,5 +175,9 @@ object Deps {
     }
 
     const val soLoader = "com.facebook.soloader:soloader:0.5.1"
+
+    object Ktlint {
+        const val version = "0.36.0"
+    }
 }
 

@@ -16,7 +16,7 @@ android {
     ndkVersion Versions.ndkVersion
 
     defaultConfig {
-        applicationId "com.github.watabee.rakutenapp"
+        applicationId "com.github.watabee.devtoapp"
         minSdkVersion Versions.androidMinSdkVersion
         targetSdkVersion Versions.androidTargetSdkVersion
         versionCode Versions.androidVersionCode
@@ -52,6 +52,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    lintOptions {
+        xmlReport true
+        htmlReport false
+        abortOnError false
+        checkDependencies true
+        checkTestSources true
+        checkReleaseBuilds false
+
+        disable "UnusedResources"
+    }
+
     dexOptions {
         // Don't pre-dex on CI
         preDexLibraries !ci
@@ -76,16 +87,23 @@ android {
     dataBinding {
         enabled = true
     }
+
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
 }
 
 dependencies {
     implementation project(':base')
     implementation project(':base-android')
     implementation project(':data:api')
+    implementation project(':data:db')
+    implementation project(':feature:auth')
     implementation project(':ui:common')
     implementation project(':ui:image')
     implementation project(':ui:top')
-    implementation project(':ui:ichiba:ranking')
+    implementation project(':ui:signin')
+    implementation project(':ui:articles')
 
     implementation Deps.Kotlin.stdlib
     implementation Deps.AndroidX.appcompat
@@ -101,8 +119,6 @@ dependencies {
     kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport
     kapt Deps.Dagger.androidProcessor
-    compileOnly Deps.AssistedInject.annotationDagger2
-    kapt Deps.AssistedInject.processorDagger2
 
     debugImplementation Deps.Flipper.flipper
     debugImplementation Deps.Flipper.networkPlugin
@@ -117,3 +133,6 @@ dependencies {
     androidTestImplementation Deps.AndroidX.Test.runner
     androidTestImplementation Deps.AndroidX.Test.espressoCore
 }
+
+// Add the following line to the bottom of the file:
+apply plugin: 'com.google.gms.google-services'

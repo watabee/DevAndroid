@@ -5,11 +5,18 @@ import androidx.lifecycle.ViewModel
 import com.github.watabee.devtoapp.ui.article.ArticleFragment
 import com.github.watabee.devtoapp.ui.articles.ArticlesFragment
 import com.github.watabee.devtoapp.ui.articles.ArticlesViewModel
+import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Binds
 import dagger.Module
+import dagger.android.AndroidInjector
+import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 
-@Module
+@AssistedModule
+@Module(
+    includes = [AssistedInject_UiArticlesModule::class],
+    subcomponents = [ArticleFragmentSubcomponent::class]
+)
 abstract class UiArticlesModule {
 
     @Binds
@@ -24,6 +31,6 @@ abstract class UiArticlesModule {
 
     @Binds
     @IntoMap
-    @FragmentKey(ArticleFragment::class)
-    internal abstract fun bindArticleFragment(instance: ArticleFragment): Fragment
+    @ClassKey(ArticleFragment::class)
+    internal abstract fun bindArticleFragmentInjectorFactory(instance: ArticleFragmentSubcomponent.Factory): AndroidInjector.Factory<*>
 }

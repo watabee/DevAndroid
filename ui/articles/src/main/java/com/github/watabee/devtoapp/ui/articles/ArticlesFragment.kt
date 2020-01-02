@@ -3,7 +3,6 @@ package com.github.watabee.devtoapp.ui.articles
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
@@ -11,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.github.watabee.devtoapp.pagenation.LoadMoreAdapter
 import com.github.watabee.devtoapp.ui.article.ArticleFragment
-import com.github.watabee.devtoapp.ui.article.findArticleFragment
 import com.github.watabee.devtoapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.snackbar.Snackbar
 import me.saket.inboxrecyclerview.InboxRecyclerView
@@ -19,7 +17,7 @@ import me.saket.inboxrecyclerview.page.ExpandablePageLayout
 import me.saket.inboxrecyclerview.page.PageStateChangeCallbacks
 import javax.inject.Inject
 
-class ArticlesFragment @Inject constructor(
+internal class ArticlesFragment @Inject constructor(
     private val viewModelFactory: ViewModelProvider.Factory
 ) : Fragment(R.layout.fragment_articles) {
 
@@ -28,7 +26,10 @@ class ArticlesFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = LoadMoreAdapter(viewModel::retry).apply { setHasStableIds(true) }
+        val adapter = LoadMoreAdapter(viewModel::retry).apply {
+            setHasStableIds(true)
+            setOnItemClickListener { item, _ -> viewModel.selectArticle(item.id.toInt()) }
+        }
 
         val binding = FragmentArticlesBinding.bind(view)
         binding.viewModel = viewModel
@@ -61,14 +62,15 @@ class ArticlesFragment @Inject constructor(
             }
         })
 
-        setupArticleFragment(expandablePage.id)
-
         recyclerView.adapter = adapter
         recyclerView.expandablePage = expandablePage
 
-        adapter.setOnItemClickListener { item, _ ->
-            recyclerView.expandItem(item.id)
-            viewModel.selectArticle(item.id.toInt())
+        viewModel.openArticleDetail.observe(viewLifecycleOwner) { article ->
+            childFragmentManager.commitNow(allowStateLoss = true) {
+                replace(expandablePage.id, ArticleFragment.newInstance(article))
+            }
+
+            recyclerView.expandItem(article.id.toLong())
         }
 
         viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->
@@ -95,13 +97,5 @@ class ArticlesFragment @Inject constructor(
         }
 
         viewModel.refresh()
-    }
-
-    private fun setupArticleFragment(@IdRes layoutResId: Int) {
-        if (childFragmentManager.findArticleFragment() != null) {
-            return
-        }
-        val fragment = childFragmentManager.fragmentFactory.instantiate(requireActivity().classLoader, ArticleFragment::class.java.name)
-        childFragmentManager.commitNow(allowStateLoss = true) { replace(layoutResId, fragment) }
     }
 }

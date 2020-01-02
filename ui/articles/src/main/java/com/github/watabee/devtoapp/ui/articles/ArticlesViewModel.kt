@@ -9,7 +9,6 @@ import com.github.watabee.devtoapp.data.api.DevToApi
 import com.github.watabee.devtoapp.data.api.response.Article
 import com.github.watabee.devtoapp.extensions.isActive
 import com.github.watabee.devtoapp.pagenation.LoadMoreStatus
-import com.github.watabee.devtoapp.ui.article.ArticleDetailUiModel
 import com.github.watabee.devtoapp.util.CoroutineDispatchers
 import com.github.watabee.devtoapp.util.Logger
 import com.github.watabee.devtoapp.util.SingleLiveEvent
@@ -43,30 +42,22 @@ internal class ArticlesViewModel @Inject constructor(
     private val _articleUiModels = MutableLiveData<List<ArticleUiModel>>(emptyList())
     val articleUiModels: LiveData<List<ArticleUiModel>> = _articleUiModels
 
-    private val _selectedArticle = SingleLiveEvent<ArticleDetailUiModel>()
-    val selectedArticle: LiveData<ArticleDetailUiModel> = _selectedArticle
+    private val _openArticleDetail = SingleLiveEvent<com.github.watabee.devtoapp.data.Article>()
+    val openArticleDetail: LiveData<com.github.watabee.devtoapp.data.Article> = _openArticleDetail
 
     @Suppress("LoopWithTooManyJumpStatements")
     @UseExperimental(ObsoleteCoroutinesApi::class)
     private val requestEvent: SendChannel<RequestEvent> = viewModelScope.actor {
         var page: Int? = 1
         var job: Job? = null
-        var detailJob: Job? = null
         val articles = mutableListOf<Article>()
         val articleUiModels = mutableListOf<ArticleUiModel>()
 
         for (event in channel) {
             if (event is RequestEvent.SelectArticle) {
-                _selectedArticle.value = articles.find { it.id == event.articleId }?.let(::ArticleDetailUiModel)
-                if (detailJob.isActive()) {
-                    detailJob.cancelAndJoin()
-                }
-                detailJob = launch {
-                    try {
-                        _selectedArticle.value = ArticleDetailUiModel(devToApi.findArticle(event.articleId))
-                    } catch (e: Throwable) {
-                        logger.e(e)
-                    }
+                val article = articles.find { it.id == event.articleId }
+                if (article != null) {
+                    _openArticleDetail.value = article
                 }
                 continue
             }
@@ -120,6 +111,11 @@ internal class ArticlesViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        requestEvent.close()
+    }
+
     fun refresh() {
         requestEvent.offer(RequestEvent.Refresh)
     }
@@ -128,12 +124,12 @@ internal class ArticlesViewModel @Inject constructor(
         requestEvent.offer(RequestEvent.LoadMore)
     }
 
-    fun retry() {
-        loadMore()
-    }
-
     fun selectArticle(articleId: Int) {
         requestEvent.offer(RequestEvent.SelectArticle(articleId))
+    }
+
+    fun retry() {
+        loadMore()
     }
 
     private sealed class RequestEvent {

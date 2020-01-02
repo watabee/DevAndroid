@@ -94,11 +94,11 @@
                 android:drawablePadding="4dp"
                 android:drawableStart="@drawable/favorite"
                 android:gravity="center_vertical"
-                android:text="@{uiModel.positiveReactionsCountText}"
                 android:textAppearance="?attr/textAppearanceBody2"
                 app:layout_constraintBottom_toBottomOf="@id/username_text"
                 app:layout_constraintLeft_toRightOf="@id/username_text"
                 app:layout_constraintTop_toTopOf="@id/username_text"
+                app:textOrGoneIfEmpty="@{uiModel.positiveReactionsCountText}"
                 tools:text="7,777" />
 
             <TextView
@@ -109,11 +109,11 @@
                 android:drawablePadding="4dp"
                 android:drawableStart="@drawable/comment"
                 android:gravity="center_vertical"
-                android:text="@{uiModel.commentsCountText}"
                 android:textAppearance="?attr/textAppearanceBody2"
                 app:layout_constraintBottom_toBottomOf="@id/positive_reactions_count_text"
                 app:layout_constraintLeft_toRightOf="@id/positive_reactions_count_text"
                 app:layout_constraintTop_toTopOf="@id/positive_reactions_count_text"
+                app:textOrGoneIfEmpty="@{uiModel.commentsCountText}"
                 tools:text="7,777" />
 
             <TextView

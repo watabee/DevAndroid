@@ -26,7 +26,10 @@ internal class ArticlesFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = LoadMoreAdapter(viewModel::retry).apply { setHasStableIds(true) }
+        val adapter = LoadMoreAdapter(viewModel::retry).apply {
+            setHasStableIds(true)
+            setOnItemClickListener { item, _ -> viewModel.selectArticle(item.id.toInt()) }
+        }
 
         val binding = FragmentArticlesBinding.bind(view)
         binding.viewModel = viewModel
@@ -61,10 +64,6 @@ internal class ArticlesFragment @Inject constructor(
 
         recyclerView.adapter = adapter
         recyclerView.expandablePage = expandablePage
-
-        adapter.setOnItemClickListener { item, _ ->
-            viewModel.selectArticle(item.id.toInt())
-        }
 
         viewModel.openArticleDetail.observe(viewLifecycleOwner) { article ->
             childFragmentManager.commitNow(allowStateLoss = true) {

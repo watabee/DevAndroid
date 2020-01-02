@@ -1,6 +1,6 @@
 package com.github.watabee.devtoapp.ui.articles
 
-import com.github.watabee.devtoapp.data.api.response.Article
+import com.github.watabee.devtoapp.data.Article
 
 private const val MAX_TAGS_COUNT = 5
 

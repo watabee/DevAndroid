@@ -1,12 +1,13 @@
 package com.github.watabee.devtoapp.data.api.response
 
+import com.github.watabee.devtoapp.data.ArticleUser
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ArticleUser(
-    @Json(name = "name") val name: String,
-    @Json(name = "username") val username: String,
-    @Json(name = "profile_image") val profileImage: String,
-    @Json(name = "profile_image_90") val profileImage90: String
-)
+    @Json(name = "name") override val name: String,
+    @Json(name = "username") override val username: String,
+    @Json(name = "profile_image") override val profileImage: String,
+    @Json(name = "profile_image_90") override val profileImage90: String
+) : ArticleUser

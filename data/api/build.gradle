@@ -22,6 +22,7 @@ android {
 
 dependencies {
     implementation project(':base')
+    api project(':data:common')
 
     implementation Deps.Kotlin.stdlib
 

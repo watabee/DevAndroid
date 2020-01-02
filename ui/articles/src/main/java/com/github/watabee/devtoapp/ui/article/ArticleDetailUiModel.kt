@@ -1,6 +1,6 @@
 package com.github.watabee.devtoapp.ui.article
 
-import com.github.watabee.devtoapp.data.db.entities.ArticleDetailEntity
+import com.github.watabee.devtoapp.data.Article
 import com.github.watabee.devtoapp.extensions.toCommaString
 
 private const val MAX_TAGS_COUNT = 5
@@ -18,9 +18,9 @@ data class ArticleDetailUiModel(
     val commentsCountText: String,
     val bodyMarkdownText: String
 ) {
-    constructor(article: ArticleDetailEntity) : this(
+    constructor(article: Article) : this(
         id = article.id, title = article.title, username = article.user.username, userImage = article.user.profileImage90,
-        readablePublishDate = article.readablePublishDate, tagList = List(MAX_TAGS_COUNT, article.tags.split(", ")::getOrNull),
+        readablePublishDate = article.readablePublishDate, tagList = List(MAX_TAGS_COUNT, article.tagList::getOrNull),
         coverImage = article.coverImage, description = article.description,
         positiveReactionsCountText = article.positiveReactionsCount.toCommaString(),
         commentsCountText = article.commentsCount.toCommaString(),

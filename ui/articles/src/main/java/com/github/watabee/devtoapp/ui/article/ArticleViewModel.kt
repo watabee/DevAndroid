@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.github.watabee.devtoapp.data.api.DevToApi
-import com.github.watabee.devtoapp.data.api.response.ArticleDetail
 import com.github.watabee.devtoapp.data.db.daos.ArticleDao
-import com.github.watabee.devtoapp.data.db.entities.ArticleDetailEntity
-import com.github.watabee.devtoapp.data.db.entities.ArticleUserEntity
 import com.github.watabee.devtoapp.util.Logger
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
@@ -30,9 +27,9 @@ internal class ArticleViewModel @AssistedInject constructor(
         val articleDetailEntity = articleDao.findArticleDetail(articleId)
         if (articleDetailEntity == null) {
             try {
-                val entity = devToApi.findArticle(articleId).toEntity()
-                articleDao.insertArticle(entity)
-                emit(ArticleDetailUiModel(entity))
+                val articleDetail = devToApi.findArticle(articleId)
+                articleDao.insertArticle(articleDetail)
+                emit(ArticleDetailUiModel(articleDetail))
             } catch (e: Throwable) {
                 logger.e(e)
             }
@@ -44,20 +41,10 @@ internal class ArticleViewModel @AssistedInject constructor(
     init {
         viewModelScope.launch {
             try {
-                articleDao.insertArticle(devToApi.findArticle(articleId).toEntity())
+                articleDao.insertArticle(devToApi.findArticle(articleId))
             } catch (e: Throwable) {
                 logger.e(e)
             }
         }
     }
 }
-
-private fun ArticleDetail.toEntity(): ArticleDetailEntity =
-    ArticleDetailEntity(
-        id = id, typeOf = typeOf, title = title, description = description, coverImage = coverImage,
-        readablePublishDate = readablePublishDate, tags = tags, url = url, bodyMarkdown = bodyMarkdown, commentsCount = commentsCount,
-        positiveReactionsCount = positiveReactionsCount, publishedAt = publishedAt,
-        user = ArticleUserEntity(
-            name = user.name, username = user.username, profileImage = user.profileImage, profileImage90 = user.profileImage90
-        )
-    )

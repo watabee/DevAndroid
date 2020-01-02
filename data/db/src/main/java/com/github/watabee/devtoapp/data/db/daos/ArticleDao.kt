@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import com.github.watabee.devtoapp.data.Article
 import com.github.watabee.devtoapp.data.db.entities.ArticleDetailEntity
 
 private const val MAX_CACHE_ARTICLE = 50
@@ -13,13 +14,14 @@ private const val MAX_CACHE_ARTICLE = 50
 abstract class ArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    internal abstract suspend fun insert(articleDetailEntity: ArticleDetailEntity)
+    internal abstract suspend fun insert(article: ArticleDetailEntity)
 
     @Transaction
-    open suspend fun insertArticle(articleDetailEntity: ArticleDetailEntity) {
-        val articleDetail = findArticleDetail(articleDetailEntity.id)
-        if (articleDetail == null) {
-            insert(articleDetailEntity)
+    open suspend fun insertArticle(article: Article) {
+        val articleDetail = findArticleDetail(article.id)
+        if (articleDetail == null || articleDetail.bodyMarkdown.isEmpty()) {
+            val entity = article as? ArticleDetailEntity ?: ArticleDetailEntity(article)
+            insert(entity)
             if (countArticles() > MAX_CACHE_ARTICLE) {
                 deleteOldArticle()
             }

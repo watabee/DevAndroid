@@ -1,6 +1,7 @@
 include ':app'
 include ':base'
 include ':base-android'
+include ':data:common'
 include ':data:api'
 include ':data:db'
 include ':feature:auth'

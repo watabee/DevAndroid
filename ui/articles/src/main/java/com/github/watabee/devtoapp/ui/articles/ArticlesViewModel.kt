@@ -45,15 +45,31 @@ internal class ArticlesViewModel @Inject constructor(
     private val _openArticleDetail = SingleLiveEvent<com.github.watabee.devtoapp.data.Article>()
     val openArticleDetail: LiveData<com.github.watabee.devtoapp.data.Article> = _openArticleDetail
 
+    private val _selectedTag = MutableLiveData<String>()
+    val selectedTag: LiveData<String> = _selectedTag
+
     @Suppress("LoopWithTooManyJumpStatements")
     @UseExperimental(ObsoleteCoroutinesApi::class)
     private val requestEvent: SendChannel<RequestEvent> = viewModelScope.actor {
         var page: Int? = 1
+        var tag: String? = null
         var job: Job? = null
         val articles = mutableListOf<Article>()
         val articleUiModels = mutableListOf<ArticleUiModel>()
 
-        for (event in channel) {
+        suspend fun reset(currentJob: Job?, newTag: String?) {
+            if (currentJob.isActive()) {
+                currentJob.cancelAndJoin()
+            }
+            page = 1
+            tag = newTag
+            articles.clear()
+            articleUiModels.clear()
+            _articleUiModels.value = articleUiModels
+            _selectedTag.value = tag
+        }
+
+        eventloop@ for (event in channel) {
             if (event is RequestEvent.SelectArticle) {
                 val article = articles.find { it.id == event.articleId }
                 if (article != null) {
@@ -63,14 +79,15 @@ internal class ArticlesViewModel @Inject constructor(
             }
 
             val currentJob = job
-            if (event == RequestEvent.Refresh) {
-                if (currentJob.isActive()) {
-                    currentJob.cancelAndJoin()
+            when (event) {
+                RequestEvent.Refresh -> reset(currentJob, newTag = tag)
+                is RequestEvent.FilterByTag -> {
+                    if (tag == event.tag) {
+                        continue@eventloop
+                    }
+                    reset(currentJob, newTag = event.tag)
                 }
-                page = 1
-                articles.clear()
-                articleUiModels.clear()
-                _articleUiModels.value = articleUiModels
+                RequestEvent.ResetFilter -> reset(currentJob, newTag = null)
             }
             val currentPage = page
             if (currentPage == null || currentJob.isActive()) {
@@ -85,7 +102,7 @@ internal class ArticlesViewModel @Inject constructor(
                 }
 
                 try {
-                    val foundArticles: List<Article> = devToApi.findArticles(page, REQUEST_PER_PAGE)
+                    val foundArticles: List<Article> = devToApi.findArticles(page = page, perPage = REQUEST_PER_PAGE, tag = tag)
                     val foundArticlesCount = foundArticles.size
                     val defaultSizeArticles = foundArticles.take(REQUEST_PER_PAGE - 1)
 
@@ -128,6 +145,14 @@ internal class ArticlesViewModel @Inject constructor(
         requestEvent.offer(RequestEvent.SelectArticle(articleId))
     }
 
+    fun filterByTag(tag: String) {
+        requestEvent.offer(RequestEvent.FilterByTag(tag))
+    }
+
+    fun resetFilter() {
+        requestEvent.offer(RequestEvent.ResetFilter)
+    }
+
     fun retry() {
         loadMore()
     }
@@ -138,5 +163,9 @@ internal class ArticlesViewModel @Inject constructor(
         object LoadMore : RequestEvent()
 
         class SelectArticle(val articleId: Int) : RequestEvent()
+
+        class FilterByTag(val tag: String) : RequestEvent()
+
+        object ResetFilter : RequestEvent()
     }
 }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="articles_toolbar_title">DEV</string>
+    <string name="tag_filter_message">tag: %s</string>
 </resources>

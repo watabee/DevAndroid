@@ -74,7 +74,7 @@ internal class ArticlesFragment @Inject constructor(
         }
 
         viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->
-            adapter.update(articleUiModels.map(::ArticleBindableItem))
+            adapter.update(articleUiModels.map { ArticleBindableItem(it, viewModel::filterByTag) })
         }
 
         viewModel.loadMoreStatus.observe(viewLifecycleOwner) { loadMoreStatus ->

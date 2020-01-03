@@ -47,6 +47,21 @@
 
         </com.github.watabee.devtoapp.widget.AppSwipeRefreshLayout>
 
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/filter_button"
+            style="@style/Widget.App.FilterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.resetFilter()}"
+            android:text="@{@string/tag_filter_message(viewModel.selectedTag)}"
+            app:goneIfNull="@{viewModel.selectedTag}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="tag: android" />
+
         <me.saket.inboxrecyclerview.page.ExpandablePageLayout
             android:id="@+id/expandable_page_layout"
             android:layout_width="0dp"
@@ -55,7 +70,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

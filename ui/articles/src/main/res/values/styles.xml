@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.App.FilterButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="icon">@drawable/cancel</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="iconTint">?attr/colorOnSurface</item>
+    </style>
+</resources>

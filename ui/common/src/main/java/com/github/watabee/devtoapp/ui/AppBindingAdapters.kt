@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
@@ -16,6 +17,11 @@ fun textOrGoneIfEmpty(view: TextView, s: CharSequence?) {
 @BindingAdapter("goneIfNull")
 fun goneIfNull(view: View, value: Any?) {
     view.isGone = value == null
+}
+
+@BindingAdapter("visible")
+fun visible(view: View, visible: Boolean) {
+    view.isVisible = visible
 }
 
 @BindingAdapter("colorSchemeColor")

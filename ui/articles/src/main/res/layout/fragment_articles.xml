@@ -59,8 +59,8 @@
             android:gravity="center"
             android:onClick="@{() -> viewModel.resetFilter()}"
             android:text="@{@string/tag_filter_message(viewModel.selectedTag)}"
-            app:goneIfNull="@{viewModel.selectedTag}"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:visible="@{viewModel.visibleFilterButton}"
             tools:text="tag: android" />
 
         <me.saket.inboxrecyclerview.page.ExpandablePageLayout

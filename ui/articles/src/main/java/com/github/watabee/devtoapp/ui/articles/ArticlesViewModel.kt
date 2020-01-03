@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.github.watabee.devtoapp.data.api.DevToApi
 import com.github.watabee.devtoapp.data.api.response.Article
@@ -47,6 +49,11 @@ internal class ArticlesViewModel @Inject constructor(
 
     private val _selectedTag = MutableLiveData<String>()
     val selectedTag: LiveData<String> = _selectedTag
+
+    private val _visibleFilterButton = MutableLiveData<Boolean>(false)
+    val visibleFilterButton: LiveData<Boolean> = _visibleFilterButton.switchMap { visible ->
+        _selectedTag.map { tag -> if (!visible) false else !tag.isNullOrEmpty() }
+    }
 
     @Suppress("LoopWithTooManyJumpStatements")
     @UseExperimental(ObsoleteCoroutinesApi::class)
@@ -151,6 +158,10 @@ internal class ArticlesViewModel @Inject constructor(
 
     fun resetFilter() {
         requestEvent.offer(RequestEvent.ResetFilter)
+    }
+
+    fun showFilterButton(shouldShow: Boolean) {
+        _visibleFilterButton.value = shouldShow
     }
 
     fun retry() {

@@ -53,12 +53,12 @@ internal class ArticlesFragment @Inject constructor(
             override fun onPageAboutToCollapse(collapseAnimDuration: Long) = Unit
 
             override fun onPageAboutToExpand(expandAnimDuration: Long) {
-                binding.filterButton.isGone = true
+                viewModel.showFilterButton(false)
             }
 
             override fun onPageCollapsed() {
                 onBackPressedCallback.isEnabled = false
-                binding.filterButton.isGone = false
+                viewModel.showFilterButton(true)
             }
 
             override fun onPageExpanded() {

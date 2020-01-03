@@ -3,6 +3,7 @@ package com.github.watabee.devtoapp.ui.articles
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
@@ -38,7 +39,7 @@ internal class ArticlesFragment @Inject constructor(
         val expandablePage: ExpandablePageLayout = binding.expandablePageLayout
         val recyclerView: InboxRecyclerView = binding.recyclerView
 
-        expandablePage.pushParentToolbarOnExpand(binding.toolbar)
+        expandablePage.pushParentToolbarOnExpand(binding.appBarLayout)
         val onBackPressedCallback = object : OnBackPressedCallback(false) {
             override fun handleOnBackPressed() {
                 if (expandablePage.isExpandedOrExpanding) {
@@ -51,10 +52,13 @@ internal class ArticlesFragment @Inject constructor(
         expandablePage.addStateChangeCallbacks(object : PageStateChangeCallbacks {
             override fun onPageAboutToCollapse(collapseAnimDuration: Long) = Unit
 
-            override fun onPageAboutToExpand(expandAnimDuration: Long) = Unit
+            override fun onPageAboutToExpand(expandAnimDuration: Long) {
+                binding.filterButton.isGone = true
+            }
 
             override fun onPageCollapsed() {
                 onBackPressedCallback.isEnabled = false
+                binding.filterButton.isGone = false
             }
 
             override fun onPageExpanded() {

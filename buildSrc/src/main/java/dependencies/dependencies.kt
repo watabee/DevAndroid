@@ -24,7 +24,7 @@ object Deps {
     const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.1.1"
-    const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.2.0"
+    const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.3.1"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
@@ -97,7 +97,7 @@ object Deps {
     }
 
     object Dagger {
-        private const val version = "2.25.2"
+        private const val version = "2.25.4"
         const val dagger = "com.google.dagger:dagger:$version"
         const val androidSupport = "com.google.dagger:dagger-android-support:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
@@ -112,7 +112,7 @@ object Deps {
     }
 
     object OkHttp {
-        private const val version = "4.2.1"
+        private const val version = "4.3.0"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }
@@ -125,7 +125,7 @@ object Deps {
     }
 
     object Moshi {
-        private const val version = "1.9.0"
+        private const val version = "1.9.2"
         const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
         const val adapters = "com.squareup.moshi:moshi-adapters:$version"

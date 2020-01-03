@@ -153,30 +153,35 @@
                     android:id="@+id/tag1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     app:textOrGoneIfEmpty="@{uiModel.tagList.get(0)}" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/tag2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     app:textOrGoneIfEmpty="@{uiModel.tagList.get(1)}" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/tag3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     app:textOrGoneIfEmpty="@{uiModel.tagList.get(2)}" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/tag4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     app:textOrGoneIfEmpty="@{uiModel.tagList.get(3)}" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/tag5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     app:textOrGoneIfEmpty="@{uiModel.tagList.get(4)}" />
             </com.google.android.material.chip.ChipGroup>
 

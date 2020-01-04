@@ -42,10 +42,11 @@
 
     </style>
 
-    <style name="Base.AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/color_primary_variant</item>
+    <style name="Base.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?android:colorBackground</item>
-        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">@bool/window_light_status_bar</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">@bool/window_light_navigation_bar</item>
         <item name="android:navigationBarDividerColor" tools:ignore="NewApi">?colorControlHighlight</item>
 
         <!--Remap legacy AppCompat attributes to MaterialComponent attributes-->

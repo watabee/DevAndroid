@@ -50,7 +50,7 @@ internal class ArticlesViewModel @Inject constructor(
     private val _selectedTag = MutableLiveData<String>()
     val selectedTag: LiveData<String> = _selectedTag
 
-    private val _visibleFilterButton = MutableLiveData<Boolean>(false)
+    private val _visibleFilterButton = MutableLiveData<Boolean>(true)
     val visibleFilterButton: LiveData<Boolean> = _visibleFilterButton.switchMap { visible ->
         _selectedTag.map { tag -> if (!visible) false else !tag.isNullOrEmpty() }
     }

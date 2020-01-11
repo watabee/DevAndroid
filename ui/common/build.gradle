@@ -35,6 +35,8 @@ dependencies {
     api Deps.Markwon.core
     api Deps.AndroidX.browser
 
+    api Deps.liveEvent
+
     api Deps.Dagger.dagger
     kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport

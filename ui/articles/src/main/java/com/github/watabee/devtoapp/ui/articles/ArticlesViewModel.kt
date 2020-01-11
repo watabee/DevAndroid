@@ -13,7 +13,7 @@ import com.github.watabee.devtoapp.extensions.isActive
 import com.github.watabee.devtoapp.pagenation.LoadMoreStatus
 import com.github.watabee.devtoapp.util.CoroutineDispatchers
 import com.github.watabee.devtoapp.util.Logger
-import com.github.watabee.devtoapp.util.SingleLiveEvent
+import com.hadilq.liveevent.LiveEvent
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -44,7 +44,7 @@ internal class ArticlesViewModel @Inject constructor(
     private val _articleUiModels = MutableLiveData<List<ArticleUiModel>>(emptyList())
     val articleUiModels: LiveData<List<ArticleUiModel>> = _articleUiModels
 
-    private val _openArticleDetail = SingleLiveEvent<com.github.watabee.devtoapp.data.Article>()
+    private val _openArticleDetail = LiveEvent<com.github.watabee.devtoapp.data.Article>()
     val openArticleDetail: LiveData<com.github.watabee.devtoapp.data.Article> = _openArticleDetail
 
     private val _selectedTag = MutableLiveData<String>()

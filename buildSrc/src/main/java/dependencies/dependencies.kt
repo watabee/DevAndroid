@@ -147,6 +147,9 @@ object Deps {
 
     const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
 
+    // https://github.com/hadilq/LiveEvent
+    const val liveEvent = "com.github.hadilq.liveevent:liveevent:1.0.1"
+
     object Markwon {
         private const val version = "4.2.0"
         const val core = "io.noties.markwon:core:$version"

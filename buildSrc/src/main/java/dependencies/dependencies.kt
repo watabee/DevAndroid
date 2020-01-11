@@ -25,6 +25,8 @@ object Deps {
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.1.1"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.3.1"
+    // https://arunkumar9t2.github.io/scabbard/
+    const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.1.0"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 

@@ -14,6 +14,7 @@ buildscript {
         classpath Deps.androidJunit5GradlePlugin
         classpath Deps.ktlintGradlePlugin
         classpath Deps.detektGradlePlugin
+        classpath Deps.scabbardGradlePlugin
     }
 }
 

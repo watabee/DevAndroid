@@ -59,7 +59,7 @@ object Deps {
         }
 
         object Fragment {
-            private const val version = "1.2.0-rc03"
+            private const val version = "1.2.0-rc05"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -107,7 +107,7 @@ object Deps {
     }
 
     object Glide {
-        private const val version = "4.10.0"
+        private const val version = "4.11.0"
         const val glide = "com.github.bumptech.glide:glide:$version"
         const val compiler = "com.github.bumptech.glide:compiler:$version"
         const val integration = "com.github.bumptech.glide:okhttp3-integration:$version"
@@ -120,7 +120,7 @@ object Deps {
     }
 
     object Retrofit {
-        private const val version = "2.6.2"
+        private const val version = "2.7.1"
         const val retrofit = "com.squareup.retrofit2:retrofit:$version"
         const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$version"
         const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$version"
@@ -162,7 +162,7 @@ object Deps {
         const val uiAuth = "com.firebaseui:firebase-ui-auth:6.1.0"
     }
 
-    const val junit = "junit:junit:4.12"
+    const val junit = "junit:junit:4.13"
     const val truth = "com.google.truth:truth:1.0"
 
     object Spek2 {

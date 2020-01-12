@@ -120,7 +120,7 @@ object Deps {
     }
 
     object Retrofit {
-        private const val version = "2.6.2"
+        private const val version = "2.7.1"
         const val retrofit = "com.squareup.retrofit2:retrofit:$version"
         const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$version"
         const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$version"

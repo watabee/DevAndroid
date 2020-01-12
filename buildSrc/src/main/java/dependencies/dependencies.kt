@@ -162,7 +162,7 @@ object Deps {
         const val uiAuth = "com.firebaseui:firebase-ui-auth:6.1.0"
     }
 
-    const val junit = "junit:junit:4.12"
+    const val junit = "junit:junit:4.13"
     const val truth = "com.google.truth:truth:1.0"
 
     object Spek2 {

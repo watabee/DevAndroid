@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.fragment.app.FragmentContainerView android:id="@+id/fragment_container_view"
-    android:name="com.github.watabee.devtoapp.ui.articles.ArticlesFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:tag="ArticlesFragment"
-    tools:context=".TopActivity" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="com.github.watabee.devtoapp.ui.articles.ArticlesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="ArticlesFragment"
+        tools:context=".TopActivity" />
+</layout>

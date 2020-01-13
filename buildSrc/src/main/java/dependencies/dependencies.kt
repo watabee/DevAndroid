@@ -147,6 +147,12 @@ object Deps {
         const val dataBinding = "com.xwray:groupie-databinding:$version"
     }
 
+    object Insetter {
+        private const val version = "0.2.0"
+        const val insetterKtx = "dev.chrisbanes:insetter-ktx:$version"
+        const val insetterDbx = "dev.chrisbanes:insetter-dbx:$version"
+    }
+
     const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
 
     // https://github.com/hadilq/LiveEvent

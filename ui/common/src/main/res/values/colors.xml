@@ -23,6 +23,8 @@
     <color name="color_on_surface">@color/gray1</color>
     <color name="color_on_error">@color/white</color>
 
+    <color name="color_navigation_bar">#B3FFFFFF</color>
+
     <color name="black">#000000</color>
     <color name="gray1">#353435</color>
     <color name="gray2">#95959C</color>

@@ -2,6 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Base.AppTheme">
+        <item name="android:navigationBarColor">@color/color_navigation_bar</item>
+    </style>
+
+    <style name="Base.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!--Material color attributes -->
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryVariant">@color/color_primary_variant</item>
@@ -40,11 +44,7 @@
         <!--Component styles-->
         <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
 
-    </style>
-
-    <style name="Base.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">?android:colorBackground</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">@bool/window_light_status_bar</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">@bool/window_light_navigation_bar</item>
         <item name="android:navigationBarDividerColor" tools:ignore="NewApi">?colorControlHighlight</item>

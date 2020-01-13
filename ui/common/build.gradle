@@ -37,6 +37,9 @@ dependencies {
 
     api Deps.liveEvent
 
+    api Deps.Insetter.insetterKtx
+    api Deps.Insetter.insetterDbx
+
     api Deps.Dagger.dagger
     kapt Deps.Dagger.compiler
     implementation Deps.Dagger.androidSupport

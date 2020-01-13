@@ -22,4 +22,6 @@
     <color name="color_on_background">@color/white</color>
     <color name="color_on_surface">@color/white</color>
     <color name="color_on_error">@color/black</color>
+
+    <color name="color_navigation_bar">#B3000000</color>
 </resources>

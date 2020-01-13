@@ -53,6 +53,12 @@ internal class ArticleFragment : Fragment(R.layout.fragment_article) {
             binding.executePendingBindings()
         }
 
+        val decorView = requireActivity().window.decorView
+        decorView.systemUiVisibility = decorView.systemUiVisibility or
+            View.SYSTEM_UI_FLAG_FULLSCREEN or
+            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+
         val expandablePage = view.parent as ExpandablePageLayout
         val scrollView = binding.scrollView
 

@@ -59,6 +59,14 @@ internal class ArticlesFragment @Inject constructor(
             override fun onPageCollapsed() {
                 onBackPressedCallback.isEnabled = false
                 viewModel.showFilterButton(true)
+
+                val decorView = requireActivity().window.decorView
+                val options = decorView.systemUiVisibility and
+                    View.SYSTEM_UI_FLAG_FULLSCREEN.inv() and
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION.inv() and
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY.inv()
+
+                decorView.systemUiVisibility = options
             }
 
             override fun onPageExpanded() {

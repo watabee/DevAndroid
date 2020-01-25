@@ -59,7 +59,7 @@ object Deps {
         }
 
         object Fragment {
-            private const val version = "1.2.0-rc05"
+            private const val version = "1.2.0"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 

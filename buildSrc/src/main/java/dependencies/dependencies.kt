@@ -6,7 +6,7 @@ object Versions {
     const val androidTargetSdkVersion = 29
 
     const val buildToolsVersion = "29.0.2"
-    const val ndkVersion = "20.1.5948944"
+    const val ndkVersion = "21.0.6113669"
 
     private const val versionMajor = 1
     private const val versionMinor = 0
@@ -54,12 +54,12 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.1.0-rc03"
+            private const val version = "1.1.0"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0-rc05"
+            private const val version = "1.2.0"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -83,7 +83,7 @@ object Deps {
         const val browser = "androidx.browser:browser:1.2.0"
 
         object Lifecycle {
-            private const val version = "2.2.0-rc03"
+            private const val version = "2.2.0"
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
@@ -114,7 +114,7 @@ object Deps {
     }
 
     object OkHttp {
-        private const val version = "4.3.0"
+        private const val version = "4.3.1"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }

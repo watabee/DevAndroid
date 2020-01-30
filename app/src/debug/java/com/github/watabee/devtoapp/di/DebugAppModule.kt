@@ -8,18 +8,17 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import javax.inject.Singleton
 import okhttp3.Interceptor
+import javax.inject.Singleton
 
-@Module(includes = [DebugNetworkModule::class, DebugAppModule.Provider::class])
+@Module(includes = [DebugNetworkModule::class])
 abstract class DebugAppModule {
 
     @Binds
     @IntoSet
     abstract fun bindFlipperInitializer(flipperInitializer: FlipperInitializer): AppInitializer
 
-    @Module
-    object Provider {
+    companion object {
         @Singleton
         @Provides
         fun provideNetworkFlipperPlugin(): NetworkFlipperPlugin {

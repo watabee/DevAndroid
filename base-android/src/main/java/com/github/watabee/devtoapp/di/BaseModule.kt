@@ -6,18 +6,17 @@ import com.github.watabee.devtoapp.util.Logger
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Singleton
 
-@Module(includes = [BaseModule.Provider::class])
+@Module
 abstract class BaseModule {
 
     @Singleton
     @Binds
     internal abstract fun bindLogger(instance: AppLogger): Logger
 
-    @Module
-    internal object Provider {
+    companion object {
         @Provides
         @Singleton
         fun provideCoroutineDispatchers(): CoroutineDispatchers =

@@ -17,7 +17,7 @@ import io.noties.markwon.Markwon
 import io.noties.markwon.MarkwonConfiguration
 import javax.inject.Singleton
 
-@Module(includes = [UiCommonModule.Provider::class])
+@Module
 abstract class UiCommonModule {
 
     @Binds
@@ -28,8 +28,7 @@ abstract class UiCommonModule {
     @Singleton
     internal abstract fun bindViewModelFactory(instance: ViewModelFactory): ViewModelProvider.Factory
 
-    @Module
-    object Provider {
+    companion object {
         @Provides
         @Singleton
         internal fun provideMarkwon(context: Context): Markwon =

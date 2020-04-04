@@ -149,7 +149,7 @@ object Deps {
     }
 
     object Insetter {
-        private const val version = "0.2.0"
+        private const val version = "0.2.1"
         const val insetterKtx = "dev.chrisbanes:insetter-ktx:$version"
         const val insetterDbx = "dev.chrisbanes:insetter-dbx:$version"
     }

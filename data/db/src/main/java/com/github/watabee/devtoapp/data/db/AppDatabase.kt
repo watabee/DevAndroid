@@ -14,6 +14,7 @@ import com.github.watabee.devtoapp.data.db.entities.ArticleDetailEntity
     exportSchema = true
 )
 @TypeConverters(Converters::class)
+@Suppress("UnnecessaryAbstractClass")
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao

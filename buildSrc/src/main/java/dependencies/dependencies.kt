@@ -54,12 +54,12 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.1.0"
+            private const val version = "1.2.0-alpha03"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0"
+            private const val version = "1.3.0-alpha03"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 

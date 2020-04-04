@@ -114,13 +114,13 @@ object Deps {
     }
 
     object OkHttp {
-        private const val version = "4.3.1"
+        private const val version = "4.4.1"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }
 
     object Retrofit {
-        private const val version = "2.7.1"
+        private const val version = "2.8.1"
         const val retrofit = "com.squareup.retrofit2:retrofit:$version"
         const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$version"
         const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$version"

@@ -12,7 +12,7 @@ import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class CoroutineTestRule : TestRule, TestCoroutineScope by TestCoroutineScope(Job()) {
 
     val dispatcher = coroutineContext[ContinuationInterceptor] as TestCoroutineDispatcher

@@ -56,7 +56,7 @@ internal class ArticlesViewModel @Inject constructor(
     }
 
     @Suppress("LoopWithTooManyJumpStatements")
-    @UseExperimental(ObsoleteCoroutinesApi::class)
+    @OptIn(ObsoleteCoroutinesApi::class)
     private val requestEvent: SendChannel<RequestEvent> = viewModelScope.actor {
         var page: Int? = 1
         var tag: String? = null

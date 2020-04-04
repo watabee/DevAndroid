@@ -5,7 +5,7 @@ object Versions {
     const val androidMinSdkVersion = 21
     const val androidTargetSdkVersion = 29
 
-    const val buildToolsVersion = "29.0.2"
+    const val buildToolsVersion = "29.0.3"
     const val ndkVersion = "21.0.6113669"
 
     private const val versionMajor = 1
@@ -20,24 +20,24 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0-rc02"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-beta03"
     const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
-    const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.1.1"
-    const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.3.1"
+    const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
+    const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.7.1"
     // https://arunkumar9t2.github.io/scabbard/
-    const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.1.0"
+    const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     object Kotlin {
-        private const val version = "1.3.61"
+        private const val version = "1.3.71"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
 
         object Coroutines {
-            private const val version = "1.3.3"
+            private const val version = "1.3.5"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -54,12 +54,12 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.1.0"
+            private const val version = "1.2.0-alpha03"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
-            private const val version = "1.2.0"
+            private const val version = "1.3.0-alpha03"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
@@ -76,21 +76,21 @@ object Deps {
 
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
 
-        const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
+        const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
 
-        const val coreKtx = "androidx.core:core-ktx:1.2.0-rc01"
+        const val coreKtx = "androidx.core:core-ktx:1.3.0-beta01"
 
         const val browser = "androidx.browser:browser:1.2.0"
 
         object Lifecycle {
-            private const val version = "2.2.0"
+            private const val version = "2.3.0-alpha01"
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Room {
-            private const val version = "2.2.3"
+            private const val version = "2.2.5"
             const val runtime = "androidx.room:room-runtime:$version"
             const val compiler = "androidx.room:room-compiler:$version"
             const val ktx = "androidx.room:room-ktx:$version"
@@ -99,7 +99,7 @@ object Deps {
     }
 
     object Dagger {
-        private const val version = "2.26"
+        private const val version = "2.27"
         const val dagger = "com.google.dagger:dagger:$version"
         const val androidSupport = "com.google.dagger:dagger-android-support:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
@@ -114,13 +114,13 @@ object Deps {
     }
 
     object OkHttp {
-        private const val version = "4.3.1"
+        private const val version = "4.4.1"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }
 
     object Retrofit {
-        private const val version = "2.7.1"
+        private const val version = "2.8.1"
         const val retrofit = "com.squareup.retrofit2:retrofit:$version"
         const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$version"
         const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$version"
@@ -142,13 +142,14 @@ object Deps {
     }
 
     object Groupie {
-        private const val version = "2.7.2"
+        private const val version = "2.8.0"
+        const val group = "com.xwray"
         const val groupie = "com.xwray:groupie:$version"
         const val dataBinding = "com.xwray:groupie-databinding:$version"
     }
 
     object Insetter {
-        private const val version = "0.2.0"
+        private const val version = "0.2.1"
         const val insetterKtx = "dev.chrisbanes:insetter-ktx:$version"
         const val insetterDbx = "dev.chrisbanes:insetter-dbx:$version"
     }

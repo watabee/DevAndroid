@@ -89,8 +89,9 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        buildConfig = true
+        dataBinding = true
     }
 
     packagingOptions {

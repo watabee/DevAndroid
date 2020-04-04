@@ -19,7 +19,7 @@ internal class AuthRepositoryImpl @Inject constructor() : AuthRepository {
 
     override fun isSignedIn(): Boolean = auth.currentUser != null
 
-    @UseExperimental(ExperimentalCoroutinesApi::class)
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun isSignedInAsFlow(): Flow<Boolean> = channelFlow {
         val listener = FirebaseAuth.AuthStateListener {
             offer(it.currentUser != null)

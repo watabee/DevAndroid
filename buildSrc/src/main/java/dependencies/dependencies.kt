@@ -76,7 +76,7 @@ object Deps {
 
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
 
-        const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
+        const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
 
         const val coreKtx = "androidx.core:core-ktx:1.2.0-rc01"
 

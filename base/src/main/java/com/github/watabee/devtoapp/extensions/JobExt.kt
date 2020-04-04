@@ -4,7 +4,7 @@ import kotlinx.coroutines.Job
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-@UseExperimental(ExperimentalContracts::class)
+@OptIn(ExperimentalContracts::class)
 fun Job?.isActive(): Boolean {
     contract {
         returns(true) implies (this@isActive != null)

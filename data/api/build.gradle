@@ -10,8 +10,6 @@ android {
     defaultConfig {
         minSdkVersion Versions.androidMinSdkVersion
         targetSdkVersion Versions.androidTargetSdkVersion
-
-        buildConfigField("String", "RAKUTEN_APP_ID", "\"${System.getenv("RAKUTEN_APP_ID")}\"")
     }
 
     compileOptions {

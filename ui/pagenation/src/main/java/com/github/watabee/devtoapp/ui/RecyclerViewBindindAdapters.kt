@@ -3,8 +3,9 @@ package com.github.watabee.devtoapp.ui
 import androidx.databinding.BindingAdapter
 import androidx.databinding.adapters.ListenerUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.github.watabee.devtoapp.pagenation.LoadMoreAdapter
+import com.github.watabee.devtoapp.pagenation.LoadingStateAdapter
 import com.github.watabee.devtoapp.pagenation.OnLoadMore
 import com.github.watabee.devtoapp.ui.pagenation.R
 
@@ -14,7 +15,10 @@ fun setOnLoadMore(view: RecyclerView, onLoadMore: OnLoadMore) {
     val newListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             val layoutManager = recyclerView.layoutManager as? LinearLayoutManager ?: return
-            val adapter = recyclerView.adapter as? LoadMoreAdapter ?: return
+            val adapter = recyclerView.adapter as? MergeAdapter ?: return
+            if (!adapter.adapters.any { it is LoadingStateAdapter }) {
+                return
+            }
 
             val totalItemCount = layoutManager.itemCount
             val lastVisibleItem = layoutManager.findLastVisibleItemPosition()

@@ -3,16 +3,18 @@ package com.github.watabee.devtoapp.ui.articles
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.github.watabee.devtoapp.pagenation.LoadMoreAdapter
+import androidx.recyclerview.widget.MergeAdapter
+import com.github.watabee.devtoapp.pagenation.LoadingStateAdapter
 import com.github.watabee.devtoapp.ui.article.ArticleFragment
 import com.github.watabee.devtoapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.snackbar.Snackbar
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
 import me.saket.inboxrecyclerview.InboxRecyclerView
 import me.saket.inboxrecyclerview.page.ExpandablePageLayout
 import me.saket.inboxrecyclerview.page.PageStateChangeCallbacks
@@ -27,10 +29,18 @@ internal class ArticlesFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = LoadMoreAdapter(viewModel::retry).apply {
+        val loadingStateAdapter = LoadingStateAdapter(viewModel::retry).apply {
+            setHasStableIds(true)
+        }
+        val articlesAdapter = GroupAdapter<GroupieViewHolder>().apply {
             setHasStableIds(true)
             setOnItemClickListener { item, _ -> viewModel.selectArticle(item.id.toInt()) }
         }
+
+        val config = MergeAdapter.Config.Builder()
+            .setStableIdMode(MergeAdapter.Config.StableIdMode.ISOLATED_STABLE_IDS)
+            .build()
+        val adapter = MergeAdapter(config, articlesAdapter, loadingStateAdapter)
 
         val binding = FragmentArticlesBinding.bind(view)
         binding.viewModel = viewModel
@@ -86,11 +96,11 @@ internal class ArticlesFragment @Inject constructor(
         }
 
         viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->
-            adapter.update(articleUiModels.map { ArticleBindableItem(it, viewModel::filterByTag) })
+            articlesAdapter.update(articleUiModels.map { ArticleBindableItem(it, viewModel::filterByTag) })
         }
 
         viewModel.loadMoreStatus.observe(viewLifecycleOwner) { loadMoreStatus ->
-            adapter.status = loadMoreStatus
+            loadingStateAdapter.status = loadMoreStatus
         }
 
         var snackbar: Snackbar? = null

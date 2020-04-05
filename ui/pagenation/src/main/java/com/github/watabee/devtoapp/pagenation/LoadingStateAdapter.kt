@@ -1,17 +1,12 @@
 package com.github.watabee.devtoapp.pagenation
 
 import com.github.watabee.devtoapp.ui.pagenation.R
-import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnItemClickListener
-import com.xwray.groupie.Section
 
-class LoadMoreAdapter(private val retry: (() -> Unit)? = null) : GroupAdapter<GroupieViewHolder>() {
-    private val viewSection = Section()
-    private val extraSection = Section()
-
+class LoadingStateAdapter(private val retry: (() -> Unit)? = null) : GroupAdapter<GroupieViewHolder>() {
     private val loadingItem = listOf(LoadingItem())
     private val errorItem = listOf(ErrorItem())
 
@@ -19,19 +14,18 @@ class LoadMoreAdapter(private val retry: (() -> Unit)? = null) : GroupAdapter<Gr
         set(value) {
             field = value
             when (value) {
-                LoadMoreStatus.IDLE -> extraSection.update(emptyList())
-                LoadMoreStatus.LOADING -> extraSection.update(loadingItem)
-                LoadMoreStatus.ERROR -> extraSection.update(errorItem)
+                LoadMoreStatus.IDLE -> update(emptyList())
+                LoadMoreStatus.LOADING -> update(loadingItem)
+                LoadMoreStatus.ERROR -> update(errorItem)
             }
         }
 
     init {
-        addAll(listOf(viewSection, extraSection))
         setOnItemClickListener(null)
     }
 
     override fun setOnItemClickListener(onItemClickListener: OnItemClickListener?) {
-        val newOnItemClickListener = OnItemClickListener { item, view ->
+        val newOnItemClickListener = OnItemClickListener { item, _ ->
             when (item) {
                 is ErrorItem -> {
                     retry?.invoke()
@@ -40,16 +34,12 @@ class LoadMoreAdapter(private val retry: (() -> Unit)? = null) : GroupAdapter<Gr
                     // do nothing
                 }
                 else -> {
-                    onItemClickListener?.onItemClick(item, view)
+                    throw IllegalStateException("Unknown item type")
                 }
             }
         }
 
         super.setOnItemClickListener(newOnItemClickListener)
-    }
-
-    override fun update(newGroups: Collection<Group>) {
-        viewSection.update(newGroups)
     }
 }
 

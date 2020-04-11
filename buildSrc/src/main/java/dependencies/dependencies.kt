@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-beta03"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-beta04"
     const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
@@ -45,7 +45,7 @@ object Deps {
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.2.0-alpha03"
+        const val material = "com.google.android.material:material:1.2.0-alpha05"
     }
 
     object AndroidX {
@@ -114,7 +114,7 @@ object Deps {
     }
 
     object OkHttp {
-        private const val version = "4.4.1"
+        private const val version = "4.5.0"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }
@@ -179,14 +179,14 @@ object Deps {
     }
 
     object Flipper {
-        private const val version = "0.29.3"
+        private const val version = "0.37.0"
         const val flipper = "com.facebook.flipper:flipper:$version"
         const val networkPlugin = "com.facebook.flipper:flipper-network-plugin:$version"
 
         const val flipperNoOp = "com.facebook.flipper:flipper-noop:$version"
     }
 
-    const val soLoader = "com.facebook.soloader:soloader:0.5.1"
+    const val soLoader = "com.facebook.soloader:soloader:0.8.2"
 
     object Ktlint {
         const val version = "0.36.0"

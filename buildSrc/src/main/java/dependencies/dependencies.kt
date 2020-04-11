@@ -179,7 +179,7 @@ object Deps {
     }
 
     object Flipper {
-        private const val version = "0.29.3"
+        private const val version = "0.37.0"
         const val flipper = "com.facebook.flipper:flipper:$version"
         const val networkPlugin = "com.facebook.flipper:flipper-network-plugin:$version"
 

@@ -90,7 +90,7 @@ releasesHub {
     dependenciesClassNames = ["dependencies.kt"]
 
     pullRequestEnabled = true
-    pullRequestsMax = 2
+    pullRequestsMax = 10
 
     gitHubUserName = "watabee"
     gitHubUserEmail = "watabee.dev@gmail.com"

@@ -134,8 +134,8 @@ object Deps {
     }
 
     object Insetter {
-        const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.2.1"
-        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.2.1"
+        const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.2.2"
+        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.2.2"
     }
 
     const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
@@ -167,7 +167,7 @@ object Deps {
         const val flipperNoOp = "com.facebook.flipper:flipper-noop:0.37.0"
     }
 
-    const val soLoader = "com.facebook.soloader:soloader:0.8.2"
+    const val soLoader = "com.facebook.soloader:soloader:0.9.0"
 
     object Ktlint {
         const val version = "0.36.0"

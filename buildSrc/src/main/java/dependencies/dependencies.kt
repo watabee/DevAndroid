@@ -53,7 +53,7 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha03"
+            const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha05"
         }
 
         object Fragment {

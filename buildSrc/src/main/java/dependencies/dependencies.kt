@@ -6,7 +6,7 @@ object Versions {
     const val androidTargetSdkVersion = 29
 
     const val buildToolsVersion = "29.0.3"
-    const val ndkVersion = "21.0.6113669"
+    const val ndkVersion = "21.1.6352462"
 
     private const val versionMajor = 1
     private const val versionMinor = 0
@@ -27,20 +27,19 @@ object Deps {
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.7.1"
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0"
+    const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.6.0"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     object Kotlin {
-        private const val version = "1.3.71"
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
-        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.71"
+        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.71"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.3.71"
 
         object Coroutines {
-            private const val version = "1.3.5"
-            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
-            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5"
+            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.5"
         }
     }
 
@@ -54,20 +53,17 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            private const val version = "1.2.0-alpha03"
-            const val activityKtx = "androidx.activity:activity-ktx:$version"
+            const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha03"
         }
 
         object Fragment {
-            private const val version = "1.3.0-alpha03"
-            const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
+            const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha03"
         }
 
         object Test {
-            private const val version = "1.2.0"
-            const val core = "androidx.test:core:$version"
-            const val runner = "androidx.test:runner:$version"
-            const val rules = "androidx.test:rules:$version"
+            const val core = "androidx.test:core:1.2.0"
+            const val runner = "androidx.test:runner:1.2.0"
+            const val rules = "androidx.test:rules:1.2.0"
 
             const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
         }
@@ -83,75 +79,63 @@ object Deps {
         const val browser = "androidx.browser:browser:1.2.0"
 
         object Lifecycle {
-            private const val version = "2.3.0-alpha01"
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha01"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha01"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01"
         }
 
         object Room {
-            private const val version = "2.2.5"
-            const val runtime = "androidx.room:room-runtime:$version"
-            const val compiler = "androidx.room:room-compiler:$version"
-            const val ktx = "androidx.room:room-ktx:$version"
-            const val testing = "androidx.room:room-testing:$version"
+            const val runtime = "androidx.room:room-runtime:2.2.5"
+            const val compiler = "androidx.room:room-compiler:2.2.5"
+            const val ktx = "androidx.room:room-ktx:2.2.5"
+            const val testing = "androidx.room:room-testing:2.2.5"
         }
     }
 
     object Dagger {
-        private const val version = "2.27"
-        const val dagger = "com.google.dagger:dagger:$version"
-        const val androidSupport = "com.google.dagger:dagger-android-support:$version"
-        const val compiler = "com.google.dagger:dagger-compiler:$version"
-        const val androidProcessor = "com.google.dagger:dagger-android-processor:$version"
+        const val dagger = "com.google.dagger:dagger:2.27"
+        const val androidSupport = "com.google.dagger:dagger-android-support:2.27"
+        const val compiler = "com.google.dagger:dagger-compiler:2.27"
+        const val androidProcessor = "com.google.dagger:dagger-android-processor:2.27"
     }
 
     object Glide {
-        private const val version = "4.11.0"
-        const val glide = "com.github.bumptech.glide:glide:$version"
-        const val compiler = "com.github.bumptech.glide:compiler:$version"
-        const val integration = "com.github.bumptech.glide:okhttp3-integration:$version"
+        const val glide = "com.github.bumptech.glide:glide:4.11.0"
+        const val compiler = "com.github.bumptech.glide:compiler:4.11.0"
+        const val integration = "com.github.bumptech.glide:okhttp3-integration:4.11.0"
     }
 
     object OkHttp {
-        private const val version = "4.5.0"
-        const val okhttp = "com.squareup.okhttp3:okhttp:$version"
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.5.0"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.5.0"
     }
 
     object Retrofit {
-        private const val version = "2.8.1"
-        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
-        const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$version"
-        const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$version"
+        const val retrofit = "com.squareup.retrofit2:retrofit:2.8.1"
+        const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:2.8.1"
+        const val moshiConverter = "com.squareup.retrofit2:converter-moshi:2.8.1"
     }
 
     object Moshi {
-        private const val version = "1.9.2"
-        const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
-        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
-        const val adapters = "com.squareup.moshi:moshi-adapters:$version"
+        const val kotlin = "com.squareup.moshi:moshi-kotlin:1.9.2"
+        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.9.2"
+        const val adapters = "com.squareup.moshi:moshi-adapters:1.9.2"
     }
 
     object AssistedInject {
-        private const val version = "0.5.2"
-        const val annotationDagger2 =
-            "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
-        const val processorDagger2 =
-            "com.squareup.inject:assisted-inject-processor-dagger2:$version"
+        const val annotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:0.5.2"
+        const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:0.5.2"
     }
 
     object Groupie {
-        private const val version = "2.8.0"
         const val group = "com.xwray"
-        const val groupie = "com.xwray:groupie:$version"
-        const val dataBinding = "com.xwray:groupie-databinding:$version"
+        const val groupie = "com.xwray:groupie:2.8.0"
+        const val dataBinding = "com.xwray:groupie-databinding:2.8.0"
     }
 
     object Insetter {
-        private const val version = "0.2.1"
-        const val insetterKtx = "dev.chrisbanes:insetter-ktx:$version"
-        const val insetterDbx = "dev.chrisbanes:insetter-dbx:$version"
+        const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.2.1"
+        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.2.1"
     }
 
     const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
@@ -160,8 +144,7 @@ object Deps {
     const val liveEvent = "com.github.hadilq.liveevent:liveevent:1.0.1"
 
     object Markwon {
-        private const val version = "4.2.0"
-        const val core = "io.noties.markwon:core:$version"
+        const val core = "io.noties.markwon:core:4.2.0"
     }
 
     object Firebase {
@@ -173,17 +156,15 @@ object Deps {
     const val truth = "com.google.truth:truth:1.0"
 
     object Spek2 {
-        private const val version = "2.0.7"
-        const val dslJvm = "org.spekframework.spek2:spek-dsl-jvm:$version"
-        const val runner = "org.spekframework.spek2:spek-runner-junit5:$version"
+        const val dslJvm = "org.spekframework.spek2:spek-dsl-jvm:2.0.7"
+        const val runner = "org.spekframework.spek2:spek-runner-junit5:2.0.7"
     }
 
     object Flipper {
-        private const val version = "0.37.0"
-        const val flipper = "com.facebook.flipper:flipper:$version"
-        const val networkPlugin = "com.facebook.flipper:flipper-network-plugin:$version"
+        const val flipper = "com.facebook.flipper:flipper:0.37.0"
+        const val networkPlugin = "com.facebook.flipper:flipper-network-plugin:0.37.0"
 
-        const val flipperNoOp = "com.facebook.flipper:flipper-noop:$version"
+        const val flipperNoOp = "com.facebook.flipper:flipper-noop:0.37.0"
     }
 
     const val soLoader = "com.facebook.soloader:soloader:0.8.2"

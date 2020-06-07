@@ -24,7 +24,7 @@ object Deps {
     const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
-    const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.7.1"
+    const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0"
     const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.6.0"
@@ -167,7 +167,7 @@ object Deps {
         const val flipperNoOp = "com.facebook.flipper:flipper-noop:0.37.0"
     }
 
-    const val soLoader = "com.facebook.soloader:soloader:0.9.0"
+    const val soLoader = "com.facebook.soloader:soloader:0.8.2"
 
     object Ktlint {
         const val version = "0.36.0"

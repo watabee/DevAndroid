@@ -79,9 +79,9 @@ object Deps {
         const val browser = "androidx.browser:browser:1.2.0"
 
         object Lifecycle {
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha01"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha01"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha03"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha03"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03"
         }
 
         object Room {

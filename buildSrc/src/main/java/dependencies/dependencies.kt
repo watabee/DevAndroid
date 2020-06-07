@@ -153,7 +153,7 @@ object Deps {
     }
 
     const val junit = "junit:junit:4.13"
-    const val truth = "com.google.truth:truth:1.0"
+    const val truth = "com.google.truth:truth:1.0.1"
 
     object Spek2 {
         const val dslJvm = "org.spekframework.spek2:spek-dsl-jvm:2.0.7"

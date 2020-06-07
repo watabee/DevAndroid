@@ -106,7 +106,7 @@ object Deps {
     }
 
     object OkHttp {
-        const val okhttp = "com.squareup.okhttp3:okhttp:4.5.0"
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.7.2"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.5.0"
     }
 
@@ -134,8 +134,8 @@ object Deps {
     }
 
     object Insetter {
-        const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.2.2"
-        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.2.2"
+        const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.2.1"
+        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.2.1"
     }
 
     const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
@@ -149,7 +149,7 @@ object Deps {
 
     object Firebase {
         const val auth = "com.google.firebase:firebase-auth:19.2.0"
-        const val uiAuth = "com.firebaseui:firebase-ui-auth:6.2.1"
+        const val uiAuth = "com.firebaseui:firebase-ui-auth:6.1.0"
     }
 
     const val junit = "junit:junit:4.13"
@@ -167,7 +167,7 @@ object Deps {
         const val flipperNoOp = "com.facebook.flipper:flipper-noop:0.37.0"
     }
 
-    const val soLoader = "com.facebook.soloader:soloader:0.9.0"
+    const val soLoader = "com.facebook.soloader:soloader:0.8.2"
 
     object Ktlint {
         const val version = "0.36.0"

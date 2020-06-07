@@ -2,7 +2,7 @@ name: Run upgrade dependencies
 on:
   repository_dispatch:
   schedule:
-    - cron:  '0 3 * * 0'
+    - cron:  '30 3 * * 0'
 jobs:
   upgrade_dependencies:
     if: (github.event_name == 'repository_dispatch' && github.event.action == 'upgrade_dependencies') || (github.event_name == 'schedule')

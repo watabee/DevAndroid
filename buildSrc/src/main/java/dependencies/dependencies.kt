@@ -57,7 +57,7 @@ object Deps {
         }
 
         object Fragment {
-            const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha03"
+            const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha05"
         }
 
         object Test {

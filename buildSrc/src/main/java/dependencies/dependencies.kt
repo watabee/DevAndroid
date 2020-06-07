@@ -167,7 +167,7 @@ object Deps {
         const val flipperNoOp = "com.facebook.flipper:flipper-noop:0.37.0"
     }
 
-    const val soLoader = "com.facebook.soloader:soloader:0.8.2"
+    const val soLoader = "com.facebook.soloader:soloader:0.9.0"
 
     object Ktlint {
         const val version = "0.36.0"

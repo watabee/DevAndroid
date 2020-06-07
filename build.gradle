@@ -92,6 +92,9 @@ releasesHub {
     pullRequestEnabled = true
     pullRequestsMax = 2
 
+    gitHubUserName = "watabee"
+    gitHubUserEmail = "watabee.dev@gmail.com"
+
     gitHubRepositoryOwner = "watabee"
     gitHubRepositoryName = "DevToAndroid"
 }

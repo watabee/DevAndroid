@@ -15,6 +15,7 @@ buildscript {
         classpath Deps.ktlintGradlePlugin
         classpath Deps.detektGradlePlugin
         classpath Deps.scabbardGradlePlugin
+        classpath Deps.releaseHubGradlePlugin
     }
 }
 
@@ -80,4 +81,17 @@ subprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+apply plugin: "com.releaseshub.gradle.plugin"
+
+releasesHub {
+    dependenciesBasePath = "buildSrc/src/main/java/dependencies"
+    dependenciesClassNames = ["dependencies.kt"]
+
+    pullRequestEnabled = true
+    pullRequestsMax = 2
+
+    gitHubRepositoryOwner = "watabee"
+    gitHubRepositoryName = "DevToAndroid"
 }

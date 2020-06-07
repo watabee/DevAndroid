@@ -44,7 +44,7 @@ object Deps {
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.2.0-alpha05"
+        const val material = "com.google.android.material:material:1.2.0-beta01"
     }
 
     object AndroidX {
@@ -53,11 +53,11 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03"
 
         object Activity {
-            const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha03"
+            const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha05"
         }
 
         object Fragment {
-            const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha03"
+            const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha05"
         }
 
         object Test {
@@ -70,18 +70,18 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta6"
 
         const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
 
-        const val coreKtx = "androidx.core:core-ktx:1.3.0-beta01"
+        const val coreKtx = "androidx.core:core-ktx:1.3.0"
 
         const val browser = "androidx.browser:browser:1.2.0"
 
         object Lifecycle {
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha01"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha01"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha01"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha03"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha03"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03"
         }
 
         object Room {
@@ -106,14 +106,14 @@ object Deps {
     }
 
     object OkHttp {
-        const val okhttp = "com.squareup.okhttp3:okhttp:4.5.0"
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.5.0"
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.7.2"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.7.2"
     }
 
     object Retrofit {
-        const val retrofit = "com.squareup.retrofit2:retrofit:2.8.1"
-        const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:2.8.1"
-        const val moshiConverter = "com.squareup.retrofit2:converter-moshi:2.8.1"
+        const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+        const val rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+        const val moshiConverter = "com.squareup.retrofit2:converter-moshi:2.9.0"
     }
 
     object Moshi {

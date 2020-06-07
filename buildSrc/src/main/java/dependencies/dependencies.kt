@@ -148,7 +148,7 @@ object Deps {
     }
 
     object Firebase {
-        const val auth = "com.google.firebase:firebase-auth:19.2.0"
+        const val auth = "com.google.firebase:firebase-auth:19.3.1"
         const val uiAuth = "com.firebaseui:firebase-ui-auth:6.1.0"
     }
 

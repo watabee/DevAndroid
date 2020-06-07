@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0-beta04"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0"
     const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.5.1.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
@@ -32,14 +32,14 @@ object Deps {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     object Kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.71"
-        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.71"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.3.71"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72"
+        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.3.72"
 
         object Coroutines {
-            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5"
-            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.5"
+            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
+            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7"
         }
     }
 

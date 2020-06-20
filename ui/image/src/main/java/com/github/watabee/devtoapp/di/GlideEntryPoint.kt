@@ -1,20 +1,21 @@
 package com.github.watabee.devtoapp.di
 
 import android.content.Context
-import com.github.watabee.devtoapp.ui.image.GlideModule
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.components.ApplicationComponent
+import okhttp3.OkHttpClient
 
 @EntryPoint
 @InstallIn(ApplicationComponent::class)
-internal interface ImageEntryPoint {
+internal interface GlideEntryPoint {
 
-    fun inject(glideModule: GlideModule)
+    @Image
+    fun okHttpClient(): OkHttpClient
 
     companion object {
-        fun resolve(context: Context): ImageEntryPoint =
-            EntryPointAccessors.fromApplication(context, ImageEntryPoint::class.java)
+        fun resolve(context: Context): GlideEntryPoint =
+            EntryPointAccessors.fromApplication(context, GlideEntryPoint::class.java)
     }
 }

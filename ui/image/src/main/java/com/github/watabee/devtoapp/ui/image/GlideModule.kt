@@ -15,19 +15,14 @@ import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
-import com.github.watabee.devtoapp.di.Image
-import com.github.watabee.devtoapp.di.ImageEntryPoint
-import okhttp3.OkHttpClient
+import com.github.watabee.devtoapp.di.GlideEntryPoint
 import java.io.InputStream
-import javax.inject.Inject
 
 private const val DISK_CACHE_SIZE = 50 * 1024 * 1024L
 
 @Excludes(OkHttpLibraryGlideModule::class)
 @GlideModule
 internal class GlideModule : AppGlideModule() {
-
-    @field:Image @Inject lateinit var okHttpClient: OkHttpClient
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
@@ -43,7 +38,7 @@ internal class GlideModule : AppGlideModule() {
     override fun isManifestParsingEnabled(): Boolean = false
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        ImageEntryPoint.resolve(context).inject(this)
+        val okHttpClient = GlideEntryPoint.resolve(context).okHttpClient()
         glide.registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(okHttpClient))
     }
 }

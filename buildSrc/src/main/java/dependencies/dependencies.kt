@@ -6,7 +6,7 @@ object Versions {
     const val androidTargetSdkVersion = 29
 
     const val buildToolsVersion = "29.0.3"
-    const val ndkVersion = "21.1.6352462"
+    const val ndkVersion = "21.3.6528147"
 
     private const val versionMajor = 1
     private const val versionMinor = 0
@@ -28,6 +28,7 @@ object Deps {
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0"
     const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.6.0"
+    const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.28-alpha"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
@@ -90,13 +91,18 @@ object Deps {
             const val ktx = "androidx.room:room-ktx:2.2.5"
             const val testing = "androidx.room:room-testing:2.2.5"
         }
+
+        object Hilt {
+            const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
+        }
     }
 
     object Dagger {
-        const val dagger = "com.google.dagger:dagger:2.28"
-        const val androidSupport = "com.google.dagger:dagger-android-support:2.28"
-        const val compiler = "com.google.dagger:dagger-compiler:2.28"
-        const val androidProcessor = "com.google.dagger:dagger-android-processor:2.28"
+        object Hilt {
+            const val android = "com.google.dagger:hilt-android:2.28-alpha"
+            const val androidCompiler = "com.google.dagger:hilt-android-compiler:2.28-alpha"
+        }
     }
 
     object Glide {

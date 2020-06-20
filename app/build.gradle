@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: "de.mannodermaus.android-junit5"
 apply plugin: "scabbard.gradle"
+apply plugin: 'dagger.hilt.android.plugin'
 
 ext {
     ci = System.getenv("CI") == "true"
@@ -121,10 +122,9 @@ dependencies {
     implementation Deps.Retrofit.retrofit
     implementation Deps.Moshi.kotlin
 
-    implementation Deps.Dagger.dagger
-    kapt Deps.Dagger.compiler
-    implementation Deps.Dagger.androidSupport
-    kapt Deps.Dagger.androidProcessor
+    implementation Deps.Dagger.Hilt.android
+    kapt Deps.Dagger.Hilt.androidCompiler
+    implementation Deps.AndroidX.Hilt.viewmodel
 
     debugImplementation Deps.Flipper.flipper
     debugImplementation Deps.Flipper.networkPlugin

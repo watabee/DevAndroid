@@ -7,11 +7,14 @@ import com.github.watabee.devtoapp.appinitializers.FlipperInitializer
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import dagger.multibindings.IntoSet
 import okhttp3.Interceptor
 import javax.inject.Singleton
 
 @Module(includes = [DebugNetworkModule::class])
+@InstallIn(ApplicationComponent::class)
 abstract class DebugAppModule {
 
     @Binds

@@ -1,5 +1,6 @@
 package com.github.watabee.devtoapp.ui.articles
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,11 +23,10 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.actor
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 private const val REQUEST_PER_PAGE = 31
 
-internal class ArticlesViewModel @Inject constructor(
+internal class ArticlesViewModel @ViewModelInject constructor(
     private val devToApi: DevToApi,
     private val dispatchers: CoroutineDispatchers,
     private val logger: Logger

@@ -4,6 +4,7 @@ import dependencies.Versions
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion Versions.androidCompileSdkVersion
@@ -40,7 +41,6 @@ dependencies {
     api Deps.Insetter.insetterKtx
     api Deps.Insetter.insetterDbx
 
-    api Deps.Dagger.dagger
-    kapt Deps.Dagger.compiler
-    implementation Deps.Dagger.androidSupport
+    implementation Deps.Dagger.Hilt.android
+    kapt Deps.Dagger.Hilt.androidCompiler
 }

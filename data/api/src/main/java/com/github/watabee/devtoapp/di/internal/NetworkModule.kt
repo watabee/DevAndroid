@@ -11,10 +11,10 @@ import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.multibindings.ElementsIntoSet
-import java.io.File
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 import okhttp3.Cache
 import okhttp3.Call
 import okhttp3.Interceptor
@@ -22,13 +22,17 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.File
 import java.util.Date
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 private const val CONNECT_TIMEOUT_SECONDS = 10L
 private const val READ_TIMEOUT_SECONDS = 10L
 private const val CACHE_SIZE = 30 * 1024 * 1024L
 
 @Module
+@InstallIn(ApplicationComponent::class)
 internal object NetworkModule {
 
     @Provides
@@ -50,7 +54,7 @@ internal object NetworkModule {
     @Singleton
     fun provideOkHttpClientForApi(
         okHttpClient: OkHttpClient,
-        appContext: Context,
+        @ApplicationContext appContext: Context,
         @InterceptorForApi interceptors: Set<@JvmSuppressWildcards Interceptor>,
         @NetworkInterceptor networkInterceptors: Set<@JvmSuppressWildcards Interceptor>
     ): OkHttpClient =

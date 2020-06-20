@@ -11,7 +11,7 @@ import androidx.lifecycle.observe
 import com.github.watabee.devtoapp.data.Article
 import com.github.watabee.devtoapp.ui.articles.R
 import com.github.watabee.devtoapp.ui.articles.databinding.FragmentArticleBinding
-import dagger.android.support.AndroidSupportInjection
+import dagger.hilt.android.AndroidEntryPoint
 import io.noties.markwon.Markwon
 import me.saket.inboxrecyclerview.globalVisibleRect
 import me.saket.inboxrecyclerview.page.ExpandablePageLayout
@@ -19,6 +19,7 @@ import me.saket.inboxrecyclerview.page.InterceptResult
 import javax.inject.Inject
 import kotlin.LazyThreadSafetyMode.NONE
 
+@AndroidEntryPoint
 internal class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     @Inject lateinit var viewModelFactory: ArticleViewModel.Factory
@@ -35,11 +36,6 @@ internal class ArticleFragment : Fragment(R.layout.fragment_article) {
                 return viewModelFactory.create(article) as T
             }
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidSupportInjection.inject(this)
-        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

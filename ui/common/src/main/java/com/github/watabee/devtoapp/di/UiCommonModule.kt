@@ -17,25 +17,23 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-abstract class UiCommonModule {
+object UiCommonModule {
 
-    companion object {
-        @Provides
-        @Singleton
-        internal fun provideMarkwon(@ApplicationContext context: Context): Markwon =
-            Markwon.builder(context)
-                .usePlugin(object : AbstractMarkwonPlugin() {
-                    override fun configureConfiguration(builder: MarkwonConfiguration.Builder) {
-                        builder.linkResolver { view, link ->
-                            val primaryColor = view.context.theme.getColor(R.attr.colorPrimary)
-                            val customTabsIntent: CustomTabsIntent = CustomTabsIntent.Builder()
-                                .setToolbarColor(primaryColor)
-                                .setShowTitle(true)
-                                .build()
-                            customTabsIntent.launchUrl(view.context, Uri.parse(link))
-                        }
+    @Provides
+    @Singleton
+    internal fun provideMarkwon(@ApplicationContext context: Context): Markwon =
+        Markwon.builder(context)
+            .usePlugin(object : AbstractMarkwonPlugin() {
+                override fun configureConfiguration(builder: MarkwonConfiguration.Builder) {
+                    builder.linkResolver { view, link ->
+                        val primaryColor = view.context.theme.getColor(R.attr.colorPrimary)
+                        val customTabsIntent: CustomTabsIntent = CustomTabsIntent.Builder()
+                            .setToolbarColor(primaryColor)
+                            .setShowTitle(true)
+                            .build()
+                        customTabsIntent.launchUrl(view.context, Uri.parse(link))
                     }
-                })
-                .build()
-    }
+                }
+            })
+            .build()
 }

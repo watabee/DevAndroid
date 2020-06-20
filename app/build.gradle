@@ -118,6 +118,7 @@ dependencies {
     implementation Deps.AndroidX.constraintlayout
     implementation Deps.AndroidX.Activity.activityKtx
     implementation Deps.AndroidX.Fragment.fragmentKtx
+    implementation Deps.AndroidX.startup
 
     implementation Deps.Retrofit.retrofit
     implementation Deps.Moshi.kotlin
@@ -125,6 +126,8 @@ dependencies {
     implementation Deps.Dagger.Hilt.android
     kapt Deps.Dagger.Hilt.androidCompiler
     implementation Deps.AndroidX.Hilt.viewmodel
+
+    implementation Deps.timber
 
     debugImplementation Deps.Flipper.flipper
     debugImplementation Deps.Flipper.networkPlugin

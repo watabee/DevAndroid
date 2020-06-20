@@ -5,5 +5,4 @@ apply plugin: 'kotlin'
 dependencies {
     api Deps.Kotlin.stdlib
     api Deps.Kotlin.Coroutines.core
-    api Deps.Dagger.dagger
 }

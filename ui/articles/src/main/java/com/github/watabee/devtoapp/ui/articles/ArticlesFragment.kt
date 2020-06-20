@@ -6,7 +6,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.MergeAdapter
 import com.github.watabee.devtoapp.pagenation.LoadingStateAdapter
@@ -15,16 +14,15 @@ import com.github.watabee.devtoapp.ui.articles.databinding.FragmentArticlesBindi
 import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 import me.saket.inboxrecyclerview.InboxRecyclerView
 import me.saket.inboxrecyclerview.page.ExpandablePageLayout
 import me.saket.inboxrecyclerview.page.PageStateChangeCallbacks
-import javax.inject.Inject
 
-internal class ArticlesFragment @Inject constructor(
-    private val viewModelFactory: ViewModelProvider.Factory
-) : Fragment(R.layout.fragment_articles) {
+@AndroidEntryPoint
+internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
-    private val viewModel: ArticlesViewModel by viewModels { viewModelFactory }
+    private val viewModel: ArticlesViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

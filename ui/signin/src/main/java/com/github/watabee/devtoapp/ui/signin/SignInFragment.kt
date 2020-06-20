@@ -9,9 +9,8 @@ import androidx.fragment.app.commit
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.snackbar.Snackbar
-import javax.inject.Inject
 
-class SignInFragment @Inject constructor() : Fragment() {
+class SignInFragment : Fragment() {
 
     private fun openSignInView() {
         val intent = AuthUI.getInstance()

@@ -1,13 +1,15 @@
 package com.github.watabee.devtoapp.di
 
 import com.github.watabee.devtoapp.data.api.DevToApi
-import com.github.watabee.devtoapp.di.internal.NetworkModule
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
-@Module(includes = [NetworkModule::class])
+@Module
+@InstallIn(ApplicationComponent::class)
 object ApiModule {
 
     @Provides

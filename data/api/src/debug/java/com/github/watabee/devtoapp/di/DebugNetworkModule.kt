@@ -3,11 +3,14 @@ package com.github.watabee.devtoapp.di
 import com.github.watabee.devtoapp.util.Logger
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import dagger.multibindings.IntoSet
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
 
 @Module
+@InstallIn(ApplicationComponent::class)
 object DebugNetworkModule {
 
     @InterceptorForApi

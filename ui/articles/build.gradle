@@ -4,12 +4,19 @@ import dependencies.Versions
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion Versions.androidCompileSdkVersion
     defaultConfig {
         minSdkVersion Versions.androidMinSdkVersion
         targetSdkVersion Versions.androidTargetSdkVersion
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
     }
 
     compileOptions {
@@ -38,10 +45,10 @@ dependencies {
     implementation Deps.Groupie.groupie
     implementation Deps.Groupie.dataBinding
 
-    implementation Deps.Dagger.dagger
-    kapt Deps.Dagger.compiler
-    implementation Deps.Dagger.androidSupport
-    kapt Deps.Dagger.androidProcessor
+    implementation Deps.Dagger.Hilt.android
+    kapt Deps.Dagger.Hilt.androidCompiler
+    implementation Deps.AndroidX.Hilt.viewmodel
+    kapt Deps.AndroidX.Hilt.compiler
     compileOnly Deps.AssistedInject.annotationDagger2
     kapt Deps.AssistedInject.processorDagger2
 }

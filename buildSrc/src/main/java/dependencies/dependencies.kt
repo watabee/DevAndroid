@@ -26,7 +26,7 @@ object Deps {
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
     // https://arunkumar9t2.github.io/scabbard/
-    const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0"
+    const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"
     const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.6.0"
     const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.28-alpha"
 

@@ -105,11 +105,9 @@ dependencies {
     implementation project(':base-android')
     implementation project(':data:api')
     implementation project(':data:db')
-    implementation project(':feature:auth')
     implementation project(':ui:common')
     implementation project(':ui:image')
     implementation project(':ui:top')
-    implementation project(':ui:signin')
     implementation project(':ui:articles')
 
     implementation Deps.Kotlin.stdlib
@@ -142,6 +140,3 @@ dependencies {
     androidTestImplementation Deps.AndroidX.Test.runner
     androidTestImplementation Deps.AndroidX.Test.espressoCore
 }
-
-// Add the following line to the bottom of the file:
-apply plugin: 'com.google.gms.google-services'

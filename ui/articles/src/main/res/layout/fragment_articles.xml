@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.github.watabee.devtoapp.ui.articles.ArticlesViewModel" />
+            type="com.github.watabee.devapp.ui.articles.ArticlesViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -29,7 +29,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.github.watabee.devtoapp.widget.AppSwipeRefreshLayout
+        <com.github.watabee.devapp.widget.AppSwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -48,7 +48,7 @@
                 app:onLoadMore="@{viewModel::loadMore}"
                 tools:listitem="@layout/list_item_article" />
 
-        </com.github.watabee.devtoapp.widget.AppSwipeRefreshLayout>
+        </com.github.watabee.devapp.widget.AppSwipeRefreshLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/filter_button"

@@ -13,7 +13,7 @@
 
         <variable
             name="uiModel"
-            type="com.github.watabee.devtoapp.ui.article.ArticleDetailUiModel" />
+            type="com.github.watabee.devapp.ui.article.ArticleDetailUiModel" />
     </data>
 
     <ScrollView

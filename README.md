@@ -1,4 +1,4 @@
-# DevToAndroid
+# DevAndroid
 
 ## Setup
 

@@ -10,7 +10,6 @@ buildscript {
     dependencies {
         classpath Deps.androidGradlePlugin
         classpath Deps.Kotlin.gradlePlugin
-        classpath Deps.googleServicesGradlePlugin
         classpath Deps.androidJunit5GradlePlugin
         classpath Deps.ktlintGradlePlugin
         classpath Deps.detektGradlePlugin
@@ -97,5 +96,5 @@ releasesHub {
     gitHubUserEmail = "watabee.dev@gmail.com"
 
     gitHubRepositoryOwner = "watabee"
-    gitHubRepositoryName = "DevToAndroid"
+    gitHubRepositoryName = "DevAndroid"
 }

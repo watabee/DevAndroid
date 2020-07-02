@@ -21,7 +21,6 @@ object Versions {
 object Deps {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.0"
-    const val googleServicesGradlePlugin = "com.google.gms:google-services:4.3.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
@@ -153,11 +152,6 @@ object Deps {
 
     object Markwon {
         const val core = "io.noties.markwon:core:4.4.0"
-    }
-
-    object Firebase {
-        const val auth = "com.google.firebase:firebase-auth:19.3.1"
-        const val uiAuth = "com.firebaseui:firebase-ui-auth:6.2.1"
     }
 
     const val junit = "junit:junit:4.13"

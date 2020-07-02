@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.github.watabee.devtoapp"
+<manifest package="com.github.watabee.devapp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -15,7 +15,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.github.watabee.devtoapp.initializer.FlipperInitializer"
+                android:name="com.github.watabee.devapp.initializer.FlipperInitializer"
                 android:value="androidx.startup" />
 
         </provider>

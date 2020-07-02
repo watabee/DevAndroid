@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.github.watabee.devtoapp"
+<manifest package="com.github.watabee.devapp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name="com.github.watabee.devtoapp.DevToApp"
+        android:name="com.github.watabee.devapp.DevApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.github.watabee.devtoapp.initializer.TimberInitializer"
+                android:name="com.github.watabee.devapp.initializer.TimberInitializer"
                 android:value="androidx.startup" />
 
         </provider>

@@ -7,7 +7,7 @@
 
         <variable
             name="uiModel"
-            type="com.github.watabee.devtoapp.ui.articles.ArticleUiModel" />
+            type="com.github.watabee.devapp.ui.articles.ArticleUiModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

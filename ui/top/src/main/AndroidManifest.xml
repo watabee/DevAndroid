@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.github.watabee.devtoapp.ui.top"
+<manifest package="com.github.watabee.devapp.ui.top"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
         <activity
-            android:name="com.github.watabee.devtoapp.ui.top.TopActivity"
+            android:name="com.github.watabee.devapp.ui.top.TopActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait">
             <intent-filter>

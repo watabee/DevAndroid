@@ -22,7 +22,7 @@ android {
     ndkVersion Versions.ndkVersion
 
     defaultConfig {
-        applicationId "com.github.watabee.devtoapp"
+        applicationId "com.github.watabee.devapp"
         minSdkVersion Versions.androidMinSdkVersion
         targetSdkVersion Versions.androidTargetSdkVersion
         versionCode Versions.androidVersionCode

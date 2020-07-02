@@ -97,5 +97,5 @@ releasesHub {
     gitHubUserEmail = "watabee.dev@gmail.com"
 
     gitHubRepositoryOwner = "watabee"
-    gitHubRepositoryName = "DevToAndroid"
+    gitHubRepositoryName = "DevAndroid"
 }

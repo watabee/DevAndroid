@@ -26,8 +26,8 @@ android {
 dependencies {
     implementation Deps.Kotlin.stdlib
     api Deps.AndroidX.appcompat
-    api Deps.AndroidX.Activity.activityKtx
-    api Deps.AndroidX.Fragment.fragmentKtx
+    api Deps.AndroidX.activityKtx
+    api Deps.AndroidX.fragmentKtx
     api Deps.AndroidX.recyclerview
     api Deps.AndroidX.swiperefresh
     api Deps.AndroidX.Lifecycle.livedata

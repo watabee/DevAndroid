@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.MergeAdapter
+import androidx.recyclerview.widget.ConcatAdapter
 import com.github.watabee.devapp.pagenation.LoadingStateAdapter
 import com.github.watabee.devapp.ui.article.ArticleFragment
 import com.github.watabee.devapp.ui.articles.databinding.FragmentArticlesBinding
@@ -35,10 +35,10 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
             setOnItemClickListener { item, _ -> viewModel.selectArticle(item.id.toInt()) }
         }
 
-        val config = MergeAdapter.Config.Builder()
-            .setStableIdMode(MergeAdapter.Config.StableIdMode.ISOLATED_STABLE_IDS)
+        val config = ConcatAdapter.Config.Builder()
+            .setStableIdMode(ConcatAdapter.Config.StableIdMode.ISOLATED_STABLE_IDS)
             .build()
-        val adapter = MergeAdapter(config, articlesAdapter, loadingStateAdapter)
+        val adapter = ConcatAdapter(config, articlesAdapter, loadingStateAdapter)
 
         val binding = FragmentArticlesBinding.bind(view)
         binding.viewModel = viewModel

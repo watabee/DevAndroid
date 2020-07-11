@@ -114,7 +114,7 @@ dependencies {
     implementation Deps.AndroidX.appcompat
     implementation Deps.AndroidX.coreKtx
     implementation Deps.AndroidX.constraintlayout
-    implementation Deps.AndroidX.Activity.activityKtx
+    implementation Deps.AndroidX.activityKtx
     implementation Deps.AndroidX.Fragment.fragmentKtx
     implementation Deps.AndroidX.startup
 

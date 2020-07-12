@@ -138,8 +138,6 @@ object Deps {
         const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.3.0"
     }
 
-    const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
-
     // https://github.com/hadilq/LiveEvent
     const val liveEvent = "com.github.hadilq.liveevent:liveevent:1.2.0"
 

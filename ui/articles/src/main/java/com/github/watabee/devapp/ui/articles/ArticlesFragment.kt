@@ -6,15 +6,20 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
-import com.github.watabee.devapp.pagenation.LoadingStateAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.github.watabee.devapp.pagenation.LoadStateAdapter
 import com.github.watabee.devapp.ui.article.ArticleFragment
 import com.github.watabee.devapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.snackbar.Snackbar
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import me.saket.inboxrecyclerview.InboxRecyclerView
 import me.saket.inboxrecyclerview.page.ExpandablePageLayout
 import me.saket.inboxrecyclerview.page.PageStateChangeCallbacks
@@ -24,21 +29,9 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
     private val viewModel: ArticlesViewModel by viewModels()
 
+    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val loadingStateAdapter = LoadingStateAdapter(viewModel::retry).apply {
-            setHasStableIds(true)
-        }
-        val articlesAdapter = GroupAdapter<GroupieViewHolder>().apply {
-            setHasStableIds(true)
-            setOnItemClickListener { item, _ -> viewModel.selectArticle(item.id.toInt()) }
-        }
-
-        val config = ConcatAdapter.Config.Builder()
-            .setStableIdMode(ConcatAdapter.Config.StableIdMode.ISOLATED_STABLE_IDS)
-            .build()
-        val adapter = ConcatAdapter(config, articlesAdapter, loadingStateAdapter)
 
         val binding = FragmentArticlesBinding.bind(view)
         binding.viewModel = viewModel
@@ -46,6 +39,68 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
         val expandablePage: ExpandablePageLayout = binding.expandablePageLayout
         val recyclerView: InboxRecyclerView = binding.recyclerView
+        val swipeRefreshLayout: SwipeRefreshLayout = binding.swipeRefreshLayout
+
+        val articlesAdapter = ArticlesAdapter(
+            onItemClicked = { article ->
+                childFragmentManager.commitNow(allowStateLoss = true) {
+                    replace(expandablePage.id, ArticleFragment.newInstance(article))
+                }
+
+                recyclerView.expandItem(article.id.toLong())
+            },
+            onTagClicked = viewModel::filterByTag
+        ).apply {
+            setHasStableIds(true)
+        }
+
+        val loadStateAdapter = LoadStateAdapter(articlesAdapter::retry)
+            .apply { setHasStableIds(true) }
+        articlesAdapter.addLoadStateListener { loadStateAdapter.loadState = it.append }
+        val adapter = ConcatAdapter(
+            ConcatAdapter.Config.Builder().setStableIdMode(ConcatAdapter.Config.StableIdMode.ISOLATED_STABLE_IDS).build(),
+            articlesAdapter,
+            loadStateAdapter
+        )
+
+        var searchJob: Job? = null
+        viewModel.searchResult.observe(viewLifecycleOwner) { searchResult ->
+            searchJob?.cancel()
+            searchJob = viewLifecycleOwner.lifecycleScope.launch {
+                searchResult.collectLatest(articlesAdapter::submitData)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            articlesAdapter.dataRefreshFlow
+                .collectLatest { isEmpty ->
+                    if (!isEmpty) {
+                        recyclerView.scrollToPosition(0)
+                    }
+                }
+        }
+
+        var snackbar: Snackbar? = null
+        viewLifecycleOwner.lifecycleScope.launch {
+            articlesAdapter.loadStateFlow
+                .collectLatest { loadStates ->
+                    swipeRefreshLayout.isRefreshing = loadStates.refresh == LoadState.Loading
+
+                    if (loadStates.refresh is LoadState.Error) {
+                        val currentSnackbar = snackbar
+                        if (currentSnackbar == null || !currentSnackbar.isShownOrQueued) {
+                            snackbar = Snackbar.make(view, R.string.connection_error_message, Snackbar.LENGTH_INDEFINITE)
+                                .setAction(R.string.retry) { articlesAdapter.retry() }
+                            snackbar?.show()
+                        }
+                    } else {
+                        snackbar?.dismiss()
+                        snackbar = null
+                    }
+                }
+        }
+
+        swipeRefreshLayout.setOnRefreshListener { articlesAdapter.refresh() }
 
         expandablePage.pushParentToolbarOnExpand(binding.appBarLayout)
         val onBackPressedCallback = object : OnBackPressedCallback(false) {
@@ -84,38 +139,5 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
         recyclerView.adapter = adapter
         recyclerView.expandablePage = expandablePage
-
-        viewModel.openArticleDetail.observe(viewLifecycleOwner) { article ->
-            childFragmentManager.commitNow(allowStateLoss = true) {
-                replace(expandablePage.id, ArticleFragment.newInstance(article))
-            }
-
-            recyclerView.expandItem(article.id.toLong())
-        }
-
-        viewModel.articleUiModels.observe(viewLifecycleOwner) { articleUiModels ->
-            articlesAdapter.update(articleUiModels.map { ArticleBindableItem(it, viewModel::filterByTag) })
-        }
-
-        viewModel.loadMoreStatus.observe(viewLifecycleOwner) { loadMoreStatus ->
-            loadingStateAdapter.status = loadMoreStatus
-        }
-
-        var snackbar: Snackbar? = null
-        viewModel.isError.observe(viewLifecycleOwner) { isError ->
-            if (isError) {
-                val currentSnackbar = snackbar
-                if (currentSnackbar == null || !currentSnackbar.isShownOrQueued) {
-                    snackbar = Snackbar.make(view, R.string.connection_error_message, Snackbar.LENGTH_INDEFINITE)
-                        .setAction(R.string.retry) { viewModel.retry() }
-                    snackbar?.show()
-                }
-            } else {
-                snackbar?.dismiss()
-                snackbar = null
-            }
-        }
-
-        viewModel.refresh()
     }
 }

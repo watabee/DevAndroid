@@ -26,5 +26,5 @@ dependencies {
     implementation project(':base')
     implementation project(':ui:common')
 
-    api Deps.Groupie.groupie
+    api Deps.AndroidX.Paging.runtime
 }

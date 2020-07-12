@@ -33,9 +33,7 @@
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:onRefreshListener="@{viewModel::refresh}"
-            app:refreshing="@{viewModel.isLoading}">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <me.saket.inboxrecyclerview.InboxRecyclerView
                 android:id="@+id/recycler_view"
@@ -45,7 +43,6 @@
                 android:scrollbars="vertical"
                 app:hasFixedSize="@{true}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:onLoadMore="@{viewModel::loadMore}"
                 tools:listitem="@layout/list_item_article" />
 
         </com.github.watabee.devapp.widget.AppSwipeRefreshLayout>

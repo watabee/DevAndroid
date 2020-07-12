@@ -22,12 +22,6 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven {
-            url 'https://dl.bintray.com/lisawray/maven'
-            content {
-                includeGroup Deps.Groupie.group
-            }
-        }
         jcenter()
     }
 

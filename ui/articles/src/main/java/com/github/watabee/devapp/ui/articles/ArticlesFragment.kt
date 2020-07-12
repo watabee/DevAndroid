@@ -2,7 +2,6 @@ package com.github.watabee.devapp.ui.articles
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.watabee.devapp.pagenation.LoadStateAdapter
 import com.github.watabee.devapp.ui.article.addArticleFragment
-import com.github.watabee.devapp.ui.article.removeArticleFragment
 import com.github.watabee.devapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,19 +36,9 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         val swipeRefreshLayout: SwipeRefreshLayout = binding.swipeRefreshLayout
         val fragmentContainerView = binding.fragmentContainerView
 
-        val onBackPressedCallback = object : OnBackPressedCallback(false) {
-            override fun handleOnBackPressed() {
-                if (childFragmentManager.removeArticleFragment()) {
-                    isEnabled = false
-                }
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-
         val articlesAdapter = ArticlesAdapter(
             onItemClicked = { article ->
                 childFragmentManager.addArticleFragment(fragmentContainerView.id, article)
-                onBackPressedCallback.isEnabled = true
             },
             onTagClicked = viewModel::filterByTag
         )

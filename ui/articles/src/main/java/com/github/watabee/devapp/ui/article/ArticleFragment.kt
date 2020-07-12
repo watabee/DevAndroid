@@ -2,6 +2,7 @@ package com.github.watabee.devapp.ui.article
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -47,6 +48,13 @@ internal class ArticleFragment : Fragment(R.layout.fragment_article) {
             binding.uiModel = uiModel
             binding.executePendingBindings()
         }
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.commitNow { remove(this@ArticleFragment) }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
     }
 
     companion object {
@@ -63,10 +71,4 @@ fun FragmentManager.addArticleFragment(containerViewId: Int, article: Article) {
     commitNow {
         add(containerViewId, ArticleFragment.newInstance(article), TAG)
     }
-}
-
-fun FragmentManager.removeArticleFragment(): Boolean {
-    val fragment = findFragmentByTag(TAG) ?: return false
-    commitNow { remove(fragment) }
-    return true
 }

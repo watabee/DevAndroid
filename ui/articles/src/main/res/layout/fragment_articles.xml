@@ -10,67 +10,68 @@
             type="com.github.watabee.devapp.ui.articles.ArticlesViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinator_layout"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_layout"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinator_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_marginTopSystemWindowInsets="@{true}">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="@string/articles_toolbar_title" />
+                android:layout_height="wrap_content"
+                app:layout_marginTopSystemWindowInsets="@{true}">
 
-        </com.google.android.material.appbar.AppBarLayout>
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="@string/articles_toolbar_title" />
 
-        <com.github.watabee.devapp.widget.AppSwipeRefreshLayout
-            android:id="@+id/swipe_refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:onRefreshListener="@{viewModel::refresh}"
-            app:refreshing="@{viewModel.isLoading}">
+            </com.google.android.material.appbar.AppBarLayout>
 
-            <me.saket.inboxrecyclerview.InboxRecyclerView
-                android:id="@+id/recycler_view"
+            <com.github.watabee.devapp.widget.AppSwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbarStyle="outsideOverlay"
-                android:scrollbars="vertical"
-                app:hasFixedSize="@{true}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:onLoadMore="@{viewModel::loadMore}"
-                tools:listitem="@layout/list_item_article" />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </com.github.watabee.devapp.widget.AppSwipeRefreshLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:scrollbars="vertical"
+                    app:hasFixedSize="@{true}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/list_item_article" />
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/filter_button"
-            style="@style/Widget.App.FilterButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:onClick="@{() -> viewModel.resetFilter()}"
-            android:text="@{@string/tag_filter_message(viewModel.selectedTag)}"
-            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-            app:layout_marginBottomSystemWindowInsets="@{true}"
-            app:visible="@{viewModel.visibleFilterButton}"
-            tools:text="tag: android" />
+            </com.github.watabee.devapp.widget.AppSwipeRefreshLayout>
 
-        <me.saket.inboxrecyclerview.page.ExpandablePageLayout
-            android:id="@+id/expandable_page_layout"
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/filter_button"
+                style="@style/Widget.App.FilterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.resetFilter()}"
+                android:text="@{@string/tag_filter_message(viewModel.selectedTag)}"
+                app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+                app:layout_marginBottomSystemWindowInsets="@{true}"
+                app:visible="@{viewModel.visibleFilterButton}"
+                tools:text="tag: android" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?android:colorBackground"
-            tools:visibility="gone" />
+            android:layout_height="match_parent" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </FrameLayout>
 </layout>

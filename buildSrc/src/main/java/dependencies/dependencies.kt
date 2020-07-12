@@ -92,6 +92,10 @@ object Deps {
             const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
             const val compiler = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
         }
+
+        object Paging {
+            const val runtime = "androidx.paging:paging-runtime:3.0.0-alpha02"
+        }
     }
 
     object Dagger {
@@ -129,18 +133,10 @@ object Deps {
         const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:0.5.2"
     }
 
-    object Groupie {
-        const val group = "com.xwray"
-        const val groupie = "com.xwray:groupie:2.8.0"
-        const val dataBinding = "com.xwray:groupie-databinding:2.8.0"
-    }
-
     object Insetter {
         const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.3.0"
         const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.3.0"
     }
-
-    const val inboxRecyclerView = "me.saket:inboxrecyclerview:2.0.0-beta3"
 
     // https://github.com/hadilq/LiveEvent
     const val liveEvent = "com.github.hadilq.liveevent:liveevent:1.2.0"

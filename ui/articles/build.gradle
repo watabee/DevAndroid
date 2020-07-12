@@ -40,10 +40,6 @@ dependencies {
     implementation Deps.AndroidX.constraintlayout
     implementation Deps.AndroidX.swiperefresh
     implementation Deps.AndroidX.recyclerview
-    implementation Deps.inboxRecyclerView
-
-    implementation Deps.Groupie.groupie
-    implementation Deps.Groupie.dataBinding
 
     implementation Deps.Dagger.Hilt.android
     kapt Deps.Dagger.Hilt.androidCompiler

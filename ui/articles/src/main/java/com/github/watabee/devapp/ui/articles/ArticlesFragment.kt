@@ -15,7 +15,6 @@ import com.github.watabee.devapp.ui.article.addArticleFragment
 import com.github.watabee.devapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -46,12 +45,8 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         val loadStateAdapter = LoadStateAdapter(articlesAdapter::retry)
         recyclerView.adapter = articlesAdapter.withLoadStateFooter(loadStateAdapter)
 
-        var searchJob: Job? = null
-        viewModel.searchResult.observe(viewLifecycleOwner) { searchResult ->
-            searchJob?.cancel()
-            searchJob = viewLifecycleOwner.lifecycleScope.launch {
-                searchResult.collectLatest(articlesAdapter::submitData)
-            }
+        viewModel.articles.observe(viewLifecycleOwner) { articles ->
+            articlesAdapter.submitData(viewLifecycleOwner.lifecycle, articles)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

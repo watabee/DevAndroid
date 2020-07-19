@@ -32,6 +32,13 @@ jobs:
     - name: Run Lint
       run: ./gradlew :app:lintDebug
 
+    - name: Download latest apk from s3
+      uses: chrislennon/action-aws-cli@v1.1
+      run: aws s3 cp s3://${{ secrets.APK_BUCKET_NAME }}/latest-app.apk ./
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
@@ -46,6 +53,13 @@ jobs:
       run: |
         bundle install
         bundle exec danger
+
+    - name: Upload latest apk to s3
+      uses: chrislennon/action-aws-cli@v1.1
+      run: aws s3 cp app/build/outputs/apk/debug/app-debug.apk s3://${{ secrets.APK_BUCKET_NAME }}/latest-app.apk
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Upload build outputs
       if: always()

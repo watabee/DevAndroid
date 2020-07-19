@@ -2,6 +2,7 @@ package com.github.watabee.devapp.ui.articles
 
 import android.os.Bundle
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.watabee.devapp.pagenation.LoadStateAdapter
 import com.github.watabee.devapp.ui.article.addArticleFragment
 import com.github.watabee.devapp.ui.articles.databinding.FragmentArticlesBinding
+import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -56,6 +58,13 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
                         recyclerView.scrollToPosition(0)
                     }
                 }
+        }
+
+        viewModel.visibleFilterButton.observe(viewLifecycleOwner) {
+            if (it) {
+                val behavior = (binding.filterButton.layoutParams as CoordinatorLayout.LayoutParams).behavior
+                (behavior as HideBottomViewOnScrollBehavior).slideUp(binding.filterButton)
+            }
         }
 
         var snackbar: Snackbar? = null

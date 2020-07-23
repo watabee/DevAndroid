@@ -135,7 +135,7 @@ object Deps {
 
     object Insetter {
         const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.3.1"
-        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.3.0"
+        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.3.1"
     }
 
     // https://github.com/hadilq/LiveEvent

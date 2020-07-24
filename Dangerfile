@@ -49,6 +49,7 @@ apkstats.tap do |plugin|
         break
     end
 
+    plugin.command_path = "#{'ANDROID_SDK_ROOT'}/tools/bin/apkanalyzer"
     plugin.apk_filepath = new_apk_filepath
     plugin.compare_with(current_latest_apk_filepath, do_report: true)
 end

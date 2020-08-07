@@ -112,8 +112,8 @@ object Deps {
     }
 
     object OkHttp {
-        const val okhttp = "com.squareup.okhttp3:okhttp:4.8.0"
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.8.0"
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.8.1"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.8.1"
     }
 
     object Retrofit {

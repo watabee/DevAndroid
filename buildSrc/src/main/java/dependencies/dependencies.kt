@@ -142,7 +142,7 @@ object Deps {
     const val liveEvent = "com.github.hadilq.liveevent:liveevent:1.2.0"
 
     object Markwon {
-        const val core = "io.noties.markwon:core:4.4.0"
+        const val core = "io.noties.markwon:core:4.5.0"
     }
 
     const val junit = "junit:junit:4.13"

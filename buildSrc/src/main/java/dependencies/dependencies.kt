@@ -32,9 +32,9 @@ object Deps {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     object Kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72"
-        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.3.72"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0"
+        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.0"
 
         object Coroutines {
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"

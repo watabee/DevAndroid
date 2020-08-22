@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.1"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.0-rc01"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.3.0"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
@@ -48,12 +48,12 @@ object Deps {
     }
 
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.2.0"
-        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha04"
+        const val appcompat = "androidx.appcompat:appcompat:1.3.0-alpha02"
+        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha05"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-        const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha06"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha06"
+        const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha08"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha08"
 
         object Test {
             const val core = "androidx.test:core:1.2.0"
@@ -65,7 +65,7 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0-beta8"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.0"
 
         const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
 
@@ -73,28 +73,28 @@ object Deps {
 
         const val browser = "androidx.browser:browser:1.2.0"
 
-        const val startup = "androidx.startup:startup-runtime:1.0.0-alpha01"
+        const val startup = "androidx.startup:startup-runtime:1.0.0-alpha03"
 
         object Lifecycle {
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha03"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha03"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha07"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha07"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha07"
         }
 
         object Room {
-            const val runtime = "androidx.room:room-runtime:2.2.5"
-            const val compiler = "androidx.room:room-compiler:2.2.5"
-            const val ktx = "androidx.room:room-ktx:2.2.5"
-            const val testing = "androidx.room:room-testing:2.2.5"
+            const val runtime = "androidx.room:room-runtime:2.3.0-alpha02"
+            const val compiler = "androidx.room:room-compiler:2.3.0-alpha02"
+            const val ktx = "androidx.room:room-ktx:2.3.0-alpha02"
+            const val testing = "androidx.room:room-testing:2.3.0-alpha02"
         }
 
         object Hilt {
-            const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
-            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
+            const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-alpha02"
         }
 
         object Paging {
-            const val runtime = "androidx.paging:paging-runtime:3.0.0-alpha02"
+            const val runtime = "androidx.paging:paging-runtime:3.0.0-alpha05"
         }
     }
 

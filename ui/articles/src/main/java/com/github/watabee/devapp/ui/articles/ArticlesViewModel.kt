@@ -10,6 +10,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.map
 import com.github.watabee.devapp.data.api.DevApi
 import com.github.watabee.devapp.util.Logger
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -48,12 +48,12 @@ object Deps {
     }
 
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.2.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.3.0-alpha02"
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha04"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-        const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha06"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha06"
+        const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha08"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha08"
 
         object Test {
             const val core = "androidx.test:core:1.2.0"

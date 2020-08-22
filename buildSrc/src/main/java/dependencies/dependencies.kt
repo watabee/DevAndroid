@@ -37,9 +37,9 @@ object Deps {
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.0"
 
         object Coroutines {
-            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8"
-            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.8"
+            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9"
         }
     }
 

@@ -60,7 +60,7 @@ object Deps {
             const val runner = "androidx.test:runner:1.2.0"
             const val rules = "androidx.test:rules:1.2.0"
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
         }
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"

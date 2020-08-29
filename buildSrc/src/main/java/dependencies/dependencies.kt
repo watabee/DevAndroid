@@ -56,9 +56,9 @@ object Deps {
         const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha08"
 
         object Test {
-            const val core = "androidx.test:core:1.2.0"
-            const val runner = "androidx.test:runner:1.2.0"
-            const val rules = "androidx.test:rules:1.2.0"
+            const val core = "androidx.test:core:1.3.0"
+            const val runner = "androidx.test:runner:1.3.0"
+            const val rules = "androidx.test:rules:1.3.0"
 
             const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
         }

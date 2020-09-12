@@ -22,7 +22,7 @@ object Deps {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.0-rc01"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
-    const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.3.0"
+    const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.4.0"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"

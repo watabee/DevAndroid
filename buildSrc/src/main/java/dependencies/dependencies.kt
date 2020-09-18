@@ -130,7 +130,7 @@ object Deps {
 
     object AssistedInject {
         const val annotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:0.6.0"
-        const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:0.5.2"
+        const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:0.6.0"
     }
 
     object Insetter {

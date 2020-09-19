@@ -31,5 +31,5 @@ dependencies {
     implementation Deps.AndroidX.constraintlayout
 
     implementation Deps.Dagger.Hilt.android
-    kapt Deps.Dagger.Hilt.androidCompiler
+    kapt Deps.Dagger.Hilt.compiler
 }

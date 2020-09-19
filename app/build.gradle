@@ -122,7 +122,7 @@ dependencies {
     implementation Deps.Moshi.kotlin
 
     implementation Deps.Dagger.Hilt.android
-    kapt Deps.Dagger.Hilt.androidCompiler
+    kapt Deps.Dagger.Hilt.compiler
     implementation Deps.AndroidX.Hilt.viewmodel
 
     implementation Deps.timber

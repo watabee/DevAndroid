@@ -7,5 +7,5 @@ import dagger.hilt.android.components.FragmentComponent
 
 @InstallIn(FragmentComponent::class)
 @AssistedModule
-@Module(includes = [AssistedInject_UiArticleModule::class])
+@Module
 interface UiArticleModule

@@ -27,7 +27,7 @@ object Deps {
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"
     const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.6.0"
-    const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.28-alpha"
+    const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.29.1-alpha"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
@@ -100,8 +100,8 @@ object Deps {
 
     object Dagger {
         object Hilt {
-            const val android = "com.google.dagger:hilt-android:2.28-alpha"
-            const val androidCompiler = "com.google.dagger:hilt-android-compiler:2.28-alpha"
+            const val android = "com.google.dagger:hilt-android:2.29.1-alpha"
+            const val compiler = "com.google.dagger:hilt-compiler:2.29.1-alpha"
         }
     }
 

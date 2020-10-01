@@ -69,7 +69,7 @@ object Deps {
 
         const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
 
-        const val coreKtx = "androidx.core:core-ktx:1.3.1"
+        const val coreKtx = "androidx.core:core-ktx:1.3.2"
 
         const val browser = "androidx.browser:browser:1.2.0"
 

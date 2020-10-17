@@ -145,7 +145,7 @@ object Deps {
         const val core = "io.noties.markwon:core:4.6.0"
     }
 
-    const val junit = "junit:junit:4.13"
+    const val junit = "junit:junit:4.13.1"
     const val truth = "com.google.truth:truth:1.0.1"
 
     object Spek2 {

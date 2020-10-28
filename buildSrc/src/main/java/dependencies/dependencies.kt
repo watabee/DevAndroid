@@ -65,7 +65,7 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.2"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.3"
 
         const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
 

@@ -38,7 +38,7 @@ object Deps {
 
         object Coroutines {
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
         }
     }

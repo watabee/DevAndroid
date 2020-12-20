@@ -100,8 +100,8 @@ object Deps {
 
     object Dagger {
         object Hilt {
-            const val android = "com.google.dagger:hilt-android:2.29.1-alpha"
-            const val compiler = "com.google.dagger:hilt-compiler:2.29.1-alpha"
+            const val android = "com.google.dagger:hilt-android:2.30.1-alpha"
+            const val compiler = "com.google.dagger:hilt-compiler:2.30.1-alpha"
         }
     }
 

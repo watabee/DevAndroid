@@ -52,8 +52,8 @@ object Deps {
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-alpha05"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-        const val activityKtx = "androidx.activity:activity-ktx:1.2.0-alpha08"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-alpha08"
+        const val activityKtx = "androidx.activity:activity-ktx:1.2.0-rc01"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-rc01"
 
         object Test {
             const val core = "androidx.test:core:1.3.0"
@@ -76,16 +76,16 @@ object Deps {
         const val startup = "androidx.startup:startup-runtime:1.0.0"
 
         object Lifecycle {
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha07"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha07"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha07"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-rc01"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-rc01"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-rc01"
         }
 
         object Room {
-            const val runtime = "androidx.room:room-runtime:2.3.0-alpha02"
-            const val compiler = "androidx.room:room-compiler:2.3.0-alpha02"
-            const val ktx = "androidx.room:room-ktx:2.3.0-alpha02"
-            const val testing = "androidx.room:room-testing:2.3.0-alpha02"
+            const val runtime = "androidx.room:room-runtime:2.3.0-alpha04"
+            const val compiler = "androidx.room:room-compiler:2.3.0-alpha04"
+            const val ktx = "androidx.room:room-ktx:2.3.0-alpha04"
+            const val testing = "androidx.room:room-testing:2.3.0-alpha04"
         }
 
         object Hilt {
@@ -94,14 +94,14 @@ object Deps {
         }
 
         object Paging {
-            const val runtime = "androidx.paging:paging-runtime:3.0.0-alpha05"
+            const val runtime = "androidx.paging:paging-runtime:3.0.0-alpha11"
         }
     }
 
     object Dagger {
         object Hilt {
-            const val android = "com.google.dagger:hilt-android:2.29.1-alpha"
-            const val compiler = "com.google.dagger:hilt-compiler:2.29.1-alpha"
+            const val android = "com.google.dagger:hilt-android:2.30.1-alpha"
+            const val compiler = "com.google.dagger:hilt-compiler:2.30.1-alpha"
         }
     }
 

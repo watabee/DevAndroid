@@ -18,6 +18,8 @@ import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -52,9 +54,11 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            articlesAdapter.dataRefreshFlow
-                .collectLatest { isEmpty ->
-                    if (!isEmpty) {
+            articlesAdapter.loadStateFlow
+                .distinctUntilChangedBy { it.refresh }
+                .filter { it.refresh is LoadState.NotLoading }
+                .collectLatest {
+                    if (articlesAdapter.itemCount > 0) {
                         recyclerView.scrollToPosition(0)
                     }
                 }

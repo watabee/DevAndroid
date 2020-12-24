@@ -31,3 +31,26 @@ if File.exists?(LINT_RESULTS_FILE)
   android_lint.filtering = true
   android_lint.lint(inline_mode: true)
 end
+
+# apk stats
+# https://github.com/jmatsu/danger-apkstats
+
+apkstats.tap do |plugin|
+    new_apk_filepath = 'app/build/outputs/apk/debug/app-debug.apk'
+    current_latest_apk_filepath = 'latest-app.apk'
+
+    unless File.exist?(new_apk_filepath)
+        warn("#{new_apk_filepath} was not found.")
+        break
+    end
+
+    unless File.exist?(current_latest_apk_filepath)
+        warn("#{current_latest_apk_filepath} was not found.")
+        break
+    end
+
+    plugin.command_type=:apk_analyzer
+    # plugin.apkanalyzer_path = "#{'ANDROID_SDK_ROOT'}/tools/bin/apkanalyzer"
+    plugin.apk_filepath = new_apk_filepath
+    plugin.compare_with(current_latest_apk_filepath, do_report: true)
+end

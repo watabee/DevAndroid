@@ -53,8 +53,8 @@ jobs:
         bundle exec danger
 
     - name: Upload build outputs
-      if: always()
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: build-outputs
-        path: app/build/outputs
+        path: |
+          app/build/outputs/apk/**/*.apk

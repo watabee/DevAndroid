@@ -35,10 +35,10 @@ jobs:
     - name: Run Lint
       run: ./gradlew :app:lintDebug
 
-    - name: Set up Ruby 2.6
+    - name: Set up Ruby 2.7
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: 2.7
 
     - name: Install bundler
       run: |

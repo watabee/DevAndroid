@@ -36,7 +36,9 @@ jobs:
         ruby-version: 2.6
 
     - name: Install bundler
-      run: gem install bundler
+      run: |
+        GEM_BUNDLER_VERSION=$(grep -A1 -E -i -w '(BUNDLED WITH){1,1}' Gemfile.lock | grep -E -i -w "[0-9\.]{1,}" | xargs)
+        gem install bundler -v=$GEM_BUNDLER_VERSION --force
 
     - name: Danger
       env:

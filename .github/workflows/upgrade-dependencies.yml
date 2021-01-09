@@ -12,4 +12,4 @@ jobs:
       - name: run upgrade dependencies
         run: ./gradlew upgradeDependencies
         env:
-          gitHubWriteToken: ${{ secrets.GITHUB_TOKEN }}
+          gitHubWriteToken: ${{ secrets.BOT_GITHUB_TOKEN }}

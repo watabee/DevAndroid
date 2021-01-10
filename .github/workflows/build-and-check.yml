@@ -49,16 +49,43 @@ jobs:
     - name: Install bundler
       if: ${{ github.event_name == 'pull_request' }}
       run: |
-        GEM_BUNDLER_VERSION=$(grep -A1 -E -i -w '(BUNDLED WITH){1,1}' Gemfile.lock | grep -E -i -w "[0-9\.]{1,}" | xargs)
+        GEM_BUNDLER_VERSION=$(grep -A1 -E -i -w '(BUNDLED WITH){1,1}' .ci/Gemfile.lock | grep -E -i -w "[0-9\.]{1,}" | xargs)
         gem install bundler -v=$GEM_BUNDLER_VERSION --force
 
-    - name: Danger
+    - name: Run danger for static analysis
       if: ${{ github.event_name == 'pull_request' }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        bundle install
-        bundle exec danger
+        bundle install --gemfile=.ci/Gemfile
+        bundle exec --gemfile=.ci/Gemfile danger --dangerfile=".ci/danger/static_analysis.danger"
+
+    - name: Download artifact
+      if: ${{ github.event_name == 'pull_request' }}
+      run: |
+        ARTIFACTS=$(curl -s -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/actions/artifacts)
+        ARTIFACT_DOWNLOAD_URL=$(echo $ARTIFACTS | jq -r '.artifacts | map(select(.name == "latest-apk")) | sort_by(.updated_at) | map(.archive_download_url) | reverse | .[0]')
+        if [ $ARTIFACT_DOWNLOAD_URL = "null" ]; then
+          echo "Artifact not found"
+        else
+          mkdir temp
+          curl -fsSL -o temp/temp.zip -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "$ARTIFACT_DOWNLOAD_URL"
+          unzip -d temp temp/temp.zip
+          echo "LATEST_APK_FILEPATH=$(find temp -name '*.apk')" >> $GITHUB_ENV
+          echo "NEW_APK_FILEPATH=$(find app/build/outputs -name '*.apk')" >> $GITHUB_ENV
+        fi
+
+    - name: Set up JDK 8
+      if: ${{ env.LATEST_APK_FILEPATH != '' && env.NEW_APK_FILEPATH != '' }}
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+
+    - name: Run danger for apk stat
+      if: ${{ env.LATEST_APK_FILEPATH != '' && env.NEW_APK_FILEPATH != '' }}
+      env:
+        DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: bundle exec --gemfile=.ci/Gemfile danger --dangerfile=".ci/danger/apkstats.danger"
 
     - name: Upload build outputs
       uses: actions/upload-artifact@v2

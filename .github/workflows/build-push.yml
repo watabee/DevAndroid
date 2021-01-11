@@ -22,14 +22,15 @@ jobs:
         with:
           java-version: 11
 
+      - name: Generate cache key
+        run: ./checksum.sh checksum.txt
+
       - uses: actions/cache@v2
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          key: ${{ runner.os }}-gradle-${{ hashFiles('checksum.txt') }}
 
       - name: Build debug
         run: ./gradlew assembleDebug

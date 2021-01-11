@@ -1,0 +1,83 @@
+name: Build (Pull Request)
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build debug
+        run: ./gradlew assembleDebug
+
+      - name: Check
+        run: |
+          ./gradlew testDebug
+          ./gradlew ktlintCheck
+          ./gradlew detekt
+          ./gradlew :app:lintDebug
+
+      - name: Setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
+      - name: Install bundler
+        run: |
+          GEM_BUNDLER_VERSION=$(grep -A1 -E -i -w '(BUNDLED WITH){1,1}' .ci/Gemfile.lock | grep -E -i -w "[0-9\.]{1,}" | xargs)
+          gem install bundler -v=$GEM_BUNDLER_VERSION --force
+
+      - name: Run danger for static analysis
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bundle install --gemfile=.ci/Gemfile
+          bundle exec --gemfile=.ci/Gemfile danger --dangerfile=".ci/danger/static_analysis.danger"
+
+      - name: Download artifact
+        run: |
+          ARTIFACTS=$(curl -s -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/actions/artifacts)
+          ARTIFACT_DOWNLOAD_URL=$(echo $ARTIFACTS | jq -r '.artifacts | map(select(.name == "latest-apk")) | sort_by(.updated_at) | map(.archive_download_url) | reverse | .[0]')
+          if [ $ARTIFACT_DOWNLOAD_URL = "null" ]; then
+            echo "Artifact not found"
+          else
+            mkdir temp
+            curl -fsSL -o temp/temp.zip -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "$ARTIFACT_DOWNLOAD_URL"
+            unzip -d temp temp/temp.zip
+            echo "LATEST_APK_FILEPATH=$(find temp -name '*.apk')" >> $GITHUB_ENV
+            echo "NEW_APK_FILEPATH=$(find app/build/outputs -name '*.apk')" >> $GITHUB_ENV
+          fi
+
+      - name: Set up JDK 8
+        if: ${{ env.LATEST_APK_FILEPATH != '' && env.NEW_APK_FILEPATH != '' }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+
+      - name: Run danger for apk stat
+        if: ${{ env.LATEST_APK_FILEPATH != '' && env.NEW_APK_FILEPATH != '' }}
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec --gemfile=.ci/Gemfile danger --dangerfile=".ci/danger/apkstats.danger"
+
+      - name: Upload build outputs
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-outputs
+          path: app/build/outputs/apk/**/*.apk

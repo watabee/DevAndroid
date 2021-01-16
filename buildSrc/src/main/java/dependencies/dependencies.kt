@@ -128,11 +128,6 @@ object Deps {
         const val adapters = "com.squareup.moshi:moshi-adapters:1.9.3"
     }
 
-    object AssistedInject {
-        const val annotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:0.6.0"
-        const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:0.6.0"
-    }
-
     object Insetter {
         const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.3.1"
         const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.3.1"

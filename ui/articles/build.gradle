@@ -45,6 +45,4 @@ dependencies {
     kapt Deps.Dagger.Hilt.compiler
     implementation Deps.AndroidX.Hilt.viewmodel
     kapt Deps.AndroidX.Hilt.compiler
-    compileOnly Deps.AssistedInject.annotationDagger2
-    kapt Deps.AssistedInject.processorDagger2
 }

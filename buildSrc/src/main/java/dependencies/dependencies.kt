@@ -27,7 +27,7 @@ object Deps {
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"
     const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.6.1"
-    const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.29.1-alpha"
+    const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.31-alpha"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
@@ -100,8 +100,8 @@ object Deps {
 
     object Dagger {
         object Hilt {
-            const val android = "com.google.dagger:hilt-android:2.30.1-alpha"
-            const val compiler = "com.google.dagger:hilt-compiler:2.30.1-alpha"
+            const val android = "com.google.dagger:hilt-android:2.31-alpha"
+            const val compiler = "com.google.dagger:hilt-compiler:2.31-alpha"
         }
     }
 
@@ -126,11 +126,6 @@ object Deps {
         const val kotlin = "com.squareup.moshi:moshi-kotlin:1.9.3"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.9.3"
         const val adapters = "com.squareup.moshi:moshi-adapters:1.9.3"
-    }
-
-    object AssistedInject {
-        const val annotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:0.6.0"
-        const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:0.6.0"
     }
 
     object Insetter {

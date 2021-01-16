@@ -22,7 +22,7 @@ import kotlin.LazyThreadSafetyMode.NONE
 @AndroidEntryPoint
 internal class ArticleFragment : Fragment(R.layout.fragment_article) {
 
-    @Inject lateinit var viewModelFactory: ArticleViewModel.Factory
+    @Inject lateinit var viewModelFactory: ArticleViewModelFactory
     @Inject lateinit var markwon: Markwon
 
     private val article: Article by lazy(NONE) {

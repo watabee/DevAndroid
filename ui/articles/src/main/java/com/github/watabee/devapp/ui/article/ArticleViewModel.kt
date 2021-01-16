@@ -7,8 +7,9 @@ import com.github.watabee.devapp.data.Article
 import com.github.watabee.devapp.data.api.DevApi
 import com.github.watabee.devapp.data.db.daos.ArticleDao
 import com.github.watabee.devapp.util.Logger
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 
 internal class ArticleViewModel @AssistedInject constructor(
     @Assisted private val article: Article,
@@ -16,11 +17,6 @@ internal class ArticleViewModel @AssistedInject constructor(
     private val articleDao: ArticleDao,
     private val logger: Logger
 ) : ViewModel() {
-
-    @AssistedInject.Factory
-    interface Factory {
-        fun create(article: Article): ArticleViewModel
-    }
 
     val articleDetailUiModel: LiveData<ArticleDetailUiModel> = liveData {
         emit(ArticleDetailUiModel(article))
@@ -38,4 +34,9 @@ internal class ArticleViewModel @AssistedInject constructor(
             emit(ArticleDetailUiModel(articleDetailEntity))
         }
     }
+}
+
+@AssistedFactory
+internal interface ArticleViewModelFactory {
+    fun create(article: Article): ArticleViewModel
 }

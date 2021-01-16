@@ -12,8 +12,8 @@ import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.ElementsIntoSet
 import okhttp3.Cache
 import okhttp3.Call
@@ -32,7 +32,7 @@ private const val READ_TIMEOUT_SECONDS = 10L
 private const val CACHE_SIZE = 30 * 1024 * 1024L
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 internal object NetworkModule {
 
     @Provides

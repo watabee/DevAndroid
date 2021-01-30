@@ -108,7 +108,7 @@ object Deps {
     object Glide {
         const val glide = "com.github.bumptech.glide:glide:4.12.0"
         const val compiler = "com.github.bumptech.glide:compiler:4.12.0"
-        const val integration = "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+        const val integration = "com.github.bumptech.glide:okhttp3-integration:4.12.0"
     }
 
     object OkHttp {

@@ -78,7 +78,7 @@ object Deps {
         object Lifecycle {
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-rc01"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
         }
 
         object Room {

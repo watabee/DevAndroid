@@ -53,7 +53,7 @@ object Deps {
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
         const val activityKtx = "androidx.activity:activity-ktx:1.2.0"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0-rc01"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
 
         object Test {
             const val core = "androidx.test:core:1.3.0"
@@ -76,9 +76,9 @@ object Deps {
         const val startup = "androidx.startup:startup-runtime:1.0.0"
 
         object Lifecycle {
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-rc01"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0-rc01"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-rc01"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.0"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
         }
 
         object Room {

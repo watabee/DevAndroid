@@ -1,6 +1,7 @@
 package com.github.watabee.devapp.ui.articles
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.github.watabee.devapp.data.Article
 import com.github.watabee.devapp.data.api.DevApi
 import com.github.watabee.devapp.util.Logger
@@ -25,4 +26,6 @@ internal class ArticleDataSource(
             LoadResult.Error(e)
         }
     }
+
+    override fun getRefreshKey(state: PagingState<Int, Article>): Int? = null
 }

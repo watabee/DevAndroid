@@ -1,6 +1,5 @@
 package com.github.watabee.devapp.ui.articles
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -13,14 +12,17 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.github.watabee.devapp.data.api.DevApi
 import com.github.watabee.devapp.util.Logger
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.scan
+import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class ArticlesViewModel @ViewModelInject constructor(
+@HiltViewModel
+internal class ArticlesViewModel @Inject constructor(
     private val devApi: DevApi,
     private val logger: Logger
 ) : ViewModel() {

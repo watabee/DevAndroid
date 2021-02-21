@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidDomInspection -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -30,19 +31,18 @@
 
             <ImageView
                 android:id="@+id/cover_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                app:layout_constraintWidth="match_constraint"
+                app:layout_constraintHeight="ratio=1000:420"
                 app:goneIfNull="@{uiModel.coverImage}"
                 app:imageUrl="@{uiModel.coverImage}"
-                app:layout_constraintDimensionRatio="h,1000:420"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
+                app:layout_constraintWidth="0dp"
+                app:layout_constraintHeight="1dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintLeft_toLeftOf="@id/cover_image"
                 app:layout_constraintRight_toRightOf="@id/cover_image"
@@ -50,8 +50,8 @@
 
             <TextView
                 android:id="@+id/title_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="0dp"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -64,8 +64,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/user_image"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                app:layout_constraintWidth="32dp"
+                app:layout_constraintHeight="ratio=1:1"
                 android:layout_marginTop="24dp"
                 app:imageUrl="@{uiModel.userImage}"
                 app:layout_constraintLeft_toLeftOf="@id/title_text"
@@ -76,8 +76,8 @@
 
             <TextView
                 android:id="@+id/username_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="wrap_content"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:ellipsize="end"
@@ -91,8 +91,8 @@
 
             <TextView
                 android:id="@+id/positive_reactions_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="wrap_content"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginStart="8dp"
                 android:drawablePadding="4dp"
                 android:drawableStart="@drawable/favorite"
@@ -106,8 +106,8 @@
 
             <TextView
                 android:id="@+id/comments_count_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="wrap_content"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginStart="8dp"
                 android:drawablePadding="4dp"
                 android:drawableStart="@drawable/comment"
@@ -121,8 +121,8 @@
 
             <TextView
                 android:id="@+id/published_date_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="wrap_content"
+                app:layout_constraintHeight="wrap_content"
                 android:text="@{uiModel.readablePublishDate}"
                 android:textAppearance="?attr/textAppearanceCaption"
                 app:layout_constraintBottom_toBottomOf="@id/username_text"
@@ -133,8 +133,8 @@
 
             <TextView
                 android:id="@+id/description_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="match_constraint"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textAppearance="?attr/textAppearanceBody1"
                 app:layout_constraintLeft_toLeftOf="@id/title_text"
@@ -145,8 +145,8 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_group"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="match_constraint"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="@id/title_text"
                 app:layout_constraintRight_toRightOf="@id/title_text"
@@ -190,8 +190,8 @@
 
             <TextView
                 android:id="@+id/body_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="match_constraint"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@{uiModel.bodyMarkdownText != null ? markwon.toMarkdown(uiModel.bodyMarkdownText) : null}"

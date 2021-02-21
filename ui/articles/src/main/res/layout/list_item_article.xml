@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidDomInspection -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -22,8 +23,8 @@
 
             <TextView
                 android:id="@+id/title_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="match_constraint"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@{uiModel.title}"
                 android:textAppearance="?attr/textAppearanceHeadline6"
@@ -35,8 +36,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/user_image"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                app:layout_constraintWidth="20dp"
+                app:layout_constraintHeight="20dp"
                 android:layout_marginTop="16dp"
                 app:imageUrl="@{uiModel.userImage}"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -47,8 +48,8 @@
 
             <TextView
                 android:id="@+id/username_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="match_constraint"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="4dp"
                 android:ellipsize="end"
@@ -64,8 +65,8 @@
 
             <TextView
                 android:id="@+id/published_date_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                app:layout_constraintWidth="wrap_content"
+                app:layout_constraintHeight="wrap_content"
                 android:text="@{uiModel.readablePublishDate}"
                 android:textAppearance="?attr/textAppearanceCaption"
                 app:layout_constraintBottom_toBottomOf="@id/user_image"
@@ -76,9 +77,9 @@
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_group"
+                app:layout_constraintWidth="match_constraint"
+                app:layout_constraintHeight="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

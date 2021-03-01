@@ -26,7 +26,7 @@ object Deps {
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"
-    const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.6.1"
+    const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.7.0"
     const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.32-alpha"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"

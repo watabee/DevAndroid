@@ -34,7 +34,7 @@ object Deps {
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.31"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.32"
 
         object Coroutines {
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"

@@ -49,7 +49,7 @@ object Deps {
 
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.3.0-beta01"
-        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0-beta01"
+        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
         const val activityKtx = "androidx.activity:activity-ktx:1.2.0"

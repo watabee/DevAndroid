@@ -52,8 +52,8 @@ object Deps {
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-        const val activityKtx = "androidx.activity:activity-ktx:1.2.0"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
+        const val activityKtx = "androidx.activity:activity-ktx:1.2.2"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.2"
 
         object Test {
             const val core = "androidx.test:core:1.3.0"

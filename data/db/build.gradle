@@ -36,6 +36,6 @@ dependencies {
     implementation Deps.AndroidX.Room.ktx
     kapt Deps.AndroidX.Room.compiler
 
-    implementation Deps.Dagger.Hilt.android
-    kapt Deps.Dagger.Hilt.compiler
+    implementation Deps.Hilt.android
+    kapt Deps.Hilt.compiler
 }

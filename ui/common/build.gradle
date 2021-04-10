@@ -41,6 +41,6 @@ dependencies {
     api Deps.Insetter.insetterKtx
     api Deps.Insetter.insetterDbx
 
-    implementation Deps.Dagger.Hilt.android
-    kapt Deps.Dagger.Hilt.compiler
+    implementation Deps.Hilt.android
+    kapt Deps.Hilt.compiler
 }

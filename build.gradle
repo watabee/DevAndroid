@@ -15,7 +15,7 @@ buildscript {
         classpath Deps.detektGradlePlugin
         classpath Deps.scabbardGradlePlugin
         classpath Deps.releaseHubGradlePlugin
-        classpath Deps.hiltAndroidGradlePlugin
+        classpath Deps.Hilt.gradlePlugin
     }
 }
 

@@ -39,6 +39,6 @@ dependencies {
 
     implementation Deps.OkHttp.okhttp
 
-    implementation Deps.Dagger.Hilt.android
-    kapt Deps.Dagger.Hilt.compiler
+    implementation Deps.Hilt.android
+    kapt Deps.Hilt.compiler
 }

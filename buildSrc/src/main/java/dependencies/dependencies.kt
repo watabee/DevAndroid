@@ -27,7 +27,6 @@ object Deps {
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"
     const val releaseHubGradlePlugin = "com.releaseshub:releases-hub-gradle-plugin:1.7.0"
-    const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.32-alpha"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
@@ -52,8 +51,8 @@ object Deps {
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.0"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-        const val activityKtx = "androidx.activity:activity-ktx:1.2.0"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
+        const val activityKtx = "androidx.activity:activity-ktx:1.2.2"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.2"
 
         object Test {
             const val core = "androidx.test:core:1.3.0"
@@ -76,21 +75,21 @@ object Deps {
         const val startup = "androidx.startup:startup-runtime:1.0.0"
 
         object Lifecycle {
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.3.1"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.4.0-alpha01"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01"
         }
 
         object Room {
-            const val runtime = "androidx.room:room-runtime:2.3.0-beta02"
-            const val compiler = "androidx.room:room-compiler:2.3.0-beta02"
-            const val ktx = "androidx.room:room-ktx:2.3.0-beta02"
-            const val testing = "androidx.room:room-testing:2.3.0-beta02"
+            const val runtime = "androidx.room:room-runtime:2.3.0-rc01"
+            const val compiler = "androidx.room:room-compiler:2.3.0-rc01"
+            const val ktx = "androidx.room:room-ktx:2.3.0-rc01"
+            const val testing = "androidx.room:room-testing:2.3.0-rc01"
         }
 
         object Hilt {
             const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-alpha03"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
         }
 
         object Paging {
@@ -98,11 +97,11 @@ object Deps {
         }
     }
 
-    object Dagger {
-        object Hilt {
-            const val android = "com.google.dagger:hilt-android:2.32-alpha"
-            const val compiler = "com.google.dagger:hilt-compiler:2.32-alpha"
-        }
+    object Hilt {
+        // hilt-lifecycle-viewmodel 1.0.0-alpha03 references DefaultActivityViewModelFactory that is removed in hilt 2.34, so I couldn't update hilt to 2.34.hilt-lifecycle-viewmodel 1.0.0-alpha03 references DefaultActivityViewModelFactory that is removed in hilt 2.34, so I couldn't update hilt to 2.34.
+        const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.33-beta"
+        const val android = "com.google.dagger:hilt-android:2.33-beta"
+        const val compiler = "com.google.dagger:hilt-compiler:2.33-beta"
     }
 
     object Glide {

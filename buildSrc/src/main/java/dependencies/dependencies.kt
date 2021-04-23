@@ -100,7 +100,7 @@ object Deps {
     object Hilt {
         // hilt-lifecycle-viewmodel 1.0.0-alpha03 references DefaultActivityViewModelFactory that is removed in hilt 2.34, so I couldn't update hilt to 2.34.hilt-lifecycle-viewmodel 1.0.0-alpha03 references DefaultActivityViewModelFactory that is removed in hilt 2.34, so I couldn't update hilt to 2.34.
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.35"
-        const val android = "com.google.dagger:hilt-android:2.33-beta"
+        const val android = "com.google.dagger:hilt-android:2.35"
         const val compiler = "com.google.dagger:hilt-compiler:2.35"
     }
 

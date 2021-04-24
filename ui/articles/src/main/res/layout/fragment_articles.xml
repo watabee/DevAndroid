@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="state"
+            type="com.github.watabee.devapp.ui.articles.ArticlesViewModel.State" />
+
+        <variable
             name="viewModel"
             type="com.github.watabee.devapp.ui.articles.ArticlesViewModel" />
     </data>
@@ -60,10 +64,10 @@
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:onClick="@{() -> viewModel.resetFilter()}"
-                android:text="@{@string/tag_filter_message(viewModel.selectedTag)}"
+                android:text="@{@string/tag_filter_message(state.selectedTag)}"
                 app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
                 app:layout_marginBottomSystemWindowInsets="@{true}"
-                app:visible="@{viewModel.visibleFilterButton}"
+                app:visible="@{state.visibleFilterButton}"
                 tools:text="tag: android" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,7 +6,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.observe
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +16,7 @@ import com.github.watabee.devapp.ui.articles.databinding.FragmentArticlesBinding
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
@@ -49,8 +49,16 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         val loadStateAdapter = LoadStateAdapter(articlesAdapter::retry)
         recyclerView.adapter = articlesAdapter.withLoadStateFooter(loadStateAdapter)
 
-        viewModel.articles.observe(viewLifecycleOwner) { articles ->
-            articlesAdapter.submitData(viewLifecycleOwner.lifecycle, articles)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.state
+                .collect { state ->
+                    binding.state = state
+                    articlesAdapter.submitData(viewLifecycleOwner.lifecycle, state.articles)
+                    if (state.isTagChanged && state.visibleFilterButton) {
+                        val behavior = (binding.filterButton.layoutParams as CoordinatorLayout.LayoutParams).behavior
+                        (behavior as HideBottomViewOnScrollBehavior).slideUp(binding.filterButton)
+                    }
+                }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -62,13 +70,6 @@ internal class ArticlesFragment : Fragment(R.layout.fragment_articles) {
                         recyclerView.scrollToPosition(0)
                     }
                 }
-        }
-
-        viewModel.visibleFilterButton.observe(viewLifecycleOwner) {
-            if (it) {
-                val behavior = (binding.filterButton.layoutParams as CoordinatorLayout.LayoutParams).behavior
-                (behavior as HideBottomViewOnScrollBehavior).slideUp(binding.filterButton)
-            }
         }
 
         var snackbar: Snackbar? = null

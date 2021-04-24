@@ -1,9 +1,6 @@
 package com.github.watabee.devapp.ui.articles
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -14,10 +11,15 @@ import com.github.watabee.devapp.data.api.DevApi
 import com.github.watabee.devapp.util.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.scan
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -27,43 +29,56 @@ internal class ArticlesViewModel @Inject constructor(
     private val logger: Logger
 ) : ViewModel() {
 
-    private val requestEvent = MutableStateFlow<RequestEvent>(RequestEvent.Refresh)
+    private val actionFlow = MutableSharedFlow<Action>()
     private val pagingConfig = PagingConfig(pageSize = 30, initialLoadSize = 30, prefetchDistance = 20)
 
-    private val searchResult: LiveData<Pair<PagingData<ArticleUiModel>, String?>> = requestEvent
-        .scan<RequestEvent, String?>(null) { tag, event ->
+    val state: StateFlow<State> = actionFlow
+        .scan(Tags(null, null)) { tags, event ->
             when (event) {
-                RequestEvent.Refresh -> tag
-                is RequestEvent.FilterByTag -> event.tag
-                RequestEvent.ResetFilter -> null
+                Action.Refresh -> Tags(currentTag = null, prevTag = tags.currentTag)
+                is Action.FilterByTag -> Tags(currentTag = event.tag, prevTag = tags.currentTag)
             }
         }
-        .flatMapLatest { tag ->
-            Pager(config = pagingConfig, initialKey = 1) { ArticleDataSource(devApi, tag, logger) }
+        .flatMapLatest { tags ->
+            Pager(config = pagingConfig, initialKey = 1) { ArticleDataSource(devApi, tags.currentTag, logger) }
                 .flow
                 .map { pagingData -> pagingData.map(::ArticleUiModel) }
                 .cachedIn(viewModelScope)
-                .map { it to tag }
+                .map { State(it, tags.currentTag, isTagChanged = tags.currentTag != tags.prevTag) }
         }
-        .asLiveData()
+        .stateIn(viewModelScope, started = SharingStarted.Lazily, initialValue = State())
 
-    val articles: LiveData<PagingData<ArticleUiModel>> = searchResult.map { it.first }
-    val selectedTag: LiveData<String?> = searchResult.map { it.second }
-    val visibleFilterButton: LiveData<Boolean> = selectedTag.map { !it.isNullOrEmpty() }
+    init {
+        dispatchAction(Action.Refresh)
+    }
+
+    private fun dispatchAction(action: Action) {
+        viewModelScope.launch {
+            actionFlow.emit(action)
+        }
+    }
 
     fun filterByTag(tag: String) {
-        requestEvent.value = RequestEvent.FilterByTag(tag)
+        dispatchAction(Action.FilterByTag(tag))
     }
 
     fun resetFilter() {
-        requestEvent.value = RequestEvent.ResetFilter
+        dispatchAction(Action.Refresh)
     }
 
-    private sealed class RequestEvent {
-        object Refresh : RequestEvent()
-
-        class FilterByTag(val tag: String) : RequestEvent()
-
-        object ResetFilter : RequestEvent()
+    data class State(
+        val articles: PagingData<ArticleUiModel> = PagingData.empty(),
+        val selectedTag: String? = null,
+        val isTagChanged: Boolean = false
+    ) {
+        val visibleFilterButton: Boolean get() = !selectedTag.isNullOrEmpty()
     }
+
+    sealed class Action {
+        object Refresh : Action()
+
+        class FilterByTag(val tag: String) : Action()
+    }
+
+    private data class Tags(val currentTag: String?, val prevTag: String?)
 }

@@ -5,7 +5,7 @@ object Versions {
     const val androidMinSdkVersion = 21
     const val androidTargetSdkVersion = 29
 
-    const val buildToolsVersion = "29.0.3"
+    const val buildToolsVersion = "30.0.3"
     const val ndkVersion = "21.3.6528147"
 
     private const val versionMajor = 1

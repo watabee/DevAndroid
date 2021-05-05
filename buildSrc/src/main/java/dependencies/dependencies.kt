@@ -93,7 +93,7 @@ object Deps {
         }
 
         object Paging {
-            const val runtime = "androidx.paging:paging-runtime:3.0.0-beta01"
+            const val runtime = "androidx.paging:paging-runtime:3.0.0"
         }
     }
 

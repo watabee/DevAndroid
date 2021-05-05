@@ -22,7 +22,7 @@ object Deps {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.0"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.7.0.0"
-    const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.4.1"
+    const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:10.0.0"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
     // https://arunkumar9t2.github.io/scabbard/
     const val scabbardGradlePlugin = "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"
@@ -153,7 +153,7 @@ object Deps {
     const val soLoader = "com.facebook.soloader:soloader:0.9.0"
 
     object Ktlint {
-        const val version = "0.36.0"
+        const val version = "0.41.0"
     }
 }
 

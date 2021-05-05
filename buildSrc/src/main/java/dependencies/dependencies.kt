@@ -31,9 +31,9 @@ object Deps {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     object Kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32"
-        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.32"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0"
+        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.5.0"
 
         object Coroutines {
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
@@ -98,7 +98,6 @@ object Deps {
     }
 
     object Hilt {
-        // hilt-lifecycle-viewmodel 1.0.0-alpha03 references DefaultActivityViewModelFactory that is removed in hilt 2.34, so I couldn't update hilt to 2.34.hilt-lifecycle-viewmodel 1.0.0-alpha03 references DefaultActivityViewModelFactory that is removed in hilt 2.34, so I couldn't update hilt to 2.34.
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.35.1"
         const val android = "com.google.dagger:hilt-android:2.35.1"
         const val compiler = "com.google.dagger:hilt-compiler:2.35.1"
@@ -122,9 +121,9 @@ object Deps {
     }
 
     object Moshi {
-        const val kotlin = "com.squareup.moshi:moshi-kotlin:1.9.3"
-        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.9.3"
-        const val adapters = "com.squareup.moshi:moshi-adapters:1.9.3"
+        const val kotlin = "com.squareup.moshi:moshi-kotlin:1.12.0"
+        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
+        const val adapters = "com.squareup.moshi:moshi-adapters:1.12.0"
     }
 
     object Insetter {

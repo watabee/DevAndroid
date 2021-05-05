@@ -5,7 +5,7 @@ object Versions {
     const val androidMinSdkVersion = 21
     const val androidTargetSdkVersion = 29
 
-    const val buildToolsVersion = "29.0.3"
+    const val buildToolsVersion = "30.0.3"
     const val ndkVersion = "21.3.6528147"
 
     private const val versionMajor = 1
@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.3"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.0"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.7.0.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:9.4.1"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"

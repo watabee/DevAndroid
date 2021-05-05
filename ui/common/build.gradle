@@ -36,8 +36,6 @@ dependencies {
     api Deps.Markwon.core
     api Deps.AndroidX.browser
 
-    api Deps.liveEvent
-
     api Deps.Insetter.insetterKtx
     api Deps.Insetter.insetterDbx
 

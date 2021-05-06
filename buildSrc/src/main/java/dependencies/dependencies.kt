@@ -89,7 +89,7 @@ object Deps {
 
         object Hilt {
             const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0"
         }
 
         object Paging {

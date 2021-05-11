@@ -101,29 +101,13 @@ android {
 }
 
 dependencies {
-    implementation project(':base')
-    implementation project(':base-android')
-    implementation project(':data:api')
-    implementation project(':data:db')
-    implementation project(':ui:common')
-    implementation project(':ui:image')
     implementation project(':ui:top')
-    implementation project(':ui:articles')
 
     implementation Deps.Kotlin.stdlib
-    implementation Deps.AndroidX.appcompat
-    implementation Deps.AndroidX.coreKtx
-    implementation Deps.AndroidX.constraintlayout
-    implementation Deps.AndroidX.activityKtx
-    implementation Deps.AndroidX.fragmentKtx
     implementation Deps.AndroidX.startup
-
-    implementation Deps.Retrofit.retrofit
-    implementation Deps.Moshi.kotlin
 
     implementation Deps.Hilt.android
     kapt Deps.Hilt.compiler
-    implementation Deps.AndroidX.Hilt.viewmodel
 
     implementation Deps.timber
 
@@ -139,4 +123,8 @@ dependencies {
 
     androidTestImplementation Deps.AndroidX.Test.runner
     androidTestImplementation Deps.AndroidX.Test.espressoCore
+}
+
+hilt {
+    enableExperimentalClasspathAggregation = true
 }

@@ -147,7 +147,7 @@ object Deps {
         const val flipper = "com.facebook.flipper:flipper:0.90.2"
         const val networkPlugin = "com.facebook.flipper:flipper-network-plugin:0.90.2"
 
-        const val flipperNoOp = "com.facebook.flipper:flipper-noop:0.87.0"
+        const val flipperNoOp = "com.facebook.flipper:flipper-noop:0.90.2"
     }
 
     const val soLoader = "com.facebook.soloader:soloader:0.9.0"

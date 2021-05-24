@@ -33,7 +33,7 @@ object Deps {
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.10"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.5.0"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.5.10"
 
         object Coroutines {
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"

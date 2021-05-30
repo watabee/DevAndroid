@@ -36,7 +36,6 @@ dependencies {
     api Deps.Markwon.core
     api Deps.AndroidX.browser
 
-    api Deps.Insetter.insetterKtx
     api Deps.Insetter.insetterDbx
 
     implementation Deps.Hilt.android

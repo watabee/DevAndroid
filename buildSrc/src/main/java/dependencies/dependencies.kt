@@ -98,9 +98,9 @@ object Deps {
     }
 
     object Hilt {
-        const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.35.1"
-        const val android = "com.google.dagger:hilt-android:2.35.1"
-        const val compiler = "com.google.dagger:hilt-compiler:2.35.1"
+        const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.36"
+        const val android = "com.google.dagger:hilt-android:2.36"
+        const val compiler = "com.google.dagger:hilt-compiler:2.36"
     }
 
     object Glide {

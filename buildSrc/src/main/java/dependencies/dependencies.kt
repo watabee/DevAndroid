@@ -127,8 +127,7 @@ object Deps {
     }
 
     object Insetter {
-        const val insetterKtx = "dev.chrisbanes:insetter-ktx:0.3.1"
-        const val insetterDbx = "dev.chrisbanes:insetter-dbx:0.3.1"
+        const val insetterDbx = "dev.chrisbanes.insetter:insetter-dbx:0.6.0"
     }
 
     object Markwon {

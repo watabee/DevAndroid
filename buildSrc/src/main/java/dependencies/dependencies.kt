@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.2"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.3"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.7.0.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:10.1.0"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"

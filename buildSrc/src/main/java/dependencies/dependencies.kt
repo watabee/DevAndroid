@@ -70,7 +70,7 @@ object Deps {
 
         const val coreKtx = "androidx.core:core-ktx:1.5.0"
 
-        const val browser = "androidx.browser:browser:1.3.0"
+        const val browser = "androidx.browser:browser:1.4.0"
 
         const val startup = "androidx.startup:startup-runtime:1.0.0"
 

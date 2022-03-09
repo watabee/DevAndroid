@@ -123,7 +123,7 @@ object Deps {
     object Moshi {
         const val kotlin = "com.squareup.moshi:moshi-kotlin:1.12.0"
         const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
-        const val adapters = "com.squareup.moshi:moshi-adapters:1.12.0"
+        const val adapters = "com.squareup.moshi:moshi-adapters:1.13.0"
     }
 
     object Insetter {

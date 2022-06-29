@@ -84,7 +84,7 @@ object Deps {
             const val runtime = "androidx.room:room-runtime:2.4.2"
             const val compiler = "androidx.room:room-compiler:2.4.2"
             const val ktx = "androidx.room:room-ktx:2.4.2"
-            const val testing = "androidx.room:room-testing:2.3.0"
+            const val testing = "androidx.room:room-testing:2.4.2"
         }
 
         object Hilt {

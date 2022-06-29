@@ -72,7 +72,7 @@ object Deps {
 
         const val browser = "androidx.browser:browser:1.3.0"
 
-        const val startup = "androidx.startup:startup-runtime:1.1.0"
+        const val startup = "androidx.startup:startup-runtime:1.1.1"
 
         object Lifecycle {
             const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"

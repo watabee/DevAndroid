@@ -110,7 +110,7 @@ object Deps {
     }
 
     object OkHttp {
-        const val okhttp = "com.squareup.okhttp3:okhttp:4.9.3"
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.10.0"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.3"
     }
 

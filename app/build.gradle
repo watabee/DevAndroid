@@ -69,11 +69,6 @@ android {
         disable "UnusedResources"
     }
 
-    dexOptions {
-        // Don't pre-dex on CI
-        preDexLibraries !ci
-    }
-
     testOptions {
         junitPlatform {
             filters {
@@ -123,7 +118,6 @@ dependencies {
 
     implementation Deps.Hilt.android
     kapt Deps.Hilt.compiler
-    implementation Deps.AndroidX.Hilt.viewmodel
 
     implementation Deps.timber
 

@@ -1,11 +1,11 @@
 package dependencies
 
 object Versions {
-    const val androidCompileSdkVersion = 29
+    const val androidCompileSdkVersion = 33
     const val androidMinSdkVersion = 21
-    const val androidTargetSdkVersion = 29
+    const val androidTargetSdkVersion = 31
 
-    const val buildToolsVersion = "30.0.3"
+    const val buildToolsVersion = "33.0.2"
     const val ndkVersion = "21.3.6528147"
 
     private const val versionMajor = 1
@@ -20,7 +20,7 @@ object Versions {
 
 object Deps {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.2.1"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.4.1"
     const val androidJunit5GradlePlugin = "de.mannodermaus.gradle.plugins:android-junit5:1.7.0.0"
     const val ktlintGradlePlugin = "org.jlleitschuh.gradle:ktlint-gradle:10.1.0"
     const val detektGradlePlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.9.1"
@@ -31,28 +31,28 @@ object Deps {
     const val timber = "com.jakewharton.timber:timber:4.7.1"
 
     object Kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.10"
-        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.5.10"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10"
+        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
 
         object Coroutines {
-            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
-            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
+            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
         }
     }
 
     object Google {
-        const val material = "com.google.android.material:material:1.3.0"
+        const val material = "com.google.android.material:material:1.8.0"
     }
 
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.3.0"
-        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
+        const val appcompat = "androidx.appcompat:appcompat:1.6.1"
+        const val recyclerview = "androidx.recyclerview:recyclerview:1.3.0"
         const val swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-        const val activityKtx = "androidx.activity:activity-ktx:1.2.3"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.4"
+        const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.5"
 
         object Test {
             const val core = "androidx.test:core:1.3.0"
@@ -64,54 +64,49 @@ object Deps {
 
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0-alpha2"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
 
-        const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+        const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
 
-        const val coreKtx = "androidx.core:core-ktx:1.5.0"
+        const val coreKtx = "androidx.core:core-ktx:1.9.0"
 
-        const val browser = "androidx.browser:browser:1.3.0"
+        const val browser = "androidx.browser:browser:1.5.0"
 
-        const val startup = "androidx.startup:startup-runtime:1.0.0"
+        const val startup = "androidx.startup:startup-runtime:1.1.1"
 
         object Lifecycle {
-            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.4.0-alpha01"
-            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01"
+            const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:2.6.0"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0"
         }
 
         object Room {
-            const val runtime = "androidx.room:room-runtime:2.3.0"
-            const val compiler = "androidx.room:room-compiler:2.3.0"
-            const val ktx = "androidx.room:room-ktx:2.3.0"
-            const val testing = "androidx.room:room-testing:2.3.0"
-        }
-
-        object Hilt {
-            const val viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-            const val compiler = "androidx.hilt:hilt-compiler:1.0.0"
+            const val runtime = "androidx.room:room-runtime:2.5.0"
+            const val compiler = "androidx.room:room-compiler:2.5.0"
+            const val ktx = "androidx.room:room-ktx:2.5.0"
+            const val testing = "androidx.room:room-testing:2.5.0"
         }
 
         object Paging {
-            const val runtime = "androidx.paging:paging-runtime:3.0.0"
+            const val runtime = "androidx.paging:paging-runtime:3.1.1"
         }
     }
 
     object Hilt {
-        const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.36"
-        const val android = "com.google.dagger:hilt-android:2.36"
-        const val compiler = "com.google.dagger:hilt-compiler:2.36"
+        const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:2.45"
+        const val android = "com.google.dagger:hilt-android:2.45"
+        const val compiler = "com.google.dagger:hilt-compiler:2.45"
     }
 
     object Glide {
-        const val glide = "com.github.bumptech.glide:glide:4.12.0"
-        const val compiler = "com.github.bumptech.glide:compiler:4.12.0"
-        const val integration = "com.github.bumptech.glide:okhttp3-integration:4.12.0"
+        const val glide = "com.github.bumptech.glide:glide:4.15.1"
+        const val compiler = "com.github.bumptech.glide:compiler:4.15.1"
+        const val integration = "com.github.bumptech.glide:okhttp3-integration:4.15.1"
     }
 
     object OkHttp {
-        const val okhttp = "com.squareup.okhttp3:okhttp:4.9.1"
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.10.0"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.10.0"
     }
 
     object Retrofit {
@@ -121,9 +116,9 @@ object Deps {
     }
 
     object Moshi {
-        const val kotlin = "com.squareup.moshi:moshi-kotlin:1.12.0"
-        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
-        const val adapters = "com.squareup.moshi:moshi-adapters:1.12.0"
+        const val kotlin = "com.squareup.moshi:moshi-kotlin:1.14.0"
+        const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.14.0"
+        const val adapters = "com.squareup.moshi:moshi-adapters:1.14.0"
     }
 
     object Insetter {

@@ -5,6 +5,7 @@
     <application>
         <activity
             android:name="com.github.watabee.devapp.ui.top.TopActivity"
+            android:exported="true"
             android:launchMode="standard"
             android:screenOrientation="portrait">
             <intent-filter>

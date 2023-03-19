@@ -10,7 +10,7 @@ import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.github.watabee.devapp.data.Article
 import com.github.watabee.devapp.ui.articles.R
 import com.github.watabee.devapp.ui.articles.databinding.FragmentArticleBinding
@@ -32,7 +32,7 @@ internal class ArticleFragment : Fragment(R.layout.fragment_article) {
     @Suppress("UNCHECKED_CAST")
     private val viewModel: ArticleViewModel by viewModels {
         object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 return viewModelFactory.create(article) as T
             }
         }

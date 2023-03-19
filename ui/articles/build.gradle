@@ -43,6 +43,4 @@ dependencies {
 
     implementation Deps.Hilt.android
     kapt Deps.Hilt.compiler
-    implementation Deps.AndroidX.Hilt.viewmodel
-    kapt Deps.AndroidX.Hilt.compiler
 }
